@@ -1,12 +1,13 @@
 import { LogoMark } from "./Logo";
+import { NeuralField } from "./NeuralField";
 
 export function Hero() {
   return (
     <section className="relative overflow-hidden px-6 pb-20 pt-36 sm:pt-44">
-      {/* animated grid + aurora backdrop */}
+      {/* interactive neural-network backdrop (AI mesh) */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div
-          className="absolute inset-0 grid-bg"
+          className="absolute inset-0 grid-bg opacity-60"
           style={{
             maskImage:
               "radial-gradient(ellipse 75% 60% at 50% 0%, #000 35%, transparent 72%)",
@@ -14,7 +15,8 @@ export function Hero() {
               "radial-gradient(ellipse 75% 60% at 50% 0%, #000 35%, transparent 72%)",
           }}
         />
-        <div className="aurora absolute left-1/2 top-[-10%] h-[480px] w-[680px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(0,0,0,0.10),transparent_60%)] blur-2xl" />
+        <NeuralField className="absolute inset-0 h-full w-full" />
+        <div className="aurora absolute left-1/2 top-[-10%] h-[480px] w-[680px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(0,0,0,0.06),transparent_60%)] blur-2xl" />
       </div>
 
       <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
