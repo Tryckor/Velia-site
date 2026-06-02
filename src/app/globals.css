@@ -2,25 +2,255 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0a0a0a;
+  --muted: #6b6b6b;
+  --line: #e9e9e9;
+  --ink: #0a0a0a;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --font-sans: var(--font-sans);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  letter-spacing: -0.011em;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #0a0a0a;
+  color: #fff;
+}
+
+/* Brand wordmark spacing */
+.wordmark {
+  letter-spacing: 0.42em;
+  font-weight: 300;
+}
+
+/* Gradient ink text (subtle premium depth, stays monochrome) */
+.ink-gradient {
+  background: linear-gradient(180deg, #0a0a0a 0%, #0a0a0a 55%, #5b5b5b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Glass card */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* ---------------------------------------------- Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.hairline {
+  height: 1px;
+  background: var(--line);
+}
+
+/* ---------------------------------------------- Entrance */
+@keyframes float-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.float-in {
+  animation: float-in 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.float-in-2 {
+  animation: float-in 1s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+}
+.float-in-3 {
+  animation: float-in 1s cubic-bezier(0.16, 1, 0.3, 1) 0.24s both;
+}
+.float-in-4 {
+  animation: float-in 1s cubic-bezier(0.16, 1, 0.3, 1) 0.36s both;
+}
+.float-in-5 {
+  animation: float-in 1s cubic-bezier(0.16, 1, 0.3, 1) 0.48s both;
+}
+
+/* ---------------------------------------------- Floating UI cards (hero) */
+@keyframes drift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+.drift {
+  animation: drift 6s ease-in-out infinite;
+}
+.drift-slow {
+  animation: drift 8s ease-in-out infinite;
+}
+
+/* ---------------------------------------------- Aurora / spotlight (grayscale) */
+@keyframes aurora {
+  0%,
+  100% {
+    transform: translate(-10%, -6%) scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translate(8%, 6%) scale(1.15);
+    opacity: 0.8;
+  }
+}
+.aurora {
+  animation: aurora 14s ease-in-out infinite;
+}
+
+/* ---------------------------------------------- Marquee */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 32s linear infinite;
+}
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 12%,
+    #000 88%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 12%,
+    #000 88%,
+    transparent
+  );
+}
+
+/* ---------------------------------------------- Shimmer (skeleton / accents) */
+@keyframes shimmer {
+  to {
+    background-position: 200% 0;
+  }
+}
+
+/* ---------------------------------------------- Animated grid background */
+.grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* ---------------------------------------------- Marquee pause + range input */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 2px;
+  background: var(--line);
+  border-radius: 999px;
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 22px;
+  width: 22px;
+  border-radius: 50%;
+  background: #0a0a0a;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+  cursor: grab;
+  transition: transform 0.15s ease;
+}
+input[type="range"]::-webkit-slider-thumb:active {
+  cursor: grabbing;
+  transform: scale(1.12);
+}
+input[type="range"]::-moz-range-thumb {
+  height: 22px;
+  width: 22px;
+  border-radius: 50%;
+  background: #0a0a0a;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+  cursor: grab;
+}
+
+/* ---------------------------------------------- Magnetic / hover lift */
+.lift {
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.25);
+}
+
+/* ---------------------------------------------- Scroll progress bar */
+.scroll-progress {
+  transform-origin: 0 50%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal,
+  .float-in,
+  .float-in-2,
+  .float-in-3,
+  .float-in-4,
+  .float-in-5,
+  .drift,
+  .drift-slow,
+  .aurora,
+  .marquee-track {
+    opacity: 1;
+    transform: none;
+    animation: none;
+    transition: none;
+  }
 }
