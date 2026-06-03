@@ -179,6 +179,7 @@ export function QuoteBot() {
           phone: data.phone,
           service: "Devis instantané par IA",
           message,
+          source: "devis-bot",
         }),
       });
       if (!res.ok) throw new Error("Erreur lors de l'envoi.");

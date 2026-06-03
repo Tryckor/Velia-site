@@ -1,76 +1,56 @@
 import { NextResponse } from "next/server";
+import { handleLead, validateLead } from "@/lib/leads";
 
-type ContactPayload = {
-  name?: string;
-  email?: string;
-  company?: string;
-  phone?: string;
-  service?: string;
-  message?: string;
-};
+/** Best-effort in-memory rate limit (per warm serverless instance). */
+const HITS = new Map<string, { count: number; ts: number }>();
+const WINDOW_MS = 60_000;
+const MAX_PER_WINDOW = 6;
 
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+function rateLimited(ip: string): boolean {
+  const now = Date.now();
+  const entry = HITS.get(ip);
+  if (!entry || now - entry.ts > WINDOW_MS) {
+    HITS.set(ip, { count: 1, ts: now });
+    return false;
+  }
+  entry.count += 1;
+  return entry.count > MAX_PER_WINDOW;
+}
 
 export async function POST(request: Request) {
-  let data: ContactPayload;
+  // crude IP for rate limiting
+  const ip =
+    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    request.headers.get("x-real-ip") ||
+    "unknown";
+
+  if (rateLimited(ip)) {
+    return NextResponse.json(
+      { error: "Trop de demandes. Merci de réessayer dans une minute." },
+      { status: 429 },
+    );
+  }
+
+  let body: unknown;
   try {
-    data = await request.json();
+    body = await request.json();
   } catch {
     return NextResponse.json({ error: "Requête invalide." }, { status: 400 });
   }
 
-  const name = data.name?.trim();
-  const email = data.email?.trim();
-  const message = data.message?.trim();
-
-  if (!name || !email || !message) {
-    return NextResponse.json(
-      { error: "Merci de renseigner votre nom, votre email et votre message." },
-      { status: 400 }
-    );
-  }
-  if (!EMAIL_RE.test(email)) {
-    return NextResponse.json(
-      { error: "Adresse email invalide." },
-      { status: 400 }
-    );
+  // Honeypot: bots fill hidden fields. If filled, pretend success and drop.
+  const hp = (body as Record<string, unknown>)?.website;
+  if (typeof hp === "string" && hp.trim() !== "") {
+    return NextResponse.json({ ok: true });
   }
 
-  // --- Where the lead goes ---------------------------------------------------
-  // To actually receive these emails, connect a provider (recommended: Resend).
-  //   1. npm i resend
-  //   2. Add RESEND_API_KEY and CONTACT_TO to your environment (.env.local)
-  //   3. Uncomment the block below.
-  //
-  // import { Resend } from "resend";
-  // if (process.env.RESEND_API_KEY) {
-  //   const resend = new Resend(process.env.RESEND_API_KEY);
-  //   await resend.emails.send({
-  //     from: "Velia <contact@velia.fr>",
-  //     to: process.env.CONTACT_TO!,
-  //     replyTo: email,
-  //     subject: `Nouveau lead — ${name} (${data.service ?? "Sans précision"})`,
-  //     text: [
-  //       `Nom: ${name}`,
-  //       `Email: ${email}`,
-  //       `Entreprise: ${data.company ?? "-"}`,
-  //       `Téléphone: ${data.phone ?? "-"}`,
-  //       `Service: ${data.service ?? "-"}`,
-  //       ``,
-  //       message,
-  //     ].join("\n"),
-  //   });
-  // }
+  const { lead, error } = validateLead(body);
+  if (error || !lead) {
+    return NextResponse.json({ error: error ?? "Requête invalide." }, { status: 400 });
+  }
 
-  // Until a provider is wired, log the lead so nothing is lost in development.
-  console.log("[velia] Nouveau lead:", {
-    name,
-    email,
-    company: data.company,
-    phone: data.phone,
-    service: data.service,
-    message,
-  });
+  await handleLead(lead);
 
+  // We always return ok to the visitor — the safety-net log guarantees no loss.
   return NextResponse.json({ ok: true });
 }

@@ -254,3 +254,32 @@ input[type="range"]::-moz-range-thumb {
     transition: none;
   }
 }
+
+/* Legal pages prose */
+.legal-prose h2 {
+  color: var(--foreground);
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin-top: 2.25rem;
+  margin-bottom: 0.5rem;
+}
+.legal-prose h3 {
+  color: var(--foreground);
+  font-size: 1rem;
+  font-weight: 500;
+  margin-top: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+.legal-prose strong { color: var(--foreground); font-weight: 600; }
+.legal-prose a { color: var(--foreground); text-decoration: underline; text-underline-offset: 2px; }
+.legal-prose ul { list-style: disc; padding-left: 1.25rem; }
+.legal-prose ul li { margin-top: 0.25rem; }
+.legal-prose .todo {
+  background: #fff8e6;
+  border: 1px solid #f0e2b6;
+  color: #6b5a16;
+  border-radius: 8px;
+  padding: 0.1rem 0.4rem;
+  font-size: 0.92em;
+}

@@ -8,7 +8,30 @@ const geist = Geist({
   display: "swap",
 });
 
-const siteUrl = "https://velia.fr";
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://velia.fr";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "Velia",
+  description:
+    "Agence digitale & IA : sites web, automatisations, SEO, agents IA et chatbots sur mesure.",
+  url: siteUrl,
+  email: "contact@velia.fr",
+  image: `${siteUrl}/velia-logo.png`,
+  areaServed: "FR",
+  knowsAbout: [
+    "Création de sites web",
+    "Automatisation",
+    "Référencement SEO",
+    "Agents IA",
+    "Chatbots",
+    "Hébergement mail",
+    "Devis instantané par IA",
+  ],
+  slogan: "Le digital qui fait gagner du temps et des clients.",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -51,7 +74,13 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="fr" className={geist.variable}>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

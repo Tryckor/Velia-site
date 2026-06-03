@@ -637,8 +637,16 @@ function Footer() {
           </a>
         </nav>
       </div>
-      <div className="mx-auto mt-10 max-w-6xl border-t border-line pt-6 text-center text-xs text-muted sm:text-left">
-        © 2026 Velia. Tous droits réservés.
+      <div className="mx-auto mt-10 flex max-w-6xl flex-col items-center justify-between gap-3 border-t border-line pt-6 text-xs text-muted sm:flex-row">
+        <span>© 2026 Velia. Tous droits réservés.</span>
+        <nav className="flex gap-5">
+          <a href="/mentions-legales" className="hover:text-foreground">
+            Mentions légales
+          </a>
+          <a href="/confidentialite" className="hover:text-foreground">
+            Confidentialité
+          </a>
+        </nav>
       </div>
     </footer>
   );

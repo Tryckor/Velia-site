@@ -72,6 +72,15 @@ export function ContactForm() {
       onSubmit={handleSubmit}
       className="rounded-2xl border border-line bg-white p-6 sm:p-8"
     >
+      {/* anti-spam: honeypot (hidden) + source */}
+      <input type="hidden" name="source" value="contact" />
+      <div aria-hidden className="absolute left-[-9999px] h-0 w-0 overflow-hidden" >
+        <label>
+          Ne pas remplir
+          <input type="text" name="website" tabIndex={-1} autoComplete="off" />
+        </label>
+      </div>
+
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Nom" name="name" required placeholder="Jean Dupont" />
         <Field

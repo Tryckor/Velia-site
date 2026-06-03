@@ -1,0 +1,14 @@
+# Configuration Netlify pour le site Velia (Next.js)
+# Netlify détecte Next.js et installe automatiquement le runtime adapté
+# (@netlify/plugin-nextjs). Les variables d'environnement (Supabase, Resend…)
+# se règlent dans : Netlify → Project → Site configuration → Environment variables.
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  NODE_VERSION = "22"
