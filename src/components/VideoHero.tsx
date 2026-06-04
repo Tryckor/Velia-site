@@ -44,7 +44,7 @@ export function VideoHero() {
       />
 
       {/* Content */}
-      <div className="relative z-10 mx-auto max-w-4xl text-center text-white">
+      <div className="relative z-10 mx-auto max-w-5xl text-center text-white">
         <p className="float-in mb-7 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-1.5 text-xs text-white/80 backdrop-blur">
           <span className="relative flex h-1.5 w-1.5">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-60" />
@@ -53,15 +53,15 @@ export function VideoHero() {
           Agence digitale & intelligence artificielle
         </p>
 
-        <h1 className="float-in-2 text-balance text-4xl font-medium leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
-          Le temps perdu
+        <h1 className="float-in-2 text-balance text-4xl font-medium leading-[1.06] tracking-tight sm:text-5xl lg:text-6xl">
+          Pendant que vous hésitez,
           <br />
-          ne revient pas.
+          vos concurrents répondent déjà.
         </h1>
 
         <p className="float-in-3 mx-auto mt-7 max-w-xl text-pretty text-lg text-white/75">
-          Sites web, automatisations et agents IA qui captent vos clients
-          24h/24 — pendant que vous faites le reste.
+          Velia fait répondre votre entreprise en premier : sites web,
+          automatisations et agents IA qui captent chaque client, 24h/24.
         </p>
 
         <div className="float-in-4 mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
