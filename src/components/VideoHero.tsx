@@ -19,6 +19,9 @@ export function VideoHero() {
       <video
         ref={videoRef}
         className="absolute inset-0 h-full w-full object-cover"
+        // Nudge the clock so its 12–6 axis sits dead centre. translateX+ = clock
+        // moves right; the small scale avoids any black edge appearing.
+        style={{ transform: "scale(1.06) translateX(2.6%)" }}
         autoPlay
         muted
         loop
@@ -43,17 +46,16 @@ export function VideoHero() {
         }}
       />
 
-      {/* Light pool on the ground under the clock (matches the reference photo):
-          a wide soft halo spreading across the width + an intense white core,
-          both flattened ellipses centred low so the bottom corners stay dark. */}
+      {/* Single light pool on the ground under the clock (matches the reference):
+          a SOLID white plateau in the centre, then one long stretched gradient
+          fading to the sides. Flattened ellipse centred low so the bottom
+          corners stay dark. */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 z-[1]"
         style={{
-          background: [
-            "radial-gradient(ellipse 64% 30% at 50% 90%, rgba(255,255,255,0.50) 0%, rgba(255,255,255,0.16) 44%, transparent 72%)",
-            "radial-gradient(ellipse 32% 15% at 50% 93%, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.34) 46%, transparent 76%)",
-          ].join(", "),
+          background:
+            "radial-gradient(ellipse 48% 23% at 50% 92%, #ffffff 0%, rgba(255,255,255,0.97) 17%, rgba(255,255,255,0.6) 36%, rgba(255,255,255,0.26) 56%, rgba(255,255,255,0.07) 74%, transparent 90%)",
         }}
       />
 
