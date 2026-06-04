@@ -46,16 +46,20 @@ export function VideoHero() {
         }}
       />
 
-      {/* Single light pool on the ground under the clock (matches the reference):
-          a SOLID white plateau in the centre, then one long stretched gradient
-          fading to the sides. Flattened ellipse centred low so the bottom
-          corners stay dark. */}
+      {/* Single clean light pool on the ground under the clock.
+          Technique: ONE solid white ellipse softened by a heavy Gaussian blur.
+          The blur gives a perfectly smooth falloff — a truly white core fading
+          continuously to the sides — with NO colour banding / no double cores
+          (which plagues multi-stop CSS gradients on dark backgrounds). */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-[1]"
+        className="pointer-events-none absolute bottom-[-5%] left-1/2 z-[1] -translate-x-1/2 rounded-[50%]"
         style={{
-          background:
-            "radial-gradient(ellipse 48% 23% at 50% 92%, #ffffff 0%, rgba(255,255,255,0.97) 17%, rgba(255,255,255,0.6) 36%, rgba(255,255,255,0.26) 56%, rgba(255,255,255,0.07) 74%, transparent 90%)",
+          width: "38%",
+          height: "24%",
+          background: "#ffffff",
+          filter: "blur(85px)",
+          WebkitFilter: "blur(85px)",
         }}
       />
 
