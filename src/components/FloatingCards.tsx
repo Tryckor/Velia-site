@@ -190,7 +190,7 @@ export function FloatingCards() {
       ref={containerRef}
       aria-hidden
       style={{ opacity: 0 }}
-      className="pointer-events-none absolute inset-0 z-20 hidden overflow-hidden opacity-0 transition-opacity duration-700 xl:block"
+      className="pointer-events-none absolute inset-0 z-[2] hidden overflow-hidden opacity-0 transition-opacity duration-700 xl:block"
     >
       {/* Réceptionniste IA (agents IA) */}
       <div

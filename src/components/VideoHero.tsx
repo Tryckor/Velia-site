@@ -67,6 +67,18 @@ export function VideoHero() {
           edges and each other (desktop only). Tell visitors what Velia sells. */}
       <FloatingCards />
 
+      {/* Legibility scrim above the floating cards but UNDER the text: darkens
+          whatever passes through the central text zone so the headline stays
+          readable even when a white card drifts behind it. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-[5]"
+        style={{
+          background:
+            "radial-gradient(ellipse 54% 38% at 50% 49%, rgba(7,7,7,0.72) 0%, rgba(7,7,7,0.5) 46%, rgba(7,7,7,0.22) 68%, transparent 85%)",
+        }}
+      />
+
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-5xl text-center text-white">
         <p className="float-in mb-7 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-1.5 text-xs text-white/80 backdrop-blur">
