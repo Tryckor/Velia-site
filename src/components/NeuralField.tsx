@@ -37,8 +37,8 @@ export function NeuralField({ className = "" }: { className?: string }) {
 
     const pointer = { x: -9999, y: -9999, active: false };
 
-    const LINK_DIST = 132; // px between nodes to draw a link
-    const CURSOR_DIST = 200; // px around the cursor to react
+    const LINK_DIST = 158; // px between nodes to draw a link
+    const CURSOR_DIST = 220; // px around the cursor to react
 
     function build() {
       const parent = canvas!.parentElement;
@@ -54,13 +54,13 @@ export function NeuralField({ className = "" }: { className?: string }) {
       canvas!.style.height = `${height}px`;
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const count = Math.min(92, Math.max(34, Math.floor((width * height) / 12500)));
+      const count = Math.min(130, Math.max(46, Math.floor((width * height) / 9000)));
       nodes = Array.from({ length: count }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.28,
-        vy: (Math.random() - 0.5) * 0.28,
-        r: 2 + Math.random() * 2.6,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        r: 2.2 + Math.random() * 3,
       }));
     }
 
@@ -85,9 +85,9 @@ export function NeuralField({ className = "" }: { className?: string }) {
           const dy = a.y - b.y;
           const d = Math.hypot(dx, dy);
           if (d < LINK_DIST) {
-            const o = (1 - d / LINK_DIST) * 0.24;
+            const o = (1 - d / LINK_DIST) * 0.32;
             ctx!.strokeStyle = `rgba(10,10,10,${o.toFixed(3)})`;
-            ctx!.lineWidth = 1;
+            ctx!.lineWidth = 1.1;
             ctx!.beginPath();
             ctx!.moveTo(a.x, a.y);
             ctx!.lineTo(b.x, b.y);
@@ -122,7 +122,7 @@ export function NeuralField({ className = "" }: { className?: string }) {
         const near =
           pointer.active &&
           Math.hypot(n.x - pointer.x, n.y - pointer.y) < CURSOR_DIST;
-        ctx!.fillStyle = near ? "rgba(10,10,10,0.8)" : "rgba(10,10,10,0.45)";
+        ctx!.fillStyle = near ? "rgba(10,10,10,0.95)" : "rgba(10,10,10,0.58)";
         ctx!.beginPath();
         ctx!.arc(n.x, n.y, n.r, 0, Math.PI * 2);
         ctx!.fill();
@@ -201,9 +201,9 @@ export function NeuralField({ className = "" }: { className?: string }) {
       className={className}
       style={{
         maskImage:
-          "radial-gradient(ellipse 100% 90% at 50% 18%, #000 48%, transparent 88%)",
+          "radial-gradient(ellipse 135% 110% at 50% 30%, #000 62%, transparent 100%)",
         WebkitMaskImage:
-          "radial-gradient(ellipse 100% 90% at 50% 18%, #000 48%, transparent 88%)",
+          "radial-gradient(ellipse 135% 110% at 50% 30%, #000 62%, transparent 100%)",
       }}
     />
   );
