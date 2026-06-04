@@ -96,7 +96,7 @@ export function VideoHero() {
             </span>
           </a>
           <a
-            href="#services"
+            href="#decouvrir"
             className="w-full rounded-full border border-white/30 bg-white/5 px-7 py-3.5 font-medium text-white backdrop-blur transition-colors hover:border-white/70 sm:w-auto"
           >
             Découvrir nos services
@@ -124,7 +124,7 @@ export function VideoHero() {
 
       {/* Scroll cue */}
       <a
-        href="#services"
+        href="#decouvrir"
         aria-label="Défiler"
         className="float-in-5 absolute bottom-7 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-black/70 transition-colors hover:text-black"
       >
