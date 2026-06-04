@@ -43,13 +43,22 @@ export function VideoHero() {
         }}
       />
 
-      {/* Soft cool aurora glow rising from the bottom (prolongs the light pool) */}
+      {/* Aurora glow rising from the bottom (prolongs the light pool under the clock) */}
       <div
         aria-hidden
-        className="aurora pointer-events-none absolute inset-x-0 bottom-[-10%] z-[1] h-2/3"
+        className="pointer-events-none absolute inset-x-0 bottom-[-14%] z-[1] h-3/4"
         style={{
           background:
-            "radial-gradient(60% 95% at 50% 100%, rgba(196,214,255,0.28), rgba(150,180,255,0.10) 32%, transparent 68%)",
+            "radial-gradient(70% 115% at 50% 102%, rgba(190,212,255,0.55), rgba(150,185,255,0.28) 34%, rgba(120,160,255,0.10) 55%, transparent 74%)",
+        }}
+      />
+      {/* a brighter cool core right at the base */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-[-6%] z-[1] h-1/3"
+        style={{
+          background:
+            "radial-gradient(45% 100% at 50% 100%, rgba(214,228,255,0.5), transparent 70%)",
         }}
       />
 
