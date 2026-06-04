@@ -2,7 +2,7 @@ import { Nav } from "@/components/Nav";
 import { Reveal } from "@/components/Reveal";
 import { ContactForm } from "@/components/ContactForm";
 import { LogoMark } from "@/components/Logo";
-import { Hero } from "@/components/Hero";
+import { VideoHero } from "@/components/VideoHero";
 import { Marquee } from "@/components/Marquee";
 import { StatsBand } from "@/components/StatsBand";
 import { Counter } from "@/components/Counter";
@@ -117,9 +117,9 @@ export default function Home() {
   return (
     <div id="top" className="min-h-screen bg-background">
       <ScrollProgress />
-      <Nav />
+      <Nav light />
       <main>
-        <Hero />
+        <VideoHero />
         <Marquee />
         <StatsBand />
         <Services />

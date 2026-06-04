@@ -10,9 +10,12 @@ const LINKS = [
   { href: "#faq", label: "FAQ" },
 ];
 
-export function Nav() {
+export function Nav({ light = false }: { light?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+
+  // White nav elements while sitting over a dark hero (top, not scrolled).
+  const onDark = light && !scrolled && !open;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -37,7 +40,13 @@ export function Nav() {
       }`}
     >
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        <a href="#top" aria-label="Velia — accueil" className="shrink-0">
+        <a
+          href="#top"
+          aria-label="Velia — accueil"
+          className={`shrink-0 transition-colors duration-300 ${
+            onDark ? "text-white" : "text-foreground"
+          }`}
+        >
           <Logo />
         </a>
 
@@ -46,14 +55,20 @@ export function Nav() {
             <a
               key={l.href}
               href={l.href}
-              className="text-sm text-muted transition-colors hover:text-foreground"
+              className={`text-sm transition-colors ${
+                onDark
+                  ? "text-white/80 hover:text-white"
+                  : "text-muted hover:text-foreground"
+              }`}
             >
               {l.label}
             </a>
           ))}
           <a
             href="#contact"
-            className="rounded-full bg-foreground px-5 py-2 text-sm font-medium text-white transition-opacity hover:opacity-85"
+            className={`rounded-full px-5 py-2 text-sm font-medium transition-opacity hover:opacity-85 ${
+              onDark ? "bg-white text-foreground" : "bg-foreground text-white"
+            }`}
           >
             Réserver un appel
           </a>
@@ -69,17 +84,17 @@ export function Nav() {
           <span className="sr-only">Menu</span>
           <div className="flex flex-col gap-[5px]">
             <span
-              className={`block h-px w-6 bg-foreground transition-transform duration-300 ${
+              className={`block h-px w-6 ${onDark ? "bg-white" : "bg-foreground"} transition-transform duration-300 ${
                 open ? "translate-y-[6px] rotate-45" : ""
               }`}
             />
             <span
-              className={`block h-px w-6 bg-foreground transition-opacity duration-200 ${
+              className={`block h-px w-6 ${onDark ? "bg-white" : "bg-foreground"} transition-opacity duration-200 ${
                 open ? "opacity-0" : ""
               }`}
             />
             <span
-              className={`block h-px w-6 bg-foreground transition-transform duration-300 ${
+              className={`block h-px w-6 ${onDark ? "bg-white" : "bg-foreground"} transition-transform duration-300 ${
                 open ? "-translate-y-[6px] -rotate-45" : ""
               }`}
             />
