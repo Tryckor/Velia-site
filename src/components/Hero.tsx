@@ -10,9 +10,9 @@ export function Hero() {
           className="absolute inset-0 grid-bg opacity-60"
           style={{
             maskImage:
-              "radial-gradient(ellipse 75% 60% at 50% 0%, #000 35%, transparent 72%)",
+              "radial-gradient(ellipse 75% 60% at 50% 0%, #fff 35%, transparent 72%)",
             WebkitMaskImage:
-              "radial-gradient(ellipse 75% 60% at 50% 0%, #000 35%, transparent 72%)",
+              "radial-gradient(ellipse 75% 60% at 50% 0%, #fff 35%, transparent 72%)",
           }}
         />
         <NeuralField className="absolute inset-0 h-full w-full" />

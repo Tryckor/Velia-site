@@ -201,9 +201,9 @@ export function NeuralField({ className = "" }: { className?: string }) {
       className={className}
       style={{
         maskImage:
-          "radial-gradient(ellipse 135% 110% at 50% 30%, #000 62%, transparent 100%)",
+          "radial-gradient(ellipse 135% 110% at 50% 30%, #fff 62%, transparent 100%)",
         WebkitMaskImage:
-          "radial-gradient(ellipse 135% 110% at 50% 30%, #000 62%, transparent 100%)",
+          "radial-gradient(ellipse 135% 110% at 50% 30%, #fff 62%, transparent 100%)",
       }}
     />
   );
