@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { LogoMark } from "./Logo";
 
 // Vitesse de lecture du fond vidéo (1 = normal). Plus bas = aiguille plus lente.
 const PLAYBACK_RATE = 0.3;
@@ -61,6 +62,89 @@ export function VideoHero() {
           WebkitFilter: "blur(10px)",
         }}
       />
+
+      {/* Floating service cards framing the clock (desktop only, ≥1280px).
+          They tell visitors what Velia sells the moment they land. Monochrome,
+          glassy, placed in the four corners so they never cover the headline. */}
+      {/* Top-left — Réceptionniste IA (AI agents) */}
+      <div className="drift pointer-events-none absolute left-4 top-24 z-10 hidden w-64 rounded-2xl border border-black/5 bg-white/95 p-4 text-foreground shadow-[0_30px_70px_-25px_rgba(0,0,0,0.65)] backdrop-blur-sm xl:block 2xl:left-12">
+        <div className="flex items-center gap-3">
+          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-foreground text-white">
+            <LogoMark className="h-4 w-4" />
+          </span>
+          <div className="flex flex-col">
+            <span className="text-sm font-medium">Réceptionniste IA</span>
+            <span className="text-xs text-muted">En ligne · 24/7</span>
+          </div>
+          <span className="relative ml-auto flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-foreground opacity-50" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-foreground" />
+          </span>
+        </div>
+        <div className="mt-3 space-y-2">
+          <div className="ml-auto w-fit max-w-[80%] rounded-2xl rounded-br-sm bg-foreground px-3 py-1.5 text-xs text-white">
+            Bonjour, êtes-vous ouvert samedi ?
+          </div>
+          <div className="w-fit max-w-[85%] rounded-2xl rounded-bl-sm bg-[#f3f3f3] px-3 py-1.5 text-xs">
+            Oui, de 9h à 18h. Je vous réserve un créneau ?
+          </div>
+        </div>
+      </div>
+
+      {/* Top-right — Temps gagné (automation ROI) */}
+      <div className="drift-slow pointer-events-none absolute right-4 top-28 z-10 hidden w-44 rounded-2xl border border-black/5 bg-white/95 p-4 text-foreground shadow-[0_30px_70px_-25px_rgba(0,0,0,0.65)] backdrop-blur-sm xl:block 2xl:right-12">
+        <span className="text-xs text-muted">Temps gagné / sem.</span>
+        <p className="mt-1 text-3xl font-semibold tracking-tight">12 h</p>
+        <div className="mt-2 flex items-end gap-1">
+          {[40, 65, 50, 80, 95].map((h, i) => (
+            <span
+              key={i}
+              className="w-3 rounded-sm bg-foreground/80"
+              style={{ height: `${h * 0.32}px` }}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Bottom-left — Automatisation pipeline */}
+      <div className="drift pointer-events-none absolute bottom-24 left-6 z-10 hidden w-64 rounded-2xl border border-black/5 bg-white/95 p-4 text-foreground shadow-[0_30px_70px_-25px_rgba(0,0,0,0.65)] backdrop-blur-sm [animation-delay:1.2s] xl:block 2xl:left-12">
+        <span className="text-xs text-muted">Automatisation</span>
+        <div className="mt-3 flex items-center justify-between text-xs font-medium">
+          <span className="rounded-lg bg-[#f3f3f3] px-2.5 py-1.5">Devis</span>
+          <span className="text-muted">→</span>
+          <span className="rounded-lg bg-[#f3f3f3] px-2.5 py-1.5">Relance</span>
+          <span className="text-muted">→</span>
+          <span className="rounded-lg bg-foreground px-2.5 py-1.5 text-white">
+            Signé
+          </span>
+        </div>
+      </div>
+
+      {/* Bottom-right — SEO / référencement */}
+      <div className="drift-slow pointer-events-none absolute bottom-28 right-6 z-10 hidden w-52 rounded-2xl border border-black/5 bg-white/95 p-4 text-foreground shadow-[0_30px_70px_-25px_rgba(0,0,0,0.65)] backdrop-blur-sm [animation-delay:0.6s] xl:block 2xl:right-12">
+        <span className="text-xs text-muted">Référencement SEO</span>
+        <div className="mt-1.5 flex items-baseline gap-2">
+          <span className="text-2xl font-semibold tracking-tight">1ʳᵉ</span>
+          <span className="text-sm text-muted">page Google</span>
+        </div>
+        <div className="mt-2 flex items-center gap-1.5 text-xs text-muted">
+          <svg
+            viewBox="0 0 24 24"
+            className="h-3.5 w-3.5 text-foreground"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.4"
+          >
+            <path
+              d="M4 14l5-5 4 4 7-7"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path d="M15 6h5v5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          Trafic organique en hausse
+        </div>
+      </div>
 
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-5xl text-center text-white">
