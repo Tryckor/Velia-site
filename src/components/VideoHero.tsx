@@ -21,7 +21,7 @@ export function VideoHero() {
         className="absolute inset-0 h-full w-full object-cover"
         // Nudge the clock so its 12–6 axis sits dead centre. translateX+ = clock
         // moves right; the small scale avoids any black edge appearing.
-        style={{ transform: "scale(1.06) translateX(0.2%)" }}
+        style={{ transform: "scale(1.06) translateX(0.5%)" }}
         autoPlay
         muted
         loop
