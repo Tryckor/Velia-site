@@ -5,7 +5,7 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden px-6 pb-20 pt-36 sm:pt-44">
       {/* interactive neural-network backdrop (AI mesh) */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
         <div
           className="absolute inset-0 grid-bg opacity-60"
           style={{
@@ -19,7 +19,7 @@ export function Hero() {
         <div className="aurora absolute left-1/2 top-[-10%] h-[480px] w-[680px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(0,0,0,0.06),transparent_60%)] blur-2xl" />
       </div>
 
-      <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
+      <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
         {/* Left — copy */}
         <div className="text-center lg:text-left">
           <p className="float-in mb-6 inline-flex items-center gap-2 rounded-full border border-line bg-white/70 px-4 py-1.5 text-xs text-muted backdrop-blur">
