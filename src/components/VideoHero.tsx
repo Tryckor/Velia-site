@@ -1,8 +1,23 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+
+// Vitesse de lecture du fond vidéo (1 = normal). Plus bas = aiguille plus lente.
+const PLAYBACK_RATE = 0.6;
+
 export function VideoHero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (v) v.playbackRate = PLAYBACK_RATE;
+  }, []);
+
   return (
     <section className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden bg-[#070707] px-6">
       {/* Background video (clock — time slipping away) */}
       <video
+        ref={videoRef}
         className="absolute inset-0 h-full w-full object-cover"
         autoPlay
         muted
@@ -10,6 +25,9 @@ export function VideoHero() {
         playsInline
         preload="auto"
         aria-hidden="true"
+        onLoadedMetadata={(e) => {
+          e.currentTarget.playbackRate = PLAYBACK_RATE;
+        }}
       >
         <source src="/hero-bg.mp4" type="video/mp4" />
       </video>
