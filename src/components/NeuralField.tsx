@@ -54,77 +54,93 @@ export function NeuralField({ className = "" }: { className?: string }) {
       canvas!.style.height = `${height}px`;
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const count = Math.min(130, Math.max(46, Math.floor((width * height) / 9000)));
+      const count = Math.min(72, Math.max(26, Math.floor((width * height) / 17000)));
       nodes = Array.from({ length: count }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        r: 2.2 + Math.random() * 3,
+        vx: (Math.random() - 0.5) * 0.16,
+        vy: (Math.random() - 0.5) * 0.16,
+        r: 3 + Math.random() * Math.random() * 10,
       }));
     }
 
     function step() {
       ctx!.clearRect(0, 0, width, height);
 
+      // graceful drift (wrap softly around edges)
       for (const n of nodes) {
         n.x += n.vx;
         n.y += n.vy;
-        if (n.x < 0 || n.x > width) n.vx *= -1;
-        if (n.y < 0 || n.y > height) n.vy *= -1;
-        n.x = Math.max(0, Math.min(width, n.x));
-        n.y = Math.max(0, Math.min(height, n.y));
+        if (n.x < -30) n.x = width + 30;
+        if (n.x > width + 30) n.x = -30;
+        if (n.y < -30) n.y = height + 30;
+        if (n.y > height + 30) n.y = -30;
       }
 
-      // links between nodes
-      for (let i = 0; i < nodes.length; i++) {
-        const a = nodes[i];
-        for (let j = i + 1; j < nodes.length; j++) {
-          const b = nodes[j];
-          const dx = a.x - b.x;
-          const dy = a.y - b.y;
-          const d = Math.hypot(dx, dy);
-          if (d < LINK_DIST) {
-            const o = (1 - d / LINK_DIST) * 0.32;
-            ctx!.strokeStyle = `rgba(10,10,10,${o.toFixed(3)})`;
-            ctx!.lineWidth = 1.1;
-            ctx!.beginPath();
-            ctx!.moveTo(a.x, a.y);
-            ctx!.lineTo(b.x, b.y);
-            ctx!.stroke();
-          }
-        }
-      }
-
-      // cursor interaction: highlight links from pointer to nearby nodes
+      // soft light following the cursor
       if (pointer.active) {
-        for (const n of nodes) {
-          const dx = n.x - pointer.x;
-          const dy = n.y - pointer.y;
-          const d = Math.hypot(dx, dy);
-          if (d < CURSOR_DIST) {
-            const o = (1 - d / CURSOR_DIST) * 0.5;
-            ctx!.strokeStyle = `rgba(10,10,10,${o.toFixed(3)})`;
-            ctx!.lineWidth = 1;
-            ctx!.beginPath();
-            ctx!.moveTo(pointer.x, pointer.y);
-            ctx!.lineTo(n.x, n.y);
-            ctx!.stroke();
-            // gently pull nodes toward the cursor
-            n.x -= (dx / d) * (1 - d / CURSOR_DIST) * 0.6;
-            n.y -= (dy / d) * (1 - d / CURSOR_DIST) * 0.6;
+        const R = 260;
+        const g = ctx!.createRadialGradient(
+          pointer.x, pointer.y, 0, pointer.x, pointer.y, R,
+        );
+        g.addColorStop(0, "rgba(10,10,10,0.05)");
+        g.addColorStop(1, "rgba(10,10,10,0)");
+        ctx!.fillStyle = g;
+        ctx!.fillRect(0, 0, width, height);
+      }
+
+      // the network reveals itself only AROUND the cursor (clean at rest)
+      if (pointer.active) {
+        const near = nodes.filter(
+          (n) => Math.hypot(n.x - pointer.x, n.y - pointer.y) < CURSOR_DIST,
+        );
+        // links from cursor to nearby particles
+        for (const n of near) {
+          const d = Math.hypot(n.x - pointer.x, n.y - pointer.y);
+          const o = (1 - d / CURSOR_DIST) * 0.4;
+          ctx!.strokeStyle = `rgba(10,10,10,${o.toFixed(3)})`;
+          ctx!.lineWidth = 1;
+          ctx!.beginPath();
+          ctx!.moveTo(pointer.x, pointer.y);
+          ctx!.lineTo(n.x, n.y);
+          ctx!.stroke();
+          // gentle attraction
+          n.x += (pointer.x - n.x) * 0.004;
+          n.y += (pointer.y - n.y) * 0.004;
+        }
+        // links between the nearby particles (local mesh)
+        for (let i = 0; i < near.length; i++) {
+          for (let j = i + 1; j < near.length; j++) {
+            const a = near[i];
+            const b = near[j];
+            const d = Math.hypot(a.x - b.x, a.y - b.y);
+            if (d < LINK_DIST) {
+              const o = (1 - d / LINK_DIST) * 0.2;
+              ctx!.strokeStyle = `rgba(10,10,10,${o.toFixed(3)})`;
+              ctx!.lineWidth = 1;
+              ctx!.beginPath();
+              ctx!.moveTo(a.x, a.y);
+              ctx!.lineTo(b.x, b.y);
+              ctx!.stroke();
+            }
           }
         }
       }
 
-      // nodes
+      // soft luminous particles
       for (const n of nodes) {
         const near =
           pointer.active &&
           Math.hypot(n.x - pointer.x, n.y - pointer.y) < CURSOR_DIST;
-        ctx!.fillStyle = near ? "rgba(10,10,10,0.95)" : "rgba(10,10,10,0.58)";
+        const core = near ? 0.6 : 0.38;
+        const R = Math.max(4, n.r * 2.4);
+        const g = ctx!.createRadialGradient(n.x, n.y, 0, n.x, n.y, R);
+        g.addColorStop(0, `rgba(10,10,10,${core})`);
+        g.addColorStop(0.45, `rgba(10,10,10,${(core * 0.35).toFixed(3)})`);
+        g.addColorStop(1, "rgba(10,10,10,0)");
+        ctx!.fillStyle = g;
         ctx!.beginPath();
-        ctx!.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+        ctx!.arc(n.x, n.y, R, 0, Math.PI * 2);
         ctx!.fill();
       }
     }
