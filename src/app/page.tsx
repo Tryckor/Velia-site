@@ -165,14 +165,14 @@ function Services() {
                   aria-hidden
                   className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-[radial-gradient(circle,rgba(0,0,0,0.06),transparent_70%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                 />
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-line transition-colors duration-300 group-hover:bg-foreground group-hover:text-white">
+                <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-line text-accent transition-colors duration-300 group-hover:border-transparent group-hover:bg-accent group-hover:text-white">
                   <Icon className="h-6 w-6" />
                 </span>
                 <h3 className="mt-5 text-lg font-medium">{s.title}</h3>
                 <p className="mt-2.5 flex-1 text-sm leading-relaxed text-muted">
                   {s.desc}
                 </p>
-                <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-foreground/0 transition-colors duration-300 group-hover:text-foreground">
+                <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-foreground/0 transition-colors duration-300 group-hover:text-accent">
                   Estimer mon gain
                   <span aria-hidden>→</span>
                 </span>
@@ -224,7 +224,7 @@ function InstantQuote() {
           {/* Copy */}
           <div>
             <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-line bg-white px-3.5 py-1.5 text-xs font-medium">
-              <span className="rounded-full bg-foreground px-2 py-0.5 text-[10px] uppercase tracking-wide text-white">
+              <span className="rounded-full bg-accent px-2 py-0.5 text-[10px] uppercase tracking-wide text-white">
                 Nouveau
               </span>
               Devis instantané par IA
@@ -264,7 +264,7 @@ function InstantQuote() {
             </div>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <OpenQuoteBotButton className="group inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-7 py-3.5 font-medium text-white transition-all hover:opacity-90 hover:shadow-[0_16px_40px_-12px_rgba(0,0,0,0.5)]">
+              <OpenQuoteBotButton className="group inline-flex items-center justify-center gap-2 rounded-full bg-accent px-7 py-3.5 font-medium text-white transition-all hover:opacity-90 hover:shadow-[0_16px_40px_-12px_var(--accent)]">
                 Essayer la démo en direct
                 <span className="transition-transform group-hover:translate-x-0.5">
                   →
@@ -301,8 +301,8 @@ function InstantQuote() {
                 <Mock from="user">Rénovation salle de bain</Mock>
                 <Mock from="bot">Quelle surface, environ ?</Mock>
                 <Mock from="user">Environ 8 m²</Mock>
-                <div className="rounded-2xl border border-foreground/10 bg-foreground p-4 text-white">
-                  <span className="text-[11px] uppercase tracking-[0.16em] text-white/50">
+                <div className="rounded-2xl border border-transparent bg-accent p-4 text-white">
+                  <span className="text-[11px] uppercase tracking-[0.16em] text-white/60">
                     Estimation
                   </span>
                   <p className="mt-1 text-2xl font-semibold tracking-tight">
@@ -310,7 +310,7 @@ function InstantQuote() {
                   </p>
                 </div>
               </div>
-              <OpenQuoteBotButton className="w-full rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90">
+              <OpenQuoteBotButton className="w-full rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90">
                 Lancer la vraie démo →
               </OpenQuoteBotButton>
             </div>
@@ -400,9 +400,9 @@ function Method() {
                 <div className="relative flex flex-col">
                   <span
                     aria-hidden
-                    className="hidden h-3.5 w-3.5 rounded-full border-2 border-foreground bg-white lg:block"
+                    className="hidden h-3.5 w-3.5 rounded-full border-2 border-accent bg-white lg:block"
                   />
-                  <span className="mt-0 text-sm font-medium text-muted lg:mt-6">
+                  <span className="mt-0 text-sm font-semibold text-accent lg:mt-6">
                     {step.n}
                   </span>
                   <div className="hairline my-4 lg:hidden" />
@@ -434,7 +434,7 @@ function WhyVelia() {
           />
           <a
             href="#contact"
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 font-medium text-white transition-opacity hover:opacity-85"
+            className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 font-medium text-white transition-opacity hover:opacity-85"
           >
             Parlons de votre projet
             <span aria-hidden>→</span>
@@ -447,7 +447,7 @@ function WhyVelia() {
               delay={(i % 2) * 80}
               className="lift rounded-2xl border border-line bg-white p-7"
             >
-              <LogoMark className="h-5 w-5 text-foreground" />
+              <LogoMark className="h-5 w-5 text-accent" />
               <h3 className="mt-4 font-medium">{v.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted">
                 {v.desc}
@@ -464,7 +464,7 @@ function WhyVelia() {
 function CtaBand() {
   return (
     <section className="px-6 py-12">
-      <Reveal className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl bg-foreground px-8 py-16 text-center text-white sm:py-20">
+      <Reveal className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl bg-accent px-8 py-16 text-center text-white sm:py-20">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 opacity-[0.06]"
@@ -669,7 +669,7 @@ function SectionHeading({
   const alignCls = align === "center" ? "mx-auto text-center" : "text-left";
   return (
     <div className={`max-w-2xl ${alignCls}`}>
-      <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted">
+      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
         {eyebrow}
       </p>
       <h2 className="mt-3 text-balance text-3xl font-medium tracking-tight sm:text-4xl">

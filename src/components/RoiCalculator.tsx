@@ -325,7 +325,7 @@ export function RoiCalculator() {
             onClick={() => setActive(i)}
             className={`whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-colors ${
               i === active
-                ? "bg-foreground text-white"
+                ? "bg-accent text-white"
                 : "text-muted hover:bg-[#f4f4f4] hover:text-foreground"
             }`}
           >
@@ -362,7 +362,7 @@ export function RoiCalculator() {
                   value={current[sl.key]}
                   onChange={(e) => setValue(sl.key, Number(e.target.value))}
                   aria-label={sl.label}
-                  className="h-1 w-full cursor-pointer appearance-none rounded-full bg-line accent-[#0a0a0a] [&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:cursor-grab [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-[3px] [&::-moz-range-thumb]:border-white [&::-moz-range-thumb]:bg-[#0a0a0a] [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:cursor-grab [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-[3px] [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:bg-[#0a0a0a] [&::-webkit-slider-thumb]:shadow-[0_2px_10px_rgba(0,0,0,0.25)]"
+                  className="h-1 w-full cursor-pointer appearance-none rounded-full bg-line accent-[var(--accent)] [&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:cursor-grab [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-[3px] [&::-moz-range-thumb]:border-white [&::-moz-range-thumb]:bg-[var(--accent)] [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:cursor-grab [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-[3px] [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:bg-[var(--accent)] [&::-webkit-slider-thumb]:shadow-[0_2px_10px_rgba(0,0,0,0.25)]"
                 />
               </div>
             ))}

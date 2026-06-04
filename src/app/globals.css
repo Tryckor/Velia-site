@@ -6,6 +6,39 @@
   --muted: #6b6b6b;
   --line: #e9e9e9;
   --ink: #0a0a0a;
+
+  /* Accent colour — default theme = electric blue. Prototype routes override
+     these via a .theme-* class on a wrapper, and everything recolours. */
+  --accent: #2b6bff;
+  --accent-2: #6aa0ff;
+  --accent-soft: rgba(43, 107, 255, 0.1);
+}
+
+/* Colour prototype themes (applied on a wrapper element) */
+.theme-electric {
+  --accent: #2b6bff;
+  --accent-2: #6aa0ff;
+  --accent-soft: rgba(43, 107, 255, 0.1);
+}
+.theme-orange {
+  --accent: #ff6a1a;
+  --accent-2: #ffa05a;
+  --accent-soft: rgba(255, 106, 26, 0.1);
+}
+.theme-violet {
+  --accent: #7c5cff;
+  --accent-2: #a98bff;
+  --accent-soft: rgba(124, 92, 255, 0.1);
+}
+.theme-emerald {
+  --accent: #0bb67a;
+  --accent-2: #4dd6a3;
+  --accent-soft: rgba(11, 182, 122, 0.1);
+}
+.theme-crimson {
+  --accent: #ff2e57;
+  --accent-2: #ff6f8a;
+  --accent-soft: rgba(255, 46, 87, 0.1);
 }
 
 @theme inline {
@@ -13,6 +46,7 @@
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-line: var(--line);
+  --color-accent: var(--accent);
   --font-sans: var(--font-sans);
 }
 

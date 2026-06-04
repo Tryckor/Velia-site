@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Logo } from "./Logo";
+import { LogoMark } from "./Logo";
 
 const LINKS = [
   { href: "#services", label: "Services" },
@@ -39,18 +39,25 @@ export function Nav({ light = false }: { light?: boolean }) {
           : "border-b border-transparent bg-transparent"
       }`}
     >
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+      <nav className="mx-auto grid h-[4.5rem] max-w-6xl grid-cols-[1fr_auto_1fr] items-center px-6">
+        {/* Left — bigger Velia logo */}
         <a
           href="#top"
           aria-label="Velia — accueil"
-          className={`shrink-0 transition-colors duration-300 ${
+          className={`justify-self-start transition-colors duration-300 ${
             onDark ? "text-white" : "text-foreground"
           }`}
         >
-          <Logo />
+          <span className="inline-flex items-center gap-2.5">
+            <LogoMark className="h-7 w-7" />
+            <span className="wordmark pl-[0.1em] text-[18px] leading-none">
+              VELIA
+            </span>
+          </span>
         </a>
 
-        <div className="hidden items-center gap-9 md:flex">
+        {/* Center — navigation links */}
+        <div className="hidden items-center gap-9 justify-self-center md:flex">
           {LINKS.map((l) => (
             <a
               key={l.href}
@@ -64,17 +71,20 @@ export function Nav({ light = false }: { light?: boolean }) {
               {l.label}
             </a>
           ))}
+        </div>
+
+        {/* Right — CTA (desktop) + menu button (mobile) */}
+        <div className="flex items-center justify-self-end">
           <a
             href="#contact"
-            className={`rounded-full px-5 py-2 text-sm font-medium transition-opacity hover:opacity-85 ${
-              onDark ? "bg-white text-foreground" : "bg-foreground text-white"
+            className={`hidden rounded-full px-5 py-2 text-sm font-medium transition-opacity hover:opacity-85 md:inline-flex ${
+              onDark ? "bg-white text-foreground" : "bg-accent text-white"
             }`}
           >
             Réserver un appel
           </a>
-        </div>
 
-        <button
+          <button
           type="button"
           aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
           aria-expanded={open}
@@ -100,6 +110,7 @@ export function Nav({ light = false }: { light?: boolean }) {
             />
           </div>
         </button>
+        </div>
       </nav>
 
       {/* Mobile drawer */}

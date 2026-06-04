@@ -217,7 +217,7 @@ export function QuoteBot() {
       <button
         onClick={() => setOpen((v) => !v)}
         aria-label="Demander mon devis gratuit"
-        className={`fixed bottom-5 right-5 z-50 flex items-center gap-2.5 rounded-full bg-foreground px-5 py-3.5 text-sm font-medium text-white shadow-[0_12px_40px_-8px_rgba(0,0,0,0.5)] transition-all hover:scale-[1.03] ${
+        className={`fixed bottom-5 right-5 z-50 flex items-center gap-2.5 rounded-full bg-accent px-5 py-3.5 text-sm font-medium text-white shadow-[0_12px_40px_-8px_var(--accent)] transition-all hover:scale-[1.03] ${
           open ? "pointer-events-none scale-90 opacity-0" : "opacity-100"
         }`}
       >
@@ -239,7 +239,7 @@ export function QuoteBot() {
       >
         {/* Header */}
         <div className="flex items-center gap-3 border-b border-line px-4 py-3.5">
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-foreground text-white">
+          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-accent text-white">
             <LogoMark className="h-4 w-4" />
           </span>
           <div className="flex flex-col">
@@ -293,7 +293,7 @@ export function QuoteBot() {
           {phase === "result" && (
             <button
               onClick={startLead}
-              className="w-full rounded-full bg-foreground px-5 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90"
+              className="w-full rounded-full bg-accent px-5 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90"
             >
               Recevoir mon devis détaillé →
             </button>
@@ -324,7 +324,7 @@ export function QuoteBot() {
               <button
                 type="submit"
                 disabled={leadStatus === "loading"}
-                className="w-full rounded-full bg-foreground px-5 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-60"
+                className="w-full rounded-full bg-accent px-5 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-60"
               >
                 {leadStatus === "loading" ? "Envoi…" : "Envoyer ma demande"}
               </button>
@@ -429,8 +429,8 @@ function EstimateCard({
 }) {
   if (!estimate) return null;
   return (
-    <div className="rounded-2xl border border-foreground/10 bg-foreground p-4 text-white">
-      <p className="text-[11px] uppercase tracking-[0.16em] text-white/50">
+    <div className="rounded-2xl border border-transparent bg-accent p-4 text-white">
+      <p className="text-[11px] uppercase tracking-[0.16em] text-white/60">
         Votre estimation
       </p>
       <p className="mt-1.5 text-2xl font-semibold tracking-tight">

@@ -66,8 +66,8 @@ export function VideoHero() {
       <div className="relative z-10 mx-auto max-w-5xl text-center text-white">
         <p className="float-in mb-7 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-1.5 text-xs text-white/80 backdrop-blur">
           <span className="relative flex h-1.5 w-1.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-60" />
-            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-white" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-70" />
+            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
           </span>
           Agence digitale & intelligence artificielle
         </p>
@@ -78,15 +78,15 @@ export function VideoHero() {
           vos concurrents répondent déjà.
         </h1>
 
-        <p className="float-in-3 mx-auto mt-7 max-w-xl text-pretty text-lg text-white/75">
-          Velia fait répondre votre entreprise en premier : sites web,
-          automatisations et agents IA qui captent chaque client, 24h/24.
+        <p className="float-in-3 mx-auto mt-7 max-w-2xl text-pretty text-lg text-white/75">
+          Velia conçoit votre site, automatise votre quotidien et déploie des
+          agents IA qui répondent à chaque client — jour et nuit.
         </p>
 
         <div className="float-in-4 mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a
             href="#contact"
-            className="group w-full rounded-full bg-white px-7 py-3.5 font-medium text-foreground transition-all hover:opacity-90 sm:w-auto"
+            className="group w-full rounded-full bg-accent px-7 py-3.5 font-medium text-white shadow-[0_18px_45px_-12px_var(--accent)] transition-all hover:opacity-90 sm:w-auto"
           >
             <span className="inline-flex items-center gap-2">
               Réserver mon audit gratuit
@@ -103,22 +103,28 @@ export function VideoHero() {
           </a>
         </div>
 
-        {/* Service tags — tell visitors exactly what Velia sells, cleanly */}
-        <div className="float-in-5 mt-9 flex flex-wrap items-center justify-center gap-2.5">
-          {[
-            "Sites web",
-            "Automatisations",
-            "Agents IA",
-            "SEO",
-            "Chatbots",
-          ].map((s) => (
-            <span
-              key={s}
-              className="rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-xs text-white/75 backdrop-blur transition-colors hover:border-white/40 hover:text-white"
-            >
-              {s}
-            </span>
-          ))}
+        {/* Service tags — highlighted so visitors instantly see what Velia sells */}
+        <div className="float-in-5 mt-10">
+          <p className="mb-3.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-accent">
+            Nos services
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-2.5">
+            {[
+              "Sites web",
+              "Automatisations",
+              "Agents IA",
+              "SEO",
+              "Chatbots",
+            ].map((s) => (
+              <span
+                key={s}
+                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.07] px-4 py-2 text-sm font-medium text-white backdrop-blur transition-colors hover:border-accent"
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                {s}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
 
