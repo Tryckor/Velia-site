@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { FloatingCards } from "./FloatingCards";
 
 // Vitesse de lecture du fond vidéo (1 = normal). Plus bas = aiguille plus lente.
 const PLAYBACK_RATE = 0.3;
@@ -60,22 +59,6 @@ export function VideoHero() {
             "radial-gradient(ellipse 50% 24% at 50% 93%, #ffffff 0%, #ffffff 14%, rgba(255,255,255,0.74) 34%, rgba(255,255,255,0.44) 54%, rgba(255,255,255,0.18) 74%, transparent 92%)",
           filter: "blur(10px)",
           WebkitFilter: "blur(10px)",
-        }}
-      />
-
-      {/* Floating service cards that drift across the hero and bounce off the
-          edges and each other (desktop only). Tell visitors what Velia sells. */}
-      <FloatingCards />
-
-      {/* Legibility scrim above the floating cards but UNDER the text: darkens
-          whatever passes through the central text zone so the headline stays
-          readable even when a white card drifts behind it. */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 z-[5]"
-        style={{
-          background:
-            "radial-gradient(ellipse 54% 38% at 50% 49%, rgba(7,7,7,0.72) 0%, rgba(7,7,7,0.5) 46%, rgba(7,7,7,0.22) 68%, transparent 85%)",
         }}
       />
 
