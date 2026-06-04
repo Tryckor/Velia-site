@@ -56,7 +56,7 @@ export function VideoHero() {
         className="pointer-events-none absolute inset-0 z-[1]"
         style={{
           background:
-            "radial-gradient(ellipse 82% 30% at 50% 95%, #ffffff 0%, #ffffff 12%, rgba(255,255,255,0.82) 30%, rgba(255,255,255,0.56) 48%, rgba(255,255,255,0.34) 66%, rgba(255,255,255,0.14) 84%, transparent 100%)",
+            "radial-gradient(ellipse 50% 24% at 50% 93%, #ffffff 0%, #ffffff 14%, rgba(255,255,255,0.74) 34%, rgba(255,255,255,0.44) 54%, rgba(255,255,255,0.18) 74%, transparent 92%)",
           filter: "blur(10px)",
           WebkitFilter: "blur(10px)",
         }}
