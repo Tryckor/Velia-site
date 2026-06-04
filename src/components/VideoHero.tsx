@@ -102,6 +102,24 @@ export function VideoHero() {
             Découvrir nos services
           </a>
         </div>
+
+        {/* Service tags — tell visitors exactly what Velia sells, cleanly */}
+        <div className="float-in-5 mt-9 flex flex-wrap items-center justify-center gap-2.5">
+          {[
+            "Sites web",
+            "Automatisations",
+            "Agents IA",
+            "SEO",
+            "Chatbots",
+          ].map((s) => (
+            <span
+              key={s}
+              className="rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-xs text-white/75 backdrop-blur transition-colors hover:border-white/40 hover:text-white"
+            >
+              {s}
+            </span>
+          ))}
+        </div>
       </div>
 
       {/* Scroll cue */}
