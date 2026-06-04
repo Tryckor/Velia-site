@@ -43,6 +43,16 @@ export function VideoHero() {
         }}
       />
 
+      {/* Soft cool aurora glow rising from the bottom (prolongs the light pool) */}
+      <div
+        aria-hidden
+        className="aurora pointer-events-none absolute inset-x-0 bottom-[-10%] z-[1] h-2/3"
+        style={{
+          background:
+            "radial-gradient(60% 95% at 50% 100%, rgba(196,214,255,0.28), rgba(150,180,255,0.10) 32%, transparent 68%)",
+        }}
+      />
+
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-5xl text-center text-white">
         <p className="float-in mb-7 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-1.5 text-xs text-white/80 backdrop-blur">
