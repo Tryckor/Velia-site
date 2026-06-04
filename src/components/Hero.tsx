@@ -1,5 +1,4 @@
 import { LogoMark } from "./Logo";
-import { NeuralField } from "./NeuralField";
 
 export function Hero() {
   return (
@@ -15,7 +14,6 @@ export function Hero() {
               "radial-gradient(ellipse 75% 60% at 50% 0%, #fff 35%, transparent 72%)",
           }}
         />
-        <NeuralField className="absolute inset-0 h-full w-full" />
         <div className="aurora absolute left-1/2 top-[-10%] h-[480px] w-[680px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(0,0,0,0.06),transparent_60%)] blur-2xl" />
       </div>
 

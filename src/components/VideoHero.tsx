@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 
 // Vitesse de lecture du fond vidéo (1 = normal). Plus bas = aiguille plus lente.
-const PLAYBACK_RATE = 0.6;
+const PLAYBACK_RATE = 0.3;
 
 export function VideoHero() {
   const videoRef = useRef<HTMLVideoElement>(null);
