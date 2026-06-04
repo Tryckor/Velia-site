@@ -43,16 +43,17 @@ export function VideoHero() {
         }}
       />
 
-      {/* White light band spanning the full width, brightest in the middle,
-          fading toward both sides and softly upward (light pool on the ground) */}
+      {/* Light pool on the ground under the clock (matches the reference photo):
+          a wide soft halo spreading across the width + an intense white core,
+          both flattened ellipses centred low so the bottom corners stay dark. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-1/4"
+        className="pointer-events-none absolute inset-0 z-[1]"
         style={{
-          background:
-            "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.16) 20%, rgba(255,255,255,0.62) 50%, rgba(255,255,255,0.16) 80%, transparent 100%)",
-          maskImage: "linear-gradient(to top, #fff 0%, transparent 100%)",
-          WebkitMaskImage: "linear-gradient(to top, #fff 0%, transparent 100%)",
+          background: [
+            "radial-gradient(ellipse 64% 30% at 50% 90%, rgba(255,255,255,0.50) 0%, rgba(255,255,255,0.16) 44%, transparent 72%)",
+            "radial-gradient(ellipse 32% 15% at 50% 93%, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.34) 46%, transparent 76%)",
+          ].join(", "),
         }}
       />
 
@@ -102,10 +103,12 @@ export function VideoHero() {
       <a
         href="#services"
         aria-label="Défiler"
-        className="float-in-5 absolute bottom-7 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-white/60 transition-colors hover:text-white"
+        className="float-in-5 absolute bottom-7 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-black/70 transition-colors hover:text-black"
       >
-        <span className="text-[10px] uppercase tracking-[0.2em]">Scroll</span>
-        <span className="h-9 w-px bg-gradient-to-b from-white/60 to-transparent" />
+        <span className="text-[10px] font-medium uppercase tracking-[0.2em]">
+          Scroll
+        </span>
+        <span className="h-9 w-px bg-gradient-to-b from-black/60 to-transparent" />
       </a>
     </section>
   );
