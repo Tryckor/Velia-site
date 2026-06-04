@@ -43,13 +43,16 @@ export function VideoHero() {
         }}
       />
 
-      {/* White light pool flat on the ground, right under the clock */}
+      {/* White light band spanning the full width, brightest in the middle,
+          fading toward both sides and softly upward (light pool on the ground) */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-1/3"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-1/4"
         style={{
           background:
-            "radial-gradient(50% 55% at 50% 100%, rgba(255,255,255,0.62), rgba(255,255,255,0.22) 38%, transparent 66%)",
+            "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.16) 20%, rgba(255,255,255,0.62) 50%, rgba(255,255,255,0.16) 80%, transparent 100%)",
+          maskImage: "linear-gradient(to top, #fff 0%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(to top, #fff 0%, transparent 100%)",
         }}
       />
 
