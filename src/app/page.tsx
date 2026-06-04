@@ -3,6 +3,7 @@ import { Reveal } from "@/components/Reveal";
 import { ContactForm } from "@/components/ContactForm";
 import { LogoMark } from "@/components/Logo";
 import { VideoHero } from "@/components/VideoHero";
+import { Hero } from "@/components/Hero";
 import { Marquee } from "@/components/Marquee";
 import { StatsBand } from "@/components/StatsBand";
 import { Counter } from "@/components/Counter";
@@ -120,6 +121,7 @@ export default function Home() {
       <Nav light />
       <main>
         <VideoHero />
+        <Hero />
         <Marquee />
         <StatsBand />
         <Services />

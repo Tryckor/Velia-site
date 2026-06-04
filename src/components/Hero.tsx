@@ -3,7 +3,7 @@ import { NeuralField } from "./NeuralField";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden px-6 pb-20 pt-36 sm:pt-44">
+    <section className="relative overflow-hidden px-6 py-20 sm:py-28">
       {/* interactive neural-network backdrop (AI mesh) */}
       <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
         <div
