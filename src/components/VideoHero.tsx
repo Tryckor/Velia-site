@@ -46,20 +46,19 @@ export function VideoHero() {
         }}
       />
 
-      {/* Single clean light pool on the ground under the clock.
-          Technique: ONE solid white ellipse softened by a heavy Gaussian blur.
-          The blur gives a perfectly smooth falloff — a truly white core fading
-          continuously to the sides — with NO colour banding / no double cores
-          (which plagues multi-stop CSS gradients on dark backgrounds). */}
+      {/* Single light pool on the ground under the clock — one radial gradient:
+          a truly white core, brighter overall, spreading wide so the light still
+          reaches the left/right edges before fading out. A tiny 10px blur is
+          layered on the gradient itself to erase 8-bit colour banding (the
+          "rings / multiple cores" artefact) while keeping one clean pool. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute bottom-[-5%] left-1/2 z-[1] -translate-x-1/2 rounded-[50%]"
+        className="pointer-events-none absolute inset-0 z-[1]"
         style={{
-          width: "38%",
-          height: "24%",
-          background: "#ffffff",
-          filter: "blur(85px)",
-          WebkitFilter: "blur(85px)",
+          background:
+            "radial-gradient(ellipse 82% 30% at 50% 95%, #ffffff 0%, #ffffff 12%, rgba(255,255,255,0.82) 30%, rgba(255,255,255,0.56) 48%, rgba(255,255,255,0.34) 66%, rgba(255,255,255,0.14) 84%, transparent 100%)",
+          filter: "blur(10px)",
+          WebkitFilter: "blur(10px)",
         }}
       />
 
