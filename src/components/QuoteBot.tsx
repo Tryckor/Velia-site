@@ -213,18 +213,8 @@ export function QuoteBot() {
 
   return (
     <>
-      {/* Launcher */}
-      <button
-        onClick={() => setOpen((v) => !v)}
-        aria-label="Demander mon devis gratuit"
-        className={`fixed bottom-5 left-5 z-50 flex items-center gap-2.5 rounded-full bg-accent px-5 py-3.5 text-sm font-medium text-white shadow-[0_12px_40px_-8px_var(--accent)] transition-all hover:scale-[1.03] ${
-          open ? "pointer-events-none scale-90 opacity-0" : "opacity-100"
-        }`}
-      >
-        <IconChat className="h-5 w-5" />
-        <span className="hidden sm:inline">Demander mon devis gratuit</span>
-        <span className="sm:hidden">Devis gratuit</span>
-      </button>
+      {/* No floating launcher — the devis demo is opened from the "Devis
+          instantané par IA" service section via the velia:open-quotebot event. */}
 
       {/* Panel */}
       <div
