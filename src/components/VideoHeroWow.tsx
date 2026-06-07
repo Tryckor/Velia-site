@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-const PLAYBACK_RATE = 0.3;
+const PLAYBACK_RATE = 0.15;
 const LINE_1 = ["Pendant", "que", "vous", "hésitez,"];
 const LINE_2 = ["vos", "concurrents", "répondent", "déjà."];
 
