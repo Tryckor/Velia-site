@@ -25,7 +25,7 @@ export function ElevenLabsWidget() {
   return React.createElement("elevenlabs-convai", {
     "agent-id": AGENT_ID,
     // brand-matched orb + shorter copy (card bg/btn colours are dashboard-only)
-    variant: "compact",
+    variant: "tiny",
     "avatar-orb-color-1": "#2b6bff",
     "avatar-orb-color-2": "#7c5cff",
     "action-text": "Parler à Velia",
