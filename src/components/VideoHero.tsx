@@ -103,6 +103,26 @@ export function VideoHero() {
           </a>
         </div>
 
+        {/* One compact line so visitors instantly know what Velia sells */}
+        <p className="float-in-5 mx-auto mt-8 flex max-w-2xl flex-wrap items-center justify-center gap-y-1 text-sm text-white/65">
+          {[
+            "Sites web",
+            "Automatisations",
+            "Agents IA",
+            "SEO",
+            "Chatbots",
+            "Mail pro",
+          ].map((s, i) => (
+            <span key={s} className="inline-flex items-center">
+              {i > 0 && (
+                <span aria-hidden className="px-2 text-accent">
+                  ·
+                </span>
+              )}
+              {s}
+            </span>
+          ))}
+        </p>
       </div>
 
       {/* Scroll cue */}
