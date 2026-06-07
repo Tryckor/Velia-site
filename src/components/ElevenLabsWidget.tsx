@@ -22,13 +22,9 @@ export function ElevenLabsWidget() {
     document.body.appendChild(s);
   }, []);
 
+  // Only the agent-id — everything else (avatar, variant, colours, texts) is
+  // controlled by the ElevenLabs dashboard so the site matches it exactly.
   return React.createElement("elevenlabs-convai", {
     "agent-id": AGENT_ID,
-    // brand-matched orb + shorter copy (card bg/btn colours are dashboard-only)
-    variant: "tiny",
-    "avatar-orb-color-1": "#2b6bff",
-    "avatar-orb-color-2": "#7c5cff",
-    "action-text": "Parler à Velia",
-    "start-call-text": "Démarrer",
   });
 }
