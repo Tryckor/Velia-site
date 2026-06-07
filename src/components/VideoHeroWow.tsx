@@ -120,13 +120,14 @@ export function VideoHeroWow({ wide = false }: { wide?: boolean }) {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 mx-auto max-w-5xl text-center text-white">
-        <p className="float-in mb-6 text-[11px] font-semibold uppercase tracking-[0.16em] sm:text-[13px] sm:tracking-[0.18em]">
-          <span className="gradient-text">
-            Sites web · Automatisations · Agents IA · SEO · Chatbots
-          </span>
-        </p>
+      {/* Kicker pinned just under the navbar for maximum visibility */}
+      <p className="float-in absolute left-1/2 top-[104px] z-10 w-full -translate-x-1/2 px-6 text-center text-[11px] font-semibold uppercase tracking-[0.18em] sm:text-[13px] sm:tracking-[0.2em]">
+        <span className="gradient-text">
+          Sites web · Automatisations · Agents IA · SEO · Chatbots
+        </span>
+      </p>
 
+      <div className="relative z-10 mx-auto max-w-5xl text-center text-white">
         <h1 className="text-4xl font-medium leading-[1.06] tracking-tight sm:text-5xl lg:text-6xl">
           <span className="block">
             {LINE_1.map((w, i) => (
