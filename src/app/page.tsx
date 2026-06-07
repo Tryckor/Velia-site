@@ -5,7 +5,7 @@ import { LogoMark } from "@/components/Logo";
 import { VideoHero } from "@/components/VideoHero";
 import { Hero } from "@/components/Hero";
 import { TrustBar } from "@/components/TrustBar";
-import { Marquee } from "@/components/Marquee";
+import { ServicesKinetic } from "@/components/ServicesKinetic";
 import { StatsBand } from "@/components/StatsBand";
 import { Counter } from "@/components/Counter";
 import { RoiCalculator } from "@/components/RoiCalculator";
@@ -124,7 +124,7 @@ export default function Home() {
         <VideoHero />
         <TrustBar />
         <Hero />
-        <Marquee />
+        <ServicesKinetic />
         <StatsBand />
         <Services />
         <InstantQuote />
