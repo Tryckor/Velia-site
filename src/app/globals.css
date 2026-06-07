@@ -97,6 +97,155 @@
   );
 }
 
+/* ============================================================
+   Vibrant multi-colour palettes (accent -> accent-2 = 2 hues)
+   so gradients, blobs and gradient-text actually pop.
+   ============================================================ */
+:root {
+  --accent-2: #7c5cff;
+} /* electric: blue -> violet */
+.theme-orange {
+  --accent-2: #ff2e7e;
+} /* orange -> pink */
+.theme-violet {
+  --accent: #7c5cff;
+  --accent-2: #e05cff;
+}
+.theme-emerald {
+  --accent: #0bb67a;
+  --accent-2: #16b8c8;
+}
+.theme-crimson {
+  --accent: #ff2e57;
+  --accent-2: #ff7a3d;
+}
+
+/* Noir + Champagne — warm charcoal bands, champagne base, soft gold accent */
+.theme-noir {
+  --background: #f7f0e4;
+  --foreground: #2a2420;
+  --muted: #7d7263;
+  --line: #e7ddca;
+  --surface-2: #efe5d3;
+  --band: #15110d;
+  --accent: #b0842f;
+  --accent-2: #dcbb63;
+  --accent-soft: rgba(176, 132, 51, 0.14);
+}
+
+/* ============================================================
+   Animation toolkit
+   ============================================================ */
+
+/* Living mesh-gradient blobs (sit behind content, drift slowly) */
+@keyframes blobFloat {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(6%, -5%) scale(1.12);
+  }
+  66% {
+    transform: translate(-5%, 5%) scale(0.94);
+  }
+}
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(64px);
+  opacity: 0.5;
+  pointer-events: none;
+  animation: blobFloat 20s ease-in-out infinite;
+}
+.blob-2 {
+  animation-duration: 26s;
+  animation-direction: reverse;
+}
+.blob-a {
+  background: var(--accent);
+}
+.blob-b {
+  background: var(--accent-2);
+}
+
+/* Animated gradient text */
+@keyframes gradPan {
+  to {
+    background-position: 200% center;
+  }
+}
+.gradient-text {
+  background: linear-gradient(
+    110deg,
+    var(--accent),
+    var(--accent-2),
+    var(--accent)
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradPan 6s linear infinite;
+}
+
+/* Gradient button with a sweeping sheen on hover (micro-interaction) */
+.btn-gradient {
+  position: relative;
+  overflow: hidden;
+  background-image: linear-gradient(110deg, var(--accent), var(--accent-2));
+  color: #fff;
+}
+.btn-gradient::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 75%
+  );
+  transform: translateX(-130%);
+  transition: transform 0.7s ease;
+}
+.btn-gradient:hover::after {
+  transform: translateX(130%);
+}
+
+/* Card hover glow (accent-tinted lift) */
+.card-glow {
+  transition:
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.45s ease;
+}
+.card-glow:hover {
+  transform: translateY(-5px);
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  box-shadow:
+    0 26px 60px -26px var(--accent-soft),
+    0 12px 30px -22px rgba(0, 0, 0, 0.25);
+}
+
+/* Animated underline reveal for eyebrows */
+@keyframes drawLine {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blob,
+  .gradient-text,
+  .btn-gradient::after {
+    animation: none !important;
+  }
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

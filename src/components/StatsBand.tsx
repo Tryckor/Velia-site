@@ -24,10 +24,14 @@ export function StatsBand() {
   return (
     <section className="px-6 py-14">
       <Reveal className="surface-dark relative mx-auto max-w-6xl overflow-hidden rounded-[28px] px-8 py-14 text-white">
-        {/* soft accent glow for depth & colour */}
+        {/* living gradient blobs for depth & colour */}
         <div
           aria-hidden
-          className="accent-glow pointer-events-none absolute left-1/2 top-[-35%] h-[150%] w-[55%] -translate-x-1/2 opacity-60"
+          className="blob blob-a left-[12%] top-[-40%] h-72 w-72"
+        />
+        <div
+          aria-hidden
+          className="blob blob-b blob-2 right-[10%] bottom-[-45%] h-80 w-80"
         />
         <p className="relative mb-10 text-center text-xs font-semibold uppercase tracking-[0.22em] text-accent">
           Velia en chiffres

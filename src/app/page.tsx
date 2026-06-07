@@ -150,7 +150,11 @@ function Services() {
     >
       <div
         aria-hidden
-        className="accent-glow pointer-events-none absolute -top-24 right-[-10%] h-[420px] w-[420px] opacity-70"
+        className="blob blob-a -right-20 -top-24 h-[380px] w-[380px]"
+      />
+      <div
+        aria-hidden
+        className="blob blob-b blob-2 -left-24 bottom-0 h-[340px] w-[340px]"
       />
       <div className="relative mx-auto max-w-6xl">
         <Reveal>
@@ -168,7 +172,7 @@ function Services() {
                 as="article"
                 delay={(i % 3) * 80}
                 key={s.title}
-                className="lift group relative flex flex-col overflow-hidden rounded-2xl border border-line bg-white p-7"
+                className="card-glow group relative flex flex-col overflow-hidden rounded-2xl border border-line bg-white p-7"
               >
                 <div
                   aria-hidden
@@ -239,7 +243,9 @@ function InstantQuote() {
               Devis instantané par IA
             </p>
             <h2 className="text-balance text-3xl font-medium tracking-tight sm:text-4xl">
-              Un devis en 30 secondes, pendant que le client est encore chaud.
+              Un devis en{" "}
+              <span className="gradient-text">30 secondes</span>, pendant que le
+              client est encore chaud.
             </h2>
             <p className="mt-5 text-pretty text-muted sm:text-lg">
               On installe sur votre site un assistant intelligent. Le visiteur
@@ -273,7 +279,7 @@ function InstantQuote() {
             </div>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <OpenQuoteBotButton className="group inline-flex items-center justify-center gap-2 rounded-full bg-accent px-7 py-3.5 font-medium text-white transition-all hover:opacity-90 hover:shadow-[0_16px_40px_-12px_var(--accent)]">
+              <OpenQuoteBotButton className="btn-gradient group inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 font-medium transition-transform hover:scale-[1.02]">
                 Essayer la démo en direct
                 <span className="transition-transform group-hover:translate-x-0.5">
                   →
@@ -368,8 +374,15 @@ function Mock({ from, children }: { from: "bot" | "user"; children: React.ReactN
 /* ------------------------------------------------------------------- ROI */
 function RoiSection() {
   return (
-    <section id="roi" className="scroll-mt-20 px-6 py-24">
-      <div className="mx-auto max-w-6xl">
+    <section
+      id="roi"
+      className="relative scroll-mt-20 overflow-hidden px-6 py-24"
+    >
+      <div
+        aria-hidden
+        className="blob blob-a -right-24 top-1/4 h-[380px] w-[380px]"
+      />
+      <div className="relative mx-auto max-w-6xl">
         <Reveal>
           <SectionHeading
             eyebrow="Calculateur"
@@ -435,8 +448,15 @@ function Method() {
 /* ------------------------------------------------------------- WhyVelia */
 function WhyVelia() {
   return (
-    <section id="pourquoi" className="scroll-mt-20 px-6 py-24">
-      <div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-2 lg:gap-20">
+    <section
+      id="pourquoi"
+      className="relative scroll-mt-20 overflow-hidden px-6 py-24"
+    >
+      <div
+        aria-hidden
+        className="blob blob-b -left-24 top-10 h-[360px] w-[360px]"
+      />
+      <div className="relative mx-auto grid max-w-6xl gap-14 lg:grid-cols-2 lg:gap-20">
         <Reveal className="lg:sticky lg:top-28 lg:self-start">
           <SectionHeading
             align="left"
@@ -446,7 +466,7 @@ function WhyVelia() {
           />
           <a
             href="#contact"
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 font-medium text-white transition-opacity hover:opacity-85"
+            className="btn-gradient mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3 font-medium transition-transform hover:scale-[1.02]"
           >
             Parlons de votre projet
             <span aria-hidden>→</span>
@@ -457,7 +477,7 @@ function WhyVelia() {
             <Reveal
               key={v.title}
               delay={(i % 2) * 80}
-              className="lift rounded-2xl border border-line bg-white p-7"
+              className="card-glow rounded-2xl border border-line bg-white p-7"
             >
               <LogoMark className="h-5 w-5 text-accent" />
               <h3 className="mt-4 font-medium">{v.title}</h3>
@@ -476,7 +496,7 @@ function WhyVelia() {
 function CtaBand() {
   return (
     <section className="px-6 py-12">
-      <Reveal className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl bg-accent px-8 py-16 text-center text-white sm:py-20">
+      <Reveal className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl bg-gradient-to-br from-[var(--accent)] to-[var(--accent-2)] px-8 py-16 text-center text-white sm:py-20">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 opacity-[0.06]"
@@ -556,7 +576,11 @@ function Contact() {
     >
       <div
         aria-hidden
-        className="accent-glow pointer-events-none absolute -top-20 left-[-8%] h-[440px] w-[440px] opacity-70"
+        className="blob blob-a -left-20 -top-16 h-[400px] w-[400px]"
+      />
+      <div
+        aria-hidden
+        className="blob blob-b blob-2 -right-24 bottom-0 h-[320px] w-[320px]"
       />
       <div className="relative mx-auto grid max-w-6xl gap-12 lg:grid-cols-2 lg:gap-16">
         <Reveal>
