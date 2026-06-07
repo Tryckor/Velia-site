@@ -22,18 +22,33 @@ const STATS = [
 
 export function StatsBand() {
   return (
-    <section className="px-6 py-10">
-      <Reveal className="mx-auto grid max-w-6xl gap-px overflow-hidden rounded-3xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
-        {STATS.map((stat) => (
-          <div key={stat.label} className="bg-white px-6 py-9 text-center">
-            <div className="text-4xl font-semibold tracking-tight tabular-nums sm:text-5xl">
-              {stat.value}
+    <section className="px-6 py-14">
+      <Reveal className="surface-dark relative mx-auto max-w-6xl overflow-hidden rounded-[28px] px-8 py-14 text-white">
+        {/* soft accent glow for depth & colour */}
+        <div
+          aria-hidden
+          className="accent-glow pointer-events-none absolute left-1/2 top-[-35%] h-[150%] w-[55%] -translate-x-1/2 opacity-60"
+        />
+        <p className="relative mb-10 text-center text-xs font-semibold uppercase tracking-[0.22em] text-accent">
+          Velia en chiffres
+        </p>
+        <div className="relative grid gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+          {STATS.map((stat, i) => (
+            <div
+              key={stat.label}
+              className={`text-center ${
+                i < 3 ? "lg:border-r lg:border-white/10" : ""
+              }`}
+            >
+              <div className="text-4xl font-semibold tracking-tight tabular-nums sm:text-5xl">
+                {stat.value}
+              </div>
+              <p className="mx-auto mt-3 max-w-[14rem] text-sm leading-snug text-white/55">
+                {stat.label}
+              </p>
             </div>
-            <p className="mx-auto mt-3 max-w-[14rem] text-sm leading-snug text-muted">
-              {stat.label}
-            </p>
-          </div>
-        ))}
+          ))}
+        </div>
       </Reveal>
     </section>
   );

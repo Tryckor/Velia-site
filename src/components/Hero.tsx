@@ -32,7 +32,7 @@ export function Hero() {
           </p>
 
           <h1 className="float-in-2 text-balance text-[2.6rem] font-medium leading-[1.02] tracking-tight sm:text-6xl lg:text-[4.1rem]">
-            <span className="ink-gradient">Transformez votre entreprise</span>{" "}
+            <span className="accent-gradient">Transformez votre entreprise</span>{" "}
             avec le digital et l&apos;IA.
           </h1>
 

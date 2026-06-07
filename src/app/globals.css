@@ -41,6 +41,62 @@
   --accent-soft: rgba(255, 46, 87, 0.1);
 }
 
+/* Section surface tints — used to alternate backgrounds and build rhythm so
+   the page never reads as one flat white wall (research: density contrast
+   keeps users scrolling). Soft tint is cool by default, warm for warm themes. */
+:root {
+  --surface-2: #f4f6fa;
+  --band: #0b0b0f;
+}
+.theme-orange {
+  --surface-2: #fbf6f1;
+}
+.theme-crimson {
+  --surface-2: #fdf4f5;
+}
+.theme-emerald {
+  --surface-2: #f1f8f4;
+}
+.theme-violet {
+  --surface-2: #f6f4fc;
+}
+.theme-electric {
+  --surface-2: #f4f6fa;
+}
+/* "Paper" theme — warm off-white base instead of stark white, warm accent.
+   Overrides --background so the whole canvas is cream while cards stay white. */
+.theme-paper {
+  --background: #f7f5f0;
+  --surface-2: #efeae1;
+  --accent: #c1561d;
+  --accent-2: #ef8f4d;
+  --accent-soft: rgba(193, 86, 29, 0.1);
+}
+
+.surface-soft {
+  background-color: var(--surface-2);
+}
+.surface-dark {
+  background-color: var(--band);
+}
+
+/* Accent gradient text for key heading words */
+.accent-gradient {
+  background: linear-gradient(110deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Soft accent glow used behind sections for depth & colour */
+.accent-glow {
+  background: radial-gradient(
+    closest-side,
+    var(--accent-soft),
+    transparent
+  );
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

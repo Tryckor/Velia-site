@@ -4,6 +4,7 @@ import { ContactForm } from "@/components/ContactForm";
 import { LogoMark } from "@/components/Logo";
 import { VideoHero } from "@/components/VideoHero";
 import { Hero } from "@/components/Hero";
+import { TrustBar } from "@/components/TrustBar";
 import { Marquee } from "@/components/Marquee";
 import { StatsBand } from "@/components/StatsBand";
 import { Counter } from "@/components/Counter";
@@ -121,6 +122,7 @@ export default function Home() {
       <Nav light />
       <main>
         <VideoHero />
+        <TrustBar />
         <Hero />
         <Marquee />
         <StatsBand />
@@ -142,8 +144,15 @@ export default function Home() {
 /* -------------------------------------------------------------- Services */
 function Services() {
   return (
-    <section id="services" className="scroll-mt-20 px-6 py-24">
-      <div className="mx-auto max-w-6xl">
+    <section
+      id="services"
+      className="surface-soft relative scroll-mt-20 overflow-hidden px-6 py-24"
+    >
+      <div
+        aria-hidden
+        className="accent-glow pointer-events-none absolute -top-24 right-[-10%] h-[420px] w-[420px] opacity-70"
+      />
+      <div className="relative mx-auto max-w-6xl">
         <Reveal>
           <SectionHeading
             eyebrow="Nos services"
@@ -193,7 +202,7 @@ function InstantQuote() {
         {/* Stat callout — the problem this service solves */}
         <div className="flex flex-col gap-5 bg-foreground px-8 py-8 text-white sm:flex-row sm:items-center sm:gap-9 sm:px-12">
           <div className="flex shrink-0 items-baseline">
-            <span className="text-6xl font-semibold tracking-tight tabular-nums sm:text-7xl">
+            <span className="text-6xl font-semibold tracking-tight tabular-nums text-[color:var(--accent-2)] sm:text-7xl">
               <Counter to={78} />
             </span>
             <span className="text-3xl font-medium text-white/60 sm:text-4xl">
@@ -379,7 +388,10 @@ function RoiSection() {
 /* ---------------------------------------------------------------- Method */
 function Method() {
   return (
-    <section id="methode" className="scroll-mt-20 px-6 py-24">
+    <section
+      id="methode"
+      className="surface-soft scroll-mt-20 px-6 py-24"
+    >
       <div className="mx-auto max-w-6xl">
         <Reveal>
           <SectionHeading
@@ -501,7 +513,10 @@ function CtaBand() {
 /* ------------------------------------------------------------------- FAQ */
 function FaqSection() {
   return (
-    <section id="faq" className="scroll-mt-20 px-6 py-24">
+    <section
+      id="faq"
+      className="surface-soft scroll-mt-20 px-6 py-24"
+    >
       <div className="mx-auto max-w-3xl">
         <Reveal>
           <SectionHeading
@@ -535,8 +550,15 @@ function FaqSection() {
 /* --------------------------------------------------------------- Contact */
 function Contact() {
   return (
-    <section id="contact" className="scroll-mt-20 px-6 py-24">
-      <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2 lg:gap-16">
+    <section
+      id="contact"
+      className="relative scroll-mt-20 overflow-hidden px-6 py-24"
+    >
+      <div
+        aria-hidden
+        className="accent-glow pointer-events-none absolute -top-20 left-[-8%] h-[440px] w-[440px] opacity-70"
+      />
+      <div className="relative mx-auto grid max-w-6xl gap-12 lg:grid-cols-2 lg:gap-16">
         <Reveal>
           <SectionHeading
             align="left"
