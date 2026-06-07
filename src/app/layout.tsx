@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
+import { ElevenLabsWidget } from "@/components/ElevenLabsWidget";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -80,6 +81,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {children}
+        <ElevenLabsWidget />
       </body>
     </html>
   );

@@ -217,7 +217,7 @@ export function QuoteBot() {
       <button
         onClick={() => setOpen((v) => !v)}
         aria-label="Demander mon devis gratuit"
-        className={`fixed bottom-5 right-5 z-50 flex items-center gap-2.5 rounded-full bg-accent px-5 py-3.5 text-sm font-medium text-white shadow-[0_12px_40px_-8px_var(--accent)] transition-all hover:scale-[1.03] ${
+        className={`fixed bottom-5 left-5 z-50 flex items-center gap-2.5 rounded-full bg-accent px-5 py-3.5 text-sm font-medium text-white shadow-[0_12px_40px_-8px_var(--accent)] transition-all hover:scale-[1.03] ${
           open ? "pointer-events-none scale-90 opacity-0" : "opacity-100"
         }`}
       >
@@ -228,7 +228,7 @@ export function QuoteBot() {
 
       {/* Panel */}
       <div
-        className={`fixed bottom-5 right-5 z-50 flex w-[calc(100vw-2.5rem)] max-w-[390px] origin-bottom-right flex-col overflow-hidden rounded-3xl border border-line bg-white shadow-[0_30px_80px_-20px_rgba(0,0,0,0.45)] transition-all duration-300 ${
+        className={`fixed bottom-5 left-5 z-50 flex w-[calc(100vw-2.5rem)] max-w-[390px] origin-bottom-left flex-col overflow-hidden rounded-3xl border border-line bg-white shadow-[0_30px_80px_-20px_rgba(0,0,0,0.45)] transition-all duration-300 ${
           open
             ? "pointer-events-auto translate-y-0 scale-100 opacity-100"
             : "pointer-events-none translate-y-4 scale-95 opacity-0"
