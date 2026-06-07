@@ -133,6 +133,19 @@
   --accent-soft: rgba(176, 132, 51, 0.14);
 }
 
+/* Gold → Champagne gradient on a light/off-white base */
+.theme-gold {
+  --background: #fdfbf6;
+  --foreground: #1f1b14;
+  --muted: #8a7d68;
+  --line: #ece3d2;
+  --surface-2: #f7f1e6;
+  --band: #15110b;
+  --accent: #b88a2e;
+  --accent-2: #e8cd86;
+  --accent-soft: rgba(184, 138, 46, 0.14);
+}
+
 /* ============================================================
    Animation toolkit
    ============================================================ */
