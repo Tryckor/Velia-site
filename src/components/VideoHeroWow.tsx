@@ -84,21 +84,21 @@ export function VideoHeroWow() {
         aria-hidden
         className="pointer-events-none absolute inset-0 z-[2] hidden lg:block"
       >
-        {/* left (blue) */}
-        <div className="float-in absolute left-[5%] top-[27%] rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 backdrop-blur-sm">
+        {/* left (blue) — symmetric with the right side */}
+        <div className="float-in absolute left-[6%] top-[32%] rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 backdrop-blur-sm">
           <span className="flex items-center gap-2 text-xs text-white/30">
             <span className="h-1.5 w-1.5 rounded-full bg-accent/50" />
             Réceptionniste IA · 24/7
           </span>
         </div>
-        <div className="float-in-3 absolute left-[8%] top-[60%] rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 backdrop-blur-sm">
+        <div className="float-in-3 absolute left-[6%] top-[61%] rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 backdrop-blur-sm">
           <span className="text-xs text-white/30">Devis IA · 30 s chrono</span>
         </div>
-        {/* right (violet) */}
-        <div className="float-in-2 absolute right-[5%] top-[23%] rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 backdrop-blur-sm">
+        {/* right (violet) — mirrors the left */}
+        <div className="float-in-2 absolute right-[6%] top-[32%] rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 backdrop-blur-sm">
           <span className="text-xs text-white/30">Devis → Relance → Signé</span>
         </div>
-        <div className="float-in-4 absolute right-[8%] top-[60%] rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 backdrop-blur-sm">
+        <div className="float-in-4 absolute right-[6%] top-[61%] rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 backdrop-blur-sm">
           <span className="text-xs text-white/30">SEO · 1ʳᵉ page Google</span>
         </div>
       </div>
