@@ -228,6 +228,29 @@
     0 12px 30px -22px rgba(0, 0, 0, 0.25);
 }
 
+/* Service rows dropping in from the top, one by one, into their box */
+@keyframes dropInSlot {
+  0% {
+    opacity: 0;
+    transform: translateY(-170%);
+  }
+  55% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.drop-slot {
+  animation: dropInSlot 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .drop-slot {
+    animation: none !important;
+  }
+}
+
 /* Kinetic headline — words rise + sharpen into place */
 @keyframes wordRise {
   from {

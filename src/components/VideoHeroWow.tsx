@@ -84,26 +84,39 @@ export function VideoHeroWow() {
         aria-hidden
         className="pointer-events-none absolute inset-0 z-[2] hidden lg:block"
       >
-        {/* left pair (blue) — stacked close, vertically centred in the glow */}
-        <div className="float-in absolute left-[6%] top-1/2 flex -translate-y-1/2 flex-col gap-2">
-          <div className="rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 backdrop-blur-sm">
-            <span className="flex items-center gap-2 text-xs text-white/30">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent/50" />
-              Réceptionniste IA · 24/7
-            </span>
-          </div>
-          <div className="rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 backdrop-blur-sm">
-            <span className="text-xs text-white/30">Devis IA · 30 s chrono</span>
-          </div>
+        {/* left box (blue) — 4 services dropping in from the top, one by one */}
+        <div className="absolute left-[6%] top-1/2 w-52 -translate-y-1/2 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-2 backdrop-blur-sm">
+          {["Sites web", "Automatisations", "Agents IA", "SEO"].map(
+            (label, i) => (
+              <div
+                key={label}
+                className="drop-slot mb-2 rounded-lg border border-white/5 bg-white/[0.05] px-3 py-2 last:mb-0"
+                style={{ animationDelay: `${1 + i * 0.3}s` }}
+              >
+                <span className="flex items-center gap-2 text-xs text-white/35">
+                  <span className="h-1.5 w-1.5 rounded-full bg-accent/60" />
+                  {label}
+                </span>
+              </div>
+            ),
+          )}
         </div>
-        {/* right pair (violet) — mirrors the left */}
-        <div className="float-in-2 absolute right-[6%] top-1/2 flex -translate-y-1/2 flex-col gap-2 text-right">
-          <div className="rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 backdrop-blur-sm">
-            <span className="text-xs text-white/30">Devis → Relance → Signé</span>
-          </div>
-          <div className="rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 backdrop-blur-sm">
-            <span className="text-xs text-white/30">SEO · 1ʳᵉ page Google</span>
-          </div>
+        {/* right box (violet) — mirrors the left, interleaved timing */}
+        <div className="absolute right-[6%] top-1/2 w-52 -translate-y-1/2 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-2 backdrop-blur-sm">
+          {["Chatbots", "Réceptionniste IA", "Devis IA", "Mail pro"].map(
+            (label, i) => (
+              <div
+                key={label}
+                className="drop-slot mb-2 rounded-lg border border-white/5 bg-white/[0.05] px-3 py-2 last:mb-0"
+                style={{ animationDelay: `${1.15 + i * 0.3}s` }}
+              >
+                <span className="flex items-center justify-end gap-2 text-xs text-white/35">
+                  {label}
+                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent-2)]" />
+                </span>
+              </div>
+            ),
+          )}
         </div>
       </div>
 
