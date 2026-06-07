@@ -19,7 +19,7 @@ function Row() {
           className="flex items-center gap-10 whitespace-nowrap text-2xl font-medium text-muted/70 sm:text-3xl"
         >
           {item}
-          <span aria-hidden className="text-foreground/30">
+          <span aria-hidden className="text-accent/60">
             ✦
           </span>
         </span>
