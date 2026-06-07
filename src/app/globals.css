@@ -228,6 +228,28 @@
     0 12px 30px -22px rgba(0, 0, 0, 0.25);
 }
 
+/* Kinetic headline — words rise + sharpen into place */
+@keyframes wordRise {
+  from {
+    opacity: 0;
+    transform: translateY(0.55em);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+.word-rise {
+  animation: wordRise 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .word-rise {
+    animation: none !important;
+  }
+}
+
 /* Kinetic word swap (rotating service word) */
 @keyframes wordSwap {
   from {

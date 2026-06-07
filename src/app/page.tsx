@@ -115,13 +115,13 @@ const FAQ = [
   },
 ];
 
-export default function Home() {
+export default function Home({ hero }: { hero?: React.ReactNode }) {
   return (
     <div id="top" className="min-h-screen bg-background">
       <ScrollProgress />
       <Nav light />
       <main>
-        <VideoHero />
+        {hero ?? <VideoHero />}
         <TrustBar />
         <Hero />
         <ServicesKinetic />
