@@ -128,7 +128,7 @@ export function VideoHeroWow() {
           </span>
         </p>
 
-        <h1 className="text-balance text-4xl font-medium leading-[1.06] tracking-tight sm:text-5xl lg:text-6xl">
+        <h1 className="text-4xl font-medium leading-[1.06] tracking-tight sm:text-5xl lg:text-6xl">
           <span className="block">
             {LINE_1.map((w, i) => (
               <span

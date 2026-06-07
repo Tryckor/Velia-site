@@ -251,21 +251,22 @@
   }
 }
 
-/* Kinetic headline — words rise + sharpen into place */
+/* Kinetic headline — words rise into place (no blur: Safari flickers text
+   when animating filter: blur, which made the title bug on first load) */
 @keyframes wordRise {
   from {
     opacity: 0;
-    transform: translateY(0.55em);
-    filter: blur(8px);
+    transform: translateY(0.5em);
   }
   to {
     opacity: 1;
     transform: none;
-    filter: blur(0);
   }
 }
 .word-rise {
-  animation: wordRise 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+  display: inline-block;
+  animation: wordRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  backface-visibility: hidden;
 }
 @media (prefers-reduced-motion: reduce) {
   .word-rise {
@@ -278,12 +279,10 @@
   from {
     opacity: 0;
     transform: translateY(0.45em);
-    filter: blur(4px);
   }
   to {
     opacity: 1;
     transform: none;
-    filter: blur(0);
   }
 }
 .word-swap {
