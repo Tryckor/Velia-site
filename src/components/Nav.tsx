@@ -78,10 +78,10 @@ export function Nav({ light = false }: { light?: boolean }) {
           <a
             href="#contact"
             className={`hidden rounded-full px-5 py-2 text-sm font-medium transition-opacity hover:opacity-85 md:inline-flex ${
-              onDark ? "bg-white text-foreground" : "bg-accent text-white"
+              onDark ? "bg-white text-foreground" : "btn-gradient"
             }`}
           >
-            Réserver un appel
+            Réserver mon audit
           </a>
 
           <button
@@ -133,9 +133,9 @@ export function Nav({ light = false }: { light?: boolean }) {
           <a
             href="#contact"
             onClick={() => setOpen(false)}
-            className="mt-2 rounded-full bg-foreground px-5 py-3 text-center text-base font-medium text-white"
+            className="btn-gradient mt-2 rounded-full px-5 py-3 text-center text-base font-medium"
           >
-            Réserver un appel
+            Réserver mon audit
           </a>
         </div>
       </div>

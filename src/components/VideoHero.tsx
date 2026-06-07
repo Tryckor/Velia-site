@@ -64,12 +64,10 @@ export function VideoHero() {
 
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-5xl text-center text-white">
-        <p className="float-in mb-7 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-1.5 text-xs text-white/80 backdrop-blur">
-          <span className="relative flex h-1.5 w-1.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-70" />
-            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
+        <p className="float-in mb-6 text-[11px] font-semibold uppercase tracking-[0.16em] sm:text-[13px] sm:tracking-[0.18em]">
+          <span className="gradient-text">
+            Sites web · Automatisations · Agents IA · SEO · Chatbots
           </span>
-          Agence digitale & intelligence artificielle
         </p>
 
         <h1 className="float-in-2 text-balance text-4xl font-medium leading-[1.06] tracking-tight sm:text-5xl lg:text-6xl">
@@ -86,7 +84,7 @@ export function VideoHero() {
         <div className="float-in-4 mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a
             href="#contact"
-            className="group w-full rounded-full bg-accent px-7 py-3.5 font-medium text-white shadow-[0_18px_45px_-12px_var(--accent)] transition-all hover:opacity-90 sm:w-auto"
+            className="btn-gradient group w-full rounded-full px-7 py-3.5 font-medium shadow-[0_20px_55px_-14px_var(--accent-2)] transition-transform hover:scale-[1.02] sm:w-auto"
           >
             <span className="inline-flex items-center gap-2">
               Réserver mon audit gratuit
@@ -103,26 +101,27 @@ export function VideoHero() {
           </a>
         </div>
 
-        {/* One compact line so visitors instantly know what Velia sells */}
-        <p className="float-in-5 mx-auto mt-8 flex max-w-2xl flex-wrap items-center justify-center gap-y-1 text-sm text-white/65">
-          {[
-            "Sites web",
-            "Automatisations",
-            "Agents IA",
-            "SEO",
-            "Chatbots",
-            "Mail pro",
-          ].map((s, i) => (
-            <span key={s} className="inline-flex items-center">
-              {i > 0 && (
-                <span aria-hidden className="px-2 text-accent">
-                  ·
-                </span>
-              )}
-              {s}
+        {/* Reassurance microcopy right under the CTA (trust near the action) */}
+        <div className="float-in-5 mx-auto mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-white/60">
+          {["Audit offert", "Réponse sous 24 h", "Sans engagement"].map((t) => (
+            <span key={t} className="inline-flex items-center gap-1.5">
+              <svg
+                viewBox="0 0 24 24"
+                className="h-3.5 w-3.5 text-accent"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.6"
+              >
+                <path
+                  d="M5 13l4 4L19 7"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              {t}
             </span>
           ))}
-        </p>
+        </div>
       </div>
 
       {/* Scroll cue */}
