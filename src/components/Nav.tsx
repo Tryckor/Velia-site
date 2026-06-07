@@ -62,10 +62,10 @@ export function Nav({ light = false }: { light?: boolean }) {
             <a
               key={l.href}
               href={l.href}
-              className={`inline-block border-b pb-1 text-sm transition-colors ${
+              className={`inline-block border-b border-current pb-1 text-sm transition-colors ${
                 onDark
-                  ? "border-white/25 text-white/80 hover:border-white hover:text-white"
-                  : "border-foreground/20 text-muted hover:border-foreground hover:text-foreground"
+                  ? "text-white/80 hover:text-white"
+                  : "text-muted hover:text-foreground"
               }`}
             >
               {l.label}
