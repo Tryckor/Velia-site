@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 
 // Vitesse de lecture du fond vidéo (1 = normal). Plus bas = aiguille plus lente.
-const PLAYBACK_RATE = 0.15;
+const PLAYBACK_RATE = 0.08;
 
 export function VideoHero() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -18,10 +18,7 @@ export function VideoHero() {
       {/* Background video (clock — time slipping away) */}
       <video
         ref={videoRef}
-        className="absolute inset-0 h-full w-full object-cover"
-        // Nudge the clock so its 12–6 axis sits dead centre. translateX+ = clock
-        // moves right; the small scale avoids any black edge appearing.
-        style={{ transform: "scale(1.06) translateX(0.5%)" }}
+        className="clock-zoom absolute inset-0 h-full w-full object-cover"
         autoPlay
         muted
         loop

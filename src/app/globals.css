@@ -257,6 +257,27 @@
     0 12px 30px -22px rgba(0, 0, 0, 0.25);
 }
 
+/* Clock "approach" — the video gently scales (grows) on its own, independent
+   of the playbackRate that controls the hands. Keeps the centering translateX. */
+@keyframes clockZoom {
+  from {
+    transform: translateX(0.5%) scale(1.04);
+  }
+  to {
+    transform: translateX(0.5%) scale(1.2);
+  }
+}
+.clock-zoom {
+  transform: translateX(0.5%) scale(1.04);
+  animation: clockZoom 26s ease-in-out infinite alternate;
+}
+@media (prefers-reduced-motion: reduce) {
+  .clock-zoom {
+    animation: none;
+    transform: translateX(0.5%) scale(1.08);
+  }
+}
+
 /* Service rows dropping in from the top, one by one, into their box */
 @keyframes dropInSlot {
   0% {

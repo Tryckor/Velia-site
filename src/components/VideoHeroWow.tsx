@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-const PLAYBACK_RATE = 0.15;
+const PLAYBACK_RATE = 0.08;
 const LINE_1 = ["Pendant", "que", "vous", "hésitez,"];
 const LINE_2 = ["vos", "concurrents", "répondent", "déjà."];
 
@@ -30,8 +30,7 @@ export function VideoHeroWow({ wide = false }: { wide?: boolean }) {
     <section className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden bg-[#070707] px-6">
       <video
         ref={videoRef}
-        className="absolute inset-0 h-full w-full object-cover"
-        style={{ transform: "scale(1.06) translateX(0.5%)" }}
+        className="clock-zoom absolute inset-0 h-full w-full object-cover"
         autoPlay
         muted
         loop
