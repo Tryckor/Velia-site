@@ -62,11 +62,6 @@ export function VideoHeroWow() {
         className="blob blob-b blob-2 right-[4%] top-[14%] h-[460px] w-[460px]"
         style={{ opacity: 0.32 }}
       />
-      <div
-        aria-hidden
-        className="blob blob-a bottom-[6%] left-1/2 h-[360px] w-[360px] -translate-x-1/2"
-        style={{ opacity: 0.22 }}
-      />
 
       {/* White floor light pool */}
       <div
