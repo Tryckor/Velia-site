@@ -594,8 +594,8 @@ function Contact() {
             <ContactInfo
               icon={IconMail}
               label="Email"
-              value="contact@velia.fr"
-              href="mailto:contact@velia.fr"
+              value="contact@velia-digital.com"
+              href="mailto:contact@velia-digital.com"
             />
             <ContactInfo
               icon={IconClock}

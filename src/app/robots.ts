@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 const base =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://velia.fr";
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://velia-digital.com";
 
 export default function robots(): MetadataRoute.Robots {
   return {

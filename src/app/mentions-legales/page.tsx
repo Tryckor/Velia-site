@@ -13,7 +13,7 @@ export default function MentionsLegales() {
       <p>
         Conformément à la loi n° 2004-575 du 21 juin 2004 pour la confiance dans
         l&apos;économie numérique, voici les informations légales relatives au
-        site <strong>velia.fr</strong>.
+        site <strong>velia-digital.com</strong>.
       </p>
 
       <h2>Éditeur du site</h2>
@@ -34,7 +34,7 @@ export default function MentionsLegales() {
           <span className="todo">[à compléter : adresse de l&apos;entreprise]</span>
         </li>
         <li>
-          Email : <a href="mailto:contact@velia.fr">contact@velia.fr</a>
+          Email : <a href="mailto:contact@velia-digital.com">contact@velia-digital.com</a>
         </li>
         <li>
           Directeur de la publication :{" "}
@@ -67,7 +67,7 @@ export default function MentionsLegales() {
         <a href="/confidentialite">politique de confidentialité</a>. Vous
         disposez d&apos;un droit d&apos;accès, de rectification et de
         suppression de vos données en écrivant à{" "}
-        <a href="mailto:contact@velia.fr">contact@velia.fr</a>.
+        <a href="mailto:contact@velia-digital.com">contact@velia-digital.com</a>.
       </p>
 
       <h2>Responsabilité</h2>

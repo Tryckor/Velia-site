@@ -10,7 +10,7 @@ const geist = Geist({
 });
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://velia.fr";
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://velia-digital.com";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -19,7 +19,7 @@ const jsonLd = {
   description:
     "Agence digitale & IA : sites web, automatisations, SEO, agents IA et chatbots sur mesure.",
   url: siteUrl,
-  email: "contact@velia.fr",
+  email: "contact@velia-digital.com",
   image: `${siteUrl}/velia-logo.png`,
   areaServed: "FR",
   knowsAbout: [
