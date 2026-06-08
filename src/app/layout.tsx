@@ -60,12 +60,16 @@ export const metadata: Metadata = {
     title: "Velia — Sites web, automatisations & IA pour votre entreprise",
     description:
       "Sites web, automatisations, SEO, agents IA et chatbots. Velia construit des outils digitaux qui font gagner du temps et des clients.",
+    images: [
+      { url: "/velia-logo.png", width: 512, height: 512, alt: "Velia" },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Velia — Sites web, automatisations & IA",
     description:
       "Sites web, automatisations, SEO, agents IA et chatbots pour votre entreprise.",
+    images: ["/velia-logo.png"],
   },
   robots: { index: true, follow: true },
 };
