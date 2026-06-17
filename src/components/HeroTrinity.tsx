@@ -13,6 +13,13 @@ const VIOLET_GRADIENT = "linear-gradient(135deg, #271360 0%, #7c5cff 52%, #a98bf
 // 3 panneaux : horloge (sombre) → présence en ligne (bleu) → automatisation/IA (violet)
 const COUNT = 3;
 
+// Onglets de la navbar (1 par panneau)
+const NAV = [
+  { label: "Accueil", color: "#0a0a0a" },
+  { label: "Présence en ligne", color: "#2b6bff" },
+  { label: "Automatisation & IA", color: "#7c5cff" },
+] as const;
+
 // Style d'apparition en cascade (seulement quand le panneau est actif)
 function rise(isActive: boolean, delay: number): React.CSSProperties | undefined {
   return isActive ? { animation: `trinity-rise 0.7s ${delay}s both` } : undefined;
@@ -183,34 +190,51 @@ export function HeroTrinity() {
         />
       </div>
 
-      {/* ───────── Indicateurs (3 points + barre de progression 10 s) ───────── */}
-      <div className="absolute bottom-7 left-1/2 z-30 flex -translate-x-1/2 items-center gap-2.5">
-        {Array.from({ length: COUNT }).map((_, i) => {
+      {/* ───────── Navbar de navigation (cliquable depuis n'importe quel panneau) ───────── */}
+      <nav
+        aria-label="Navigation des panneaux"
+        className="pointer-events-auto absolute bottom-6 left-1/2 z-40 flex -translate-x-1/2 items-center gap-1 rounded-full border border-white/20 bg-black/35 p-1.5 backdrop-blur-md"
+      >
+        {NAV.map((item, i) => {
           const isActive = i === active;
           return (
             <button
-              key={i}
+              key={item.label}
               type="button"
               onClick={() => setActive(i)}
-              aria-label={`Aller au panneau ${i + 1}`}
               aria-current={isActive}
-              className="relative h-1.5 overflow-hidden rounded-full transition-all duration-500"
-              style={{ width: isActive ? 44 : 14, background: "rgba(255,255,255,0.3)" }}
+              className={`relative overflow-hidden rounded-full px-3.5 py-2 text-xs font-medium transition-colors sm:px-4 sm:text-sm ${
+                isActive ? "text-[#0a0a0a]" : "text-white/75 hover:text-white"
+              }`}
             >
+              {/* Pastille blanche de l'onglet actif */}
+              {isActive && (
+                <span className="absolute inset-0 rounded-full bg-white" />
+              )}
+              {/* Barre de progression 10 s par-dessus la pastille */}
               {isActive && (
                 <span
+                  aria-hidden
                   key={`${active}-${paused}`}
-                  className="absolute inset-0 origin-left rounded-full bg-white"
+                  className="absolute inset-x-0 bottom-0 h-[3px] origin-left"
                   style={{
+                    background: item.color,
                     animation: `trinity-progress ${DURATION}ms linear forwards`,
                     animationPlayState: paused ? "paused" : "running",
                   }}
                 />
               )}
+              <span className="relative inline-flex items-center gap-1.5">
+                <span
+                  className="h-2 w-2 rounded-full"
+                  style={{ background: isActive ? item.color : "rgba(255,255,255,0.5)" }}
+                />
+                {item.label}
+              </span>
             </button>
           );
         })}
-      </div>
+      </nav>
     </section>
   );
 }
