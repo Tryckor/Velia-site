@@ -146,20 +146,20 @@ export function HeroTrinity() {
 
           {/* Aperçus des panneaux voisins, centrés verticalement sur les bords */}
           {/* Droite → panneau bleu (présence en ligne) */}
-          <PeekCard
+          <PeekTab
             side="right"
             onClick={() => setActive(1)}
             gradient={BLUE_GRADIENT}
-            eyebrow="Présence en ligne"
-            title="Sites web · SEO"
+            glow="rgba(106,160,255,0.55)"
+            label="Présence en ligne"
           />
           {/* Gauche → panneau violet (automatisation / IA) */}
-          <PeekCard
+          <PeekTab
             side="left"
             onClick={() => setActive(2)}
             gradient={VIOLET_GRADIENT}
-            eyebrow="Automatisation & IA"
-            title="Agents IA · Chatbots"
+            glow="rgba(169,139,255,0.55)"
+            label="Automatisation & IA"
           />
         </div>
 
@@ -239,67 +239,51 @@ export function HeroTrinity() {
   );
 }
 
-/* ============================ Aperçu de bord (peek) ============================ */
-function PeekCard({
+/* ============================ Onglet de bord (aperçu élégant) ============================ */
+function PeekTab({
   side,
   onClick,
   gradient,
-  eyebrow,
-  title,
+  glow,
+  label,
 }: {
   side: "left" | "right";
   onClick: () => void;
   gradient: string;
-  eyebrow: string;
-  title: string;
+  glow: string;
+  label: string;
 }) {
   const isRight = side === "right";
   return (
     <button
       type="button"
       onClick={onClick}
-      aria-label={`Voir : ${eyebrow}`}
-      className={`group absolute top-1/2 z-20 hidden -translate-y-1/2 sm:block ${
+      aria-label={`Voir : ${label}`}
+      className={`group absolute top-1/2 z-20 hidden -translate-y-1/2 md:flex ${
         isRight ? "right-0" : "left-0"
       }`}
-      style={{ transform: `translateY(-50%) translateX(${isRight ? "42%" : "-42%"})` }}
     >
       <div
-        className="relative w-[170px] overflow-hidden rounded-2xl border border-white/20 p-4 text-left shadow-[0_30px_60px_-20px_rgba(0,0,0,0.7)] backdrop-blur-sm transition-all duration-500 group-hover:scale-[1.04] lg:w-[200px]"
-        style={{
-          background: gradient,
-          transform: `rotate(${isRight ? -5 : 5}deg)`,
-        }}
+        className={`flex flex-col items-center gap-3 border border-white/20 px-3 py-6 text-white backdrop-blur-md transition-transform duration-500 ${
+          isRight
+            ? "rounded-l-2xl group-hover:-translate-x-1"
+            : "rounded-r-2xl group-hover:translate-x-1"
+        }`}
+        style={{ background: gradient, boxShadow: `0 24px 70px -22px ${glow}` }}
       >
-        {/* grille subtile */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-20"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px)",
-            backgroundSize: "26px 26px",
-          }}
-        />
-        <p className="relative text-[10px] font-semibold uppercase tracking-[0.18em] text-white/80">
-          {eyebrow}
-        </p>
-        <p className="relative mt-1.5 text-sm font-medium leading-tight text-white">
-          {title}
-        </p>
-        <div className="relative mt-3 space-y-1.5">
-          <span className="block h-1.5 w-4/5 rounded-full bg-white/30" />
-          <span className="block h-1.5 w-3/5 rounded-full bg-white/20" />
-        </div>
+        {/* Libellé vertical, jamais coupé */}
         <span
-          className={`relative mt-4 inline-flex items-center gap-1 text-xs font-medium text-white ${
-            isRight ? "" : "flex-row-reverse"
-          }`}
+          className="text-[12px] font-medium uppercase tracking-[0.22em] text-white/90"
+          style={{
+            writingMode: "vertical-rl",
+            transform: isRight ? "none" : "rotate(180deg)",
+          }}
         >
-          <span className="grid h-6 w-6 place-items-center rounded-full bg-white/20 transition-transform group-hover:translate-x-0.5">
-            {isRight ? "→" : "←"}
-          </span>
-          Aperçu
+          {label}
+        </span>
+        {/* Flèche dans un disque */}
+        <span className="grid h-7 w-7 place-items-center rounded-full bg-white/20 text-sm transition-transform group-hover:scale-110">
+          {isRight ? "→" : "←"}
         </span>
       </div>
     </button>
