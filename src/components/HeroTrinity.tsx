@@ -13,11 +13,11 @@ const VIOLET_GRADIENT = "linear-gradient(135deg, #271360 0%, #7c5cff 52%, #a98bf
 // 3 panneaux : horloge (sombre) → présence en ligne (bleu) → automatisation/IA (violet)
 const COUNT = 3;
 
-// Onglets de la navbar (1 par panneau)
+// Onglets de la navbar, dans l'ordre des positions : gauche (violet) → centre (horloge) → droite (bleu)
 const NAV = [
-  { label: "Accueil", color: "#0a0a0a" },
-  { label: "Présence en ligne", color: "#2b6bff" },
-  { label: "Automatisation & IA", color: "#7c5cff" },
+  { label: "Automatisation & IA", color: "#7c5cff", index: 0 },
+  { label: "Accueil", color: "#0a0a0a", index: 1 },
+  { label: "Présence en ligne", color: "#2b6bff", index: 2 },
 ] as const;
 
 // Style d'apparition en cascade (seulement quand le panneau est actif)
@@ -27,7 +27,8 @@ function rise(isActive: boolean, delay: number): React.CSSProperties | undefined
 
 export function HeroTrinity() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [active, setActive] = useState(0);
+  // Ordre physique : 0 = violet (gauche) · 1 = horloge (centre, départ) · 2 = bleu (droite)
+  const [active, setActive] = useState(1);
   const [paused, setPaused] = useState(false);
 
   useEffect(() => {
@@ -68,7 +69,20 @@ export function HeroTrinity() {
           transition: "transform 950ms cubic-bezier(0.65,0,0.35,1)",
         }}
       >
-        {/* ───────────────── Slide 1 — l'horloge (design d'origine + aperçus) ───────────────── */}
+        {/* ───────── Panneau GAUCHE — Automatisation & IA (violet) ───────── */}
+        <ColoredSlide
+          step={step}
+          gradient={VIOLET_GRADIENT}
+          glow="rgba(169,139,255,0.5)"
+          isActive={active === 0}
+          eyebrow="Automatisation & IA"
+          title={"Vos tâches répétitives,\ngérées sans vous."}
+          text="Agents IA et chatbots qui répondent à chaque client, prennent les rendez-vous et génèrent vos devis — jour et nuit, sans vous."
+          chips={["Automatisations", "Agents IA", "Chatbots"]}
+          visual={<ChatMockup />}
+        />
+
+        {/* ───────── Panneau CENTRE — l'horloge (design d'origine + aperçus) ───────── */}
         <div
           className="relative flex h-full flex-col justify-center overflow-hidden px-6"
           style={{ width: `${step}%` }}
@@ -148,7 +162,7 @@ export function HeroTrinity() {
           {/* Droite → panneau bleu (présence en ligne) */}
           <PeekTab
             side="right"
-            onClick={() => setActive(1)}
+            onClick={() => setActive(2)}
             gradient={BLUE_GRADIENT}
             glow="rgba(106,160,255,0.55)"
             label="Présence en ligne"
@@ -156,37 +170,24 @@ export function HeroTrinity() {
           {/* Gauche → panneau violet (automatisation / IA) */}
           <PeekTab
             side="left"
-            onClick={() => setActive(2)}
+            onClick={() => setActive(0)}
             gradient={VIOLET_GRADIENT}
             glow="rgba(169,139,255,0.55)"
             label="Automatisation & IA"
           />
         </div>
 
-        {/* ───────────────── Slide 2 — Présence en ligne (bleu) ───────────────── */}
+        {/* ───────── Panneau DROITE — Présence en ligne (bleu) ───────── */}
         <ColoredSlide
           step={step}
           gradient={BLUE_GRADIENT}
           glow="rgba(106,160,255,0.5)"
-          isActive={active === 1}
+          isActive={active === 2}
           eyebrow="Présence en ligne"
           title={"Un site qui travaille\npour vous, 24 h/24."}
           text="Des sites rapides et élégants, pensés pour convertir vos visiteurs en clients — avec un SEO qui vous fait remonter sur Google."
           chips={["Sites web", "SEO", "Référencement local"]}
           visual={<BrowserMockup />}
-        />
-
-        {/* ───────────────── Slide 3 — Automatisation & IA (violet) ───────────────── */}
-        <ColoredSlide
-          step={step}
-          gradient={VIOLET_GRADIENT}
-          glow="rgba(169,139,255,0.5)"
-          isActive={active === 2}
-          eyebrow="Automatisation & IA"
-          title={"Vos tâches répétitives,\ngérées sans vous."}
-          text="Agents IA et chatbots qui répondent à chaque client, prennent les rendez-vous et génèrent vos devis — jour et nuit, sans vous."
-          chips={["Automatisations", "Agents IA", "Chatbots"]}
-          visual={<ChatMockup />}
         />
       </div>
 
@@ -195,13 +196,13 @@ export function HeroTrinity() {
         aria-label="Navigation des panneaux"
         className="pointer-events-auto absolute bottom-6 left-1/2 z-40 flex -translate-x-1/2 items-center gap-1 rounded-full border border-white/20 bg-black/35 p-1.5 backdrop-blur-md"
       >
-        {NAV.map((item, i) => {
-          const isActive = i === active;
+        {NAV.map((item) => {
+          const isActive = item.index === active;
           return (
             <button
               key={item.label}
               type="button"
-              onClick={() => setActive(i)}
+              onClick={() => setActive(item.index)}
               aria-current={isActive}
               className={`relative overflow-hidden rounded-full px-3.5 py-2 text-xs font-medium transition-colors sm:px-4 sm:text-sm ${
                 isActive ? "text-[#0a0a0a]" : "text-white/75 hover:text-white"
