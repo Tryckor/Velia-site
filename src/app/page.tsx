@@ -115,11 +115,17 @@ const FAQ = [
   },
 ];
 
-export default function Home({ hero }: { hero?: React.ReactNode }) {
+export default function Home({
+  hero,
+  navLight = true,
+}: {
+  hero?: React.ReactNode;
+  navLight?: boolean;
+}) {
   return (
     <div id="top" className="min-h-screen bg-background">
       <ScrollProgress />
-      <Nav light />
+      <Nav light={navLight} />
       <main>
         {hero ?? <VideoHero />}
         <TrustBar />
