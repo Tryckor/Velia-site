@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { HeroShowcase3D } from "./HeroShowcase3D";
 
 // Durée de l'intro cinématique plein écran (ms) avant le passage en page blanche.
 const INTRO_MS = 3000;
@@ -115,39 +116,9 @@ export function HeroCinematic() {
             </div>
           </div>
 
-          {/* Colonne vidéo encadrée */}
-          <div
-            className="flex justify-center"
-            style={rise(revealed, 0.5)}
-          >
-            <div style={{ animation: "cine-float 6s ease-in-out infinite" }}>
-              <div className="relative overflow-hidden rounded-[26px] border border-black/10 shadow-[0_40px_90px_-30px_rgba(0,0,0,0.45)]">
-                <video
-                  className="block h-[300px] w-[420px] max-w-full object-cover sm:h-[360px]"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="auto"
-                  aria-hidden="true"
-                >
-                  <source src="/hero-tunnel.mp4" type="video/mp4" />
-                </video>
-                {/* léger voile pour fondre la vidéo dans le blanc */}
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute inset-0"
-                  style={{
-                    background:
-                      "linear-gradient(180deg, rgba(255,255,255,0) 60%, rgba(255,255,255,0.12) 100%)",
-                  }}
-                />
-                {/* badge */}
-                <div className="absolute bottom-4 left-4 rounded-full bg-white/90 px-3 py-1.5 text-xs font-semibold text-[#0a0a0a] shadow backdrop-blur">
-                  Réponse en 2 s · 24 h/24
-                </div>
-              </div>
-            </div>
+          {/* Colonne visuel interactif 3D */}
+          <div className="flex justify-center" style={rise(revealed, 0.5)}>
+            <HeroShowcase3D />
           </div>
         </div>
       </div>
