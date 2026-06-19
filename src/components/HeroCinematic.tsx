@@ -1,18 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { HeroShowcase3D } from "./HeroShowcase3D";
 
 // Durée de l'intro cinématique plein écran (ms) avant le passage en page blanche.
 const INTRO_MS = 3000;
-
-const SERVICES = [
-  { name: "Sites web", detail: "vitrines & e-commerce pensés pour convertir" },
-  { name: "Automatisations", detail: "vos tâches répétitives en pilote automatique" },
-  { name: "Agents IA", detail: "répondent et qualifient vos clients 24 h/24" },
-  { name: "SEO", detail: "remontez en haut de Google" },
-  { name: "Chatbots", detail: "captent vos prospects à chaud" },
-];
 
 function rise(on: boolean, delay: number): React.CSSProperties {
   return {
@@ -31,95 +22,75 @@ export function HeroCinematic() {
   }, []);
 
   return (
-    <section className="relative min-h-[100svh] overflow-hidden bg-white">
+    <section className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden bg-white px-6">
       <style>{`
         @keyframes cine-rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes cine-word { from { opacity: 0; transform: translateY(36px); letter-spacing: 0.6em; } to { opacity: 1; transform: translateY(0); letter-spacing: 0.22em; } }
-        @keyframes cine-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
         @keyframes cine-fadein { from { opacity: 0; } to { opacity: 1; } }
       `}</style>
 
-      {/* ===================== Contenu : page blanche ===================== */}
-      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-6xl items-center px-6 py-28">
-        <div className="grid w-full items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          {/* Colonne texte */}
-          <div className="text-center lg:text-left">
-            <p
-              className="text-[12px] font-semibold uppercase tracking-[0.22em] text-accent"
-              style={rise(revealed, 0.1)}
-            >
-              Agence en intelligence artificielle
-            </p>
-            <h1
-              className="mt-5 text-balance text-4xl font-medium leading-[1.05] tracking-tight text-[#0a0a0a] sm:text-5xl lg:text-[3.4rem]"
-              style={rise(revealed, 0.2)}
-            >
-              On conçoit, on automatise,
-              <br />
-              <span className="accent-gradient bg-clip-text text-transparent">
-                et l’IA répond pour vous.
-              </span>
-            </h1>
-            <p
-              className="mx-auto mt-6 max-w-xl text-pretty text-lg text-[#5b5b5b] lg:mx-0"
-              style={rise(revealed, 0.3)}
-            >
-              Velia crée votre site, automatise votre quotidien et déploie des
-              agents IA qui répondent à chaque client — jour et nuit.
-            </p>
+      {/* ===================== Contenu : page blanche épurée (centrée) ===================== */}
+      <div className="relative z-10 mx-auto max-w-4xl text-center">
+        <p
+          className="text-[11px] font-semibold uppercase tracking-[0.18em] sm:text-[13px] sm:tracking-[0.2em]"
+          style={rise(revealed, 0.1)}
+        >
+          <span className="accent-gradient bg-clip-text text-transparent">
+            Sites web · Automatisations · Agents IA · SEO · Chatbots
+          </span>
+        </p>
 
-            {/* Détails des services */}
-            <ul className="mx-auto mt-8 grid max-w-xl gap-x-8 gap-y-3 text-left sm:grid-cols-2 lg:mx-0">
-              {SERVICES.map((s, i) => (
-                <li
-                  key={s.name}
-                  className="flex items-start gap-2.5"
-                  style={rise(revealed, 0.4 + i * 0.07)}
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    className="mt-1 h-4 w-4 shrink-0 text-accent"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.6"
-                  >
-                    <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  <span className="text-[15px] leading-snug text-[#0a0a0a]">
-                    <span className="font-semibold">{s.name}</span>
-                    <span className="text-[#6b6b6b]"> — {s.detail}</span>
-                  </span>
-                </li>
-              ))}
-            </ul>
+        <h1
+          className="mt-6 text-balance text-4xl font-medium leading-[1.05] tracking-tight text-[#0a0a0a] sm:text-5xl lg:text-6xl"
+          style={rise(revealed, 0.2)}
+        >
+          On conçoit, on automatise,
+          <br />
+          et l’IA répond pour vous.
+        </h1>
 
-            {/* CTA */}
-            <div
-              className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row lg:justify-start"
-              style={rise(revealed, 0.78)}
-            >
-              <a
-                href="#contact"
-                className="btn-gradient group w-full rounded-full px-7 py-3.5 font-medium text-white shadow-[0_20px_55px_-16px_var(--accent-2)] transition-transform hover:scale-[1.02] sm:w-auto"
-              >
-                <span className="inline-flex items-center gap-2">
-                  Réserver mon audit gratuit
-                  <span className="transition-transform group-hover:translate-x-0.5">→</span>
-                </span>
-              </a>
-              <a
-                href="#decouvrir"
-                className="w-full rounded-full border border-[#e2e2e2] bg-white px-7 py-3.5 font-medium text-[#0a0a0a] transition-colors hover:border-[#0a0a0a]/40 sm:w-auto"
-              >
-                Découvrir nos services
-              </a>
-            </div>
-          </div>
+        <p
+          className="mx-auto mt-7 max-w-2xl text-pretty text-lg text-[#5b5b5b]"
+          style={rise(revealed, 0.32)}
+        >
+          Velia crée votre site, automatise votre quotidien et déploie des
+          agents IA qui répondent à chaque client — jour et nuit.
+        </p>
 
-          {/* Colonne visuel interactif 3D */}
-          <div className="flex justify-center" style={rise(revealed, 0.5)}>
-            <HeroShowcase3D />
-          </div>
+        <div
+          className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
+          style={rise(revealed, 0.44)}
+        >
+          <a
+            href="#contact"
+            className="btn-gradient group w-full rounded-full px-7 py-3.5 font-medium text-white shadow-[0_20px_55px_-16px_var(--accent-2)] transition-transform hover:scale-[1.02] sm:w-auto"
+          >
+            <span className="inline-flex items-center gap-2">
+              Réserver mon audit gratuit
+              <span className="transition-transform group-hover:translate-x-0.5">→</span>
+            </span>
+          </a>
+          <a
+            href="#decouvrir"
+            className="w-full rounded-full border border-[#e2e2e2] bg-white px-7 py-3.5 font-medium text-[#0a0a0a] transition-colors hover:border-[#0a0a0a]/40 sm:w-auto"
+          >
+            Découvrir nos services
+          </a>
+        </div>
+
+        {/* Réassurance */}
+        <div
+          className="mx-auto mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-[#6b6b6b]"
+          style={rise(revealed, 0.56)}
+        >
+          {["Audit offert", "Réponse sous 24 h", "Sans engagement"].map((t) => (
+            <span key={t} className="inline-flex items-center gap-1.5">
+              <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 text-accent" fill="none" stroke="currentColor" strokeWidth="2.6">
+                <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              {t}
+            </span>
+          ))}
         </div>
       </div>
 
