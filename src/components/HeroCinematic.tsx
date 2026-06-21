@@ -27,7 +27,46 @@ export function HeroCinematic() {
         @keyframes cine-rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes cine-word { from { opacity: 0; transform: translateY(36px); letter-spacing: 0.6em; } to { opacity: 1; transform: translateY(0); letter-spacing: 0.22em; } }
         @keyframes cine-fadein { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes cine-drift1 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(50px,36px); } }
+        @keyframes cine-drift2 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-46px,-30px); } }
+        @keyframes cine-scroll { 0%,100% { transform: translateY(0); opacity: .5; } 50% { transform: translateY(6px); opacity: 1; } }
       `}</style>
+
+      {/* ===================== Décor ambiant (subtil) ===================== */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+        {/* grille fine fondue */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(10,10,10,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(10,10,10,0.05) 1px, transparent 1px)",
+            backgroundSize: "62px 62px",
+            maskImage:
+              "radial-gradient(ellipse 72% 62% at 50% 45%, #000 28%, transparent 76%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse 72% 62% at 50% 45%, #000 28%, transparent 76%)",
+          }}
+        />
+        {/* halos de couleur qui dérivent */}
+        <div
+          className="absolute -left-24 top-4 h-[34rem] w-[34rem] rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(43,107,255,0.20), transparent 70%)",
+            filter: "blur(40px)",
+            animation: "cine-drift1 16s ease-in-out infinite",
+          }}
+        />
+        <div
+          className="absolute -right-24 bottom-0 h-[32rem] w-[32rem] rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(124,92,255,0.18), transparent 70%)",
+            filter: "blur(40px)",
+            animation: "cine-drift2 19s ease-in-out infinite",
+          }}
+        />
+      </div>
 
       {/* ===================== Contenu : page blanche épurée (centrée) ===================== */}
       <div className="relative z-10 mx-auto max-w-4xl text-center">
@@ -46,7 +85,9 @@ export function HeroCinematic() {
         >
           On conçoit, on automatise,
           <br />
-          et l’IA répond pour vous.
+          <span className="accent-gradient bg-clip-text text-transparent">
+            et l’IA répond pour vous.
+          </span>
         </h1>
 
         <p
@@ -93,6 +134,22 @@ export function HeroCinematic() {
           ))}
         </div>
       </div>
+
+      {/* Indicateur de scroll */}
+      <a
+        href="#decouvrir"
+        className="absolute bottom-7 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-[#0a0a0a]/55 transition-colors hover:text-[#0a0a0a]"
+        style={rise(revealed, 0.7)}
+        aria-label="Défiler"
+      >
+        <span className="text-[10px] font-medium uppercase tracking-[0.2em]">
+          Découvrir
+        </span>
+        <span
+          className="h-9 w-px bg-gradient-to-b from-[#0a0a0a]/45 to-transparent"
+          style={{ animation: "cine-scroll 1.8s ease-in-out infinite" }}
+        />
+      </a>
 
       {/* ===================== Intro cinématique plein écran ===================== */}
       <div
