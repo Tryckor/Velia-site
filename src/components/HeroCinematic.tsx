@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { WebsiteShowcase } from "./WebsiteShowcase";
 
 // Durée de l'intro cinématique plein écran (ms) avant le passage en page blanche.
 const INTRO_MS = 3000;
@@ -22,7 +23,7 @@ export function HeroCinematic() {
   }, []);
 
   return (
-    <section className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden bg-white px-6">
+    <section className="relative flex min-h-[100svh] flex-col items-center justify-start overflow-hidden bg-white px-6 pb-16 pt-28 sm:pt-32">
       <style>{`
         @keyframes cine-rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes cine-word { from { opacity: 0; transform: translateY(36px); letter-spacing: 0.6em; } to { opacity: 1; transform: translateY(0); letter-spacing: 0.22em; } }
@@ -80,7 +81,7 @@ export function HeroCinematic() {
         </p>
 
         <h1
-          className="mt-6 text-balance text-4xl font-medium leading-[1.05] tracking-tight text-[#0a0a0a] sm:text-5xl lg:text-6xl"
+          className="mt-5 text-balance text-4xl font-medium leading-[1.05] tracking-tight text-[#0a0a0a] sm:text-5xl"
           style={rise(revealed, 0.2)}
         >
           On conçoit, on automatise,
@@ -91,7 +92,7 @@ export function HeroCinematic() {
         </h1>
 
         <p
-          className="mx-auto mt-7 max-w-2xl text-pretty text-lg text-[#5b5b5b]"
+          className="mx-auto mt-5 max-w-xl text-pretty text-base text-[#5b5b5b] sm:text-lg"
           style={rise(revealed, 0.32)}
         >
           Velia crée votre site, automatise votre quotidien et déploie des
@@ -99,7 +100,7 @@ export function HeroCinematic() {
         </p>
 
         <div
-          className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
+          className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row"
           style={rise(revealed, 0.44)}
         >
           <a
@@ -135,21 +136,13 @@ export function HeroCinematic() {
         </div>
       </div>
 
-      {/* Indicateur de scroll */}
-      <a
-        href="#decouvrir"
-        className="absolute bottom-7 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-[#0a0a0a]/55 transition-colors hover:text-[#0a0a0a]"
-        style={rise(revealed, 0.7)}
-        aria-label="Défiler"
+      {/* ===================== Vitrine : site premium animé en 3D ===================== */}
+      <div
+        className="relative z-10 mt-14 w-full max-w-4xl"
+        style={rise(revealed, 0.62)}
       >
-        <span className="text-[10px] font-medium uppercase tracking-[0.2em]">
-          Découvrir
-        </span>
-        <span
-          className="h-9 w-px bg-gradient-to-b from-[#0a0a0a]/45 to-transparent"
-          style={{ animation: "cine-scroll 1.8s ease-in-out infinite" }}
-        />
-      </a>
+        <WebsiteShowcase />
+      </div>
 
       {/* ===================== Intro cinématique plein écran ===================== */}
       <div
