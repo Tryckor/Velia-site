@@ -41,7 +41,7 @@ export function HeroCinematic() {
       <div className="relative z-10 mx-auto max-w-4xl text-center">
         <p
           className="text-[11px] font-semibold uppercase tracking-[0.18em] sm:text-[13px] sm:tracking-[0.2em]"
-          style={rise(revealed, 1.1)}
+          style={rise(revealed, 0.1)}
         >
           <span className="accent-gradient bg-clip-text text-transparent">
             Sites web · Automatisations · Agents IA · SEO · Chatbots
@@ -50,7 +50,7 @@ export function HeroCinematic() {
 
         <h1
           className="mt-5 text-balance text-4xl font-medium leading-[1.05] tracking-tight text-[#0a0a0a] sm:text-5xl"
-          style={rise(revealed, 1.3)}
+          style={rise(revealed, 0.2)}
         >
           On conçoit, on automatise,
           <br />
@@ -61,7 +61,7 @@ export function HeroCinematic() {
 
         <p
           className="mx-auto mt-5 max-w-xl text-pretty text-base text-[#5b5b5b] sm:text-lg"
-          style={rise(revealed, 1.55)}
+          style={rise(revealed, 0.32)}
         >
           Velia crée votre site, automatise votre quotidien et déploie des
           agents IA qui répondent à chaque client — jour et nuit.
@@ -69,7 +69,7 @@ export function HeroCinematic() {
 
         <div
           className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row"
-          style={rise(revealed, 1.8)}
+          style={rise(revealed, 0.44)}
         >
           <a
             href="#contact"
@@ -91,7 +91,7 @@ export function HeroCinematic() {
         {/* Réassurance */}
         <div
           className="mx-auto mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-[#6b6b6b]"
-          style={rise(revealed, 2.0)}
+          style={rise(revealed, 0.56)}
         >
           {["Audit offert", "Réponse sous 24 h", "Sans engagement"].map((t) => (
             <span key={t} className="inline-flex items-center gap-1.5">
@@ -107,7 +107,7 @@ export function HeroCinematic() {
       {/* ===================== Vitrine : site premium animé en 3D ===================== */}
       <div
         className="relative z-10 mt-14 w-full max-w-4xl"
-        style={rise(revealed, 2.2)}
+        style={rise(revealed, 0.62)}
       >
         <WebsiteShowcase />
       </div>
