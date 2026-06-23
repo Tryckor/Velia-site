@@ -34,8 +34,8 @@ export function HeroCinematic() {
         @keyframes cine-scroll { 0%,100% { transform: translateY(0); opacity: .5; } 50% { transform: translateY(6px); opacity: 1; } }
       `}</style>
 
-      {/* ===================== Fond sur-mesure (aurore + réseau IA) ===================== */}
-      <HeroBackdrop />
+      {/* ===================== Fond circuit N&B qui se dessine (la page se fabrique) ===================== */}
+      <HeroBackdrop play={revealed} />
 
       {/* ===================== Contenu : page blanche épurée (centrée) ===================== */}
       <div className="relative z-10 mx-auto max-w-4xl text-center">
