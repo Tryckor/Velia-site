@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { WebsiteShowcase } from "./WebsiteShowcase";
+import { HeroBackdrop } from "./HeroBackdrop";
 
 // Durée de l'intro cinématique plein écran (ms) avant le passage en page blanche.
 const INTRO_MS = 3000;
@@ -33,41 +34,8 @@ export function HeroCinematic() {
         @keyframes cine-scroll { 0%,100% { transform: translateY(0); opacity: .5; } 50% { transform: translateY(6px); opacity: 1; } }
       `}</style>
 
-      {/* ===================== Décor ambiant (subtil) ===================== */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-        {/* grille fine fondue */}
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(10,10,10,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(10,10,10,0.05) 1px, transparent 1px)",
-            backgroundSize: "62px 62px",
-            maskImage:
-              "radial-gradient(ellipse 72% 62% at 50% 45%, #000 28%, transparent 76%)",
-            WebkitMaskImage:
-              "radial-gradient(ellipse 72% 62% at 50% 45%, #000 28%, transparent 76%)",
-          }}
-        />
-        {/* halos de couleur qui dérivent */}
-        <div
-          className="absolute -left-24 top-4 h-[34rem] w-[34rem] rounded-full"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(43,107,255,0.20), transparent 70%)",
-            filter: "blur(40px)",
-            animation: "cine-drift1 16s ease-in-out infinite",
-          }}
-        />
-        <div
-          className="absolute -right-24 bottom-0 h-[32rem] w-[32rem] rounded-full"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(124,92,255,0.18), transparent 70%)",
-            filter: "blur(40px)",
-            animation: "cine-drift2 19s ease-in-out infinite",
-          }}
-        />
-      </div>
+      {/* ===================== Fond sur-mesure (aurore + réseau IA) ===================== */}
+      <HeroBackdrop />
 
       {/* ===================== Contenu : page blanche épurée (centrée) ===================== */}
       <div className="relative z-10 mx-auto max-w-4xl text-center">
