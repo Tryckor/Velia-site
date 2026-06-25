@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { WebsiteShowcase } from "./WebsiteShowcase";
+import { ProductivityMeter } from "./ProductivityMeter";
 import { HeroBackdrop } from "./HeroBackdrop";
 
 // Durée de l'intro cinématique plein écran (ms) avant le passage en page blanche.
@@ -109,7 +109,7 @@ export function HeroCinematic() {
         className="relative z-10 mt-14 w-full max-w-4xl"
         style={rise(revealed, 0.62)}
       >
-        <WebsiteShowcase />
+        <ProductivityMeter />
       </div>
 
       {/* ===================== Intro cinématique plein écran ===================== */}
