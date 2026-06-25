@@ -17,11 +17,14 @@ export function VideoHeroLight() {
 
   return (
     <section className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden bg-white px-6">
-      {/* Vidéo horloge INVERSÉE (noir↔blanc) */}
+      {/* Vidéo horloge INVERSÉE (noir↔blanc) — discrète, contrastée, nette */}
       <video
         ref={videoRef}
         className="clock-zoom absolute inset-0 h-full w-full object-cover"
-        style={{ filter: "invert(1) grayscale(1) contrast(1.05) brightness(1.05)" }}
+        style={{
+          filter: "invert(1) grayscale(1) contrast(1.6) brightness(1.18)",
+          opacity: 0.45,
+        }}
         autoPlay
         muted
         loop
@@ -36,25 +39,29 @@ export function VideoHeroLight() {
       </video>
 
       {/* Voiles de lisibilité (clairs) */}
-      <div aria-hidden className="absolute inset-0 bg-white/45" />
+      <div aria-hidden className="absolute inset-0 bg-white/40" />
       <div
         aria-hidden
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, rgba(255,255,255,0.78) 0%, rgba(255,255,255,0.30) 35%, rgba(255,255,255,0.60) 100%)",
+            "linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.45) 40%, rgba(255,255,255,0.80) 100%)",
         }}
       />
-      {/* Halo doux au sol sous l'horloge (clair) */}
+      {/* Voile central : garde le titre parfaitement net, l'horloge reste un fond léger */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 z-[1]"
         style={{
           background:
-            "radial-gradient(ellipse 52% 24% at 50% 93%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.6) 34%, rgba(255,255,255,0.25) 60%, transparent 90%)",
-          filter: "blur(10px)",
-          WebkitFilter: "blur(10px)",
+            "radial-gradient(ellipse 64% 52% at 50% 44%, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.55) 45%, transparent 78%)",
         }}
+      />
+      {/* Ombre douce au sol (ancrage, version claire) */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-44"
+        style={{ background: "linear-gradient(transparent, rgba(255,255,255,0.9))" }}
       />
 
       {/* Kicker (dégradé bleu — inchangé) */}
