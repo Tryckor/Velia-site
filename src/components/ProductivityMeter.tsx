@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 // Jauge "Votre productivité" — construction PROGRESSIVE : tout est vide au
 // départ, les éléments apparaissent en cascade, la barre se remplit 0→40 %
 // (sans Velia), puis les 60 % Velia jusqu'à 100 %. Auto-play + rejouable.
-export function ProductivityMeter() {
+export function ProductivityMeter({ play = true }: { play?: boolean }) {
   const [reveal, setReveal] = useState(false);
   const [baseW, setBaseW] = useState(0);
   const [extraW, setExtraW] = useState(0);
@@ -52,7 +52,10 @@ export function ProductivityMeter() {
     );
   }
 
+  // Démarre l'animation quand le hero se révèle (play=true), pas au montage
+  // (sinon elle joue cachée derrière l'intro et on ne la voit pas).
   useEffect(() => {
+    if (!play) return;
     const t = setTimeout(run, 400);
     return () => {
       clearTimeout(t);
@@ -60,7 +63,7 @@ export function ProductivityMeter() {
       if (raf.current) cancelAnimationFrame(raf.current);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [play]);
 
   const up = (d: number): React.CSSProperties =>
     reveal ? { animation: `pm-up 0.6s ${d}s both` } : { opacity: 0 };
