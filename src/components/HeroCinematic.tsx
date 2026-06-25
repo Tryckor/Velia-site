@@ -109,7 +109,7 @@ export function HeroCinematic() {
         className="relative z-10 mt-14 w-full max-w-4xl"
         style={rise(revealed, 0.62)}
       >
-        <ProductivityMeter />
+        <ProductivityMeter play={revealed} />
       </div>
 
       {/* ===================== Intro cinématique plein écran ===================== */}
