@@ -2,9 +2,9 @@
 
 import { useEffect, useRef } from "react";
 
-// Version CLAIRE du hero horloge : mêmes couleurs d'accent (bleu), mais inversé
-// — fond blanc, texte noir, et la vidéo de l'horloge passée en `invert` pour
-// devenir claire (traits foncés sur fond clair). "Noir ↔ blanc".
+// Hero "clair" : page BLANCHE, mais l'horloge reste l'ORIGINALE (sombre, non
+// inversée) et repose sur une AURÉOLE FONCÉE centrale → ses chiffres blancs
+// ressortent, et l'auréole se fond dans le blanc autour.
 const PLAYBACK_RATE = 0.08;
 
 export function VideoHeroLight() {
@@ -15,15 +15,27 @@ export function VideoHeroLight() {
     if (v) v.playbackRate = PLAYBACK_RATE;
   }, []);
 
+  // Même rayon pour l'auréole, le masque vidéo et le voile → transition nette.
+  const RADIAL = "ellipse 58% 54% at 50% 46%";
+
   return (
     <section className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden bg-white px-6">
-      {/* Vidéo horloge INVERSÉE (noir↔blanc) — discrète, contrastée, nette */}
+      {/* Auréole foncée derrière l'horloge (se fond dans le blanc) */}
+      <div
+        aria-hidden
+        className="absolute inset-0"
+        style={{
+          background: `radial-gradient(${RADIAL}, #070707 0%, #070707 42%, rgba(7,7,7,0.55) 60%, rgba(7,7,7,0) 74%)`,
+        }}
+      />
+
+      {/* Horloge ORIGINALE (non inversée), masquée pour se fondre dans le blanc */}
       <video
         ref={videoRef}
         className="clock-zoom absolute inset-0 h-full w-full object-cover"
         style={{
-          filter: "invert(1) grayscale(1) contrast(1.6) brightness(1.18)",
-          opacity: 0.45,
+          WebkitMaskImage: `radial-gradient(${RADIAL}, #000 44%, transparent 73%)`,
+          maskImage: `radial-gradient(${RADIAL}, #000 44%, transparent 73%)`,
         }}
         autoPlay
         muted
@@ -38,47 +50,32 @@ export function VideoHeroLight() {
         <source src="/hero-bg.mp4" type="video/mp4" />
       </video>
 
-      {/* Voiles de lisibilité (clairs) */}
-      <div aria-hidden className="absolute inset-0 bg-white/40" />
-      <div
-        aria-hidden
-        className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.45) 40%, rgba(255,255,255,0.80) 100%)",
-        }}
-      />
-      {/* Voile central : garde le titre parfaitement net, l'horloge reste un fond léger */}
+      {/* Voile foncé central pour la lisibilité du titre (texte blanc dessus) */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 z-[1]"
         style={{
           background:
-            "radial-gradient(ellipse 64% 52% at 50% 44%, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.55) 45%, transparent 78%)",
+            "radial-gradient(ellipse 52% 44% at 50% 46%, rgba(7,7,7,0.62) 0%, rgba(7,7,7,0.30) 50%, transparent 72%)",
         }}
       />
-      {/* Ombre douce au sol (ancrage, version claire) */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-44"
-        style={{ background: "linear-gradient(transparent, rgba(255,255,255,0.9))" }}
-      />
 
-      {/* Kicker (dégradé bleu — inchangé) */}
+      {/* Kicker (dégradé bleu) — sur le blanc en haut */}
       <p className="float-in absolute left-1/2 top-[104px] z-10 w-full -translate-x-1/2 px-6 text-center text-[11px] font-semibold uppercase tracking-[0.18em] sm:text-[13px] sm:tracking-[0.2em]">
         <span className="gradient-text">
           Sites web · Automatisations · Agents IA · SEO · Chatbots
         </span>
       </p>
 
-      <div className="relative z-10 mx-auto max-w-5xl text-center text-[#0a0a0a]">
+      {/* Contenu (texte blanc, posé sur l'auréole foncée) */}
+      <div className="relative z-10 mx-auto max-w-5xl text-center text-white">
         <h1 className="float-in-2 text-balance text-4xl font-medium leading-[1.06] tracking-tight sm:text-5xl lg:text-6xl">
           Pendant que vous hésitez,
           <br />
           vos concurrents répondent déjà.
         </h1>
 
-        <p className="float-in-3 mx-auto mt-7 max-w-2xl text-pretty text-lg text-[#5b5b5b]">
+        <p className="float-in-3 mx-auto mt-7 max-w-2xl text-pretty text-lg text-white/75">
           Velia conçoit votre site, automatise votre quotidien et déploie des
           agents IA qui répondent à chaque client — jour et nuit.
         </p>
@@ -95,13 +92,13 @@ export function VideoHeroLight() {
           </a>
           <a
             href="#decouvrir"
-            className="w-full rounded-full border border-black/15 bg-white/60 px-7 py-3.5 font-medium text-[#0a0a0a] backdrop-blur transition-colors hover:border-black/40 sm:w-auto"
+            className="w-full rounded-full border border-white/30 bg-white/5 px-7 py-3.5 font-medium text-white backdrop-blur transition-colors hover:border-white/70 sm:w-auto"
           >
             Découvrir nos services
           </a>
         </div>
 
-        <div className="float-in-5 mx-auto mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-[#6b6b6b]">
+        <div className="float-in-5 mx-auto mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-white/60">
           {["Audit offert", "Réponse sous 24 h", "Sans engagement"].map((t) => (
             <span key={t} className="inline-flex items-center gap-1.5">
               <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 text-accent" fill="none" stroke="currentColor" strokeWidth="2.6">
@@ -113,7 +110,7 @@ export function VideoHeroLight() {
         </div>
       </div>
 
-      {/* Scroll cue (foncé sur clair) */}
+      {/* Scroll cue (foncé, sur le blanc en bas) */}
       <a
         href="#decouvrir"
         aria-label="Défiler"
