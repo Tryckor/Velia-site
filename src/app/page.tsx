@@ -118,9 +118,11 @@ const FAQ = [
 export default function Home({
   hero,
   navLight = true,
+  midSection,
 }: {
   hero?: React.ReactNode;
   navLight?: boolean;
+  midSection?: React.ReactNode;
 }) {
   return (
     <div id="top" className="min-h-screen bg-background">
@@ -129,6 +131,7 @@ export default function Home({
       <main>
         {hero ?? <VideoHero />}
         <TrustBar />
+        {midSection}
         <Hero />
         <ServicesKinetic />
         <StatsBand />
