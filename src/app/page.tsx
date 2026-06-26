@@ -250,8 +250,8 @@ function InstantQuote() {
             </p>
             <h2 className="text-balance text-3xl font-medium tracking-tight sm:text-4xl">
               Un devis en{" "}
-              <span className="gradient-text">30 secondes</span>, pendant que le
-              client est encore chaud.
+              <span className="gradient-text">30 secondes</span>, avant qu’il
+              aille voir ailleurs.
             </h2>
             <p className="mt-5 text-pretty text-muted sm:text-lg">
               On installe sur votre site un assistant intelligent. Le visiteur
