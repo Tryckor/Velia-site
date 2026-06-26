@@ -96,7 +96,7 @@ export function Hero() {
           {/* stat card */}
           <div className="drift-slow absolute right-0 top-0 w-44 rounded-2xl border border-line bg-white p-4 shadow-[0_30px_70px_-30px_rgba(0,0,0,0.35)]">
             <span className="text-xs text-muted">Temps gagné / sem.</span>
-            <p className="mt-1 text-3xl font-semibold tracking-tight">12 h</p>
+            <p className="mt-1 text-3xl font-semibold tracking-tight">5,6 h</p>
             <div className="mt-2 flex items-end gap-1">
               {[40, 65, 50, 80, 95].map((h, i) => (
                 <span
