@@ -250,8 +250,9 @@ function InstantQuote() {
             </p>
             <h2 className="text-balance text-3xl font-medium tracking-tight sm:text-4xl">
               Un devis en{" "}
-              <span className="gradient-text">30 secondes</span>, avant qu’il
-              aille voir ailleurs.
+              <span className="gradient-text">30 secondes</span> — jusqu’à{" "}
+              <span className="gradient-text">7×</span> plus de chances de
+              qualifier le prospect.
             </h2>
             <p className="mt-5 text-pretty text-muted sm:text-lg">
               On installe sur votre site un assistant intelligent. Le visiteur
@@ -265,8 +266,9 @@ function InstantQuote() {
                 <strong className="font-medium text-foreground">
                   Le délai tue vos leads.
                 </strong>{" "}
-                La majorité des demandes non concrétisées le sont à cause du
-                temps d&apos;attente. Ici, la réponse est instantanée, 24h/24.
+                Contacter un prospect dans l’heure plutôt qu’en 42 h, c’est
+                jusqu’à 7× plus de chances de le qualifier (Harvard Business
+                Review, 2011). Ici, la réponse est instantanée, 24h/24.
               </Bullet>
               <Bullet>
                 <strong className="font-medium text-foreground">
