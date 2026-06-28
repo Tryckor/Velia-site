@@ -11,7 +11,8 @@
 
 export type Lead = {
   name: string;
-  email: string;
+  /** email OU phone est requis — un lead artisan capture souvent juste le tél. */
+  email?: string;
   phone?: string;
   company?: string;
   service?: string;
@@ -36,22 +37,23 @@ export function validateLead(input: unknown): { lead?: Lead; error?: string } {
 
   const name = str(o.name);
   const email = str(o.email);
+  const phone = str(o.phone);
   const message = str(o.message);
 
-  if (!name || !email || !message) {
-    return { error: "Merci de renseigner votre nom, votre email et votre message." };
+  if (!name || !message || (!email && !phone)) {
+    return { error: "Merci de renseigner votre nom, un moyen de contact (email ou téléphone) et votre message." };
   }
-  if (name.length > 120 || email.length > 160 || message.length > 4000) {
+  if (name.length > 120 || email.length > 160 || phone.length > 40 || message.length > 4000) {
     return { error: "Un des champs est trop long." };
   }
-  if (!EMAIL_RE.test(email)) return { error: "Adresse email invalide." };
+  if (email && !EMAIL_RE.test(email)) return { error: "Adresse email invalide." };
 
   return {
     lead: {
       name,
-      email,
+      email: email || undefined,
       message,
-      phone: str(o.phone) || undefined,
+      phone: phone || undefined,
       company: str(o.company) || undefined,
       service: str(o.service) || undefined,
       source: str(o.source) || "contact",
@@ -76,7 +78,7 @@ async function storeInSupabase(lead: Lead): Promise<{ ok: boolean; note: string 
       },
       body: JSON.stringify({
         name: lead.name,
-        email: lead.email,
+        email: lead.email ?? null,
         phone: lead.phone ?? null,
         company: lead.company ?? null,
         service: lead.service ?? null,
@@ -124,7 +126,7 @@ async function notifyByEmail(lead: Lead): Promise<{ ok: boolean; note: string }>
       body: JSON.stringify({
         from,
         to: [to],
-        reply_to: lead.email,
+        ...(lead.email ? { reply_to: lead.email } : {}),
         subject: `Nouveau lead Velia — ${lead.name} (${lead.service ?? "sans précision"})`,
         text: lines.join("\n"),
       }),

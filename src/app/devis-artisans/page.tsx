@@ -8,10 +8,16 @@ export const metadata = {
     "Un assistant qui répond à vos prospects et chiffre une estimation en 30 secondes, 24h/24. Ne ratez plus un chantier faute de réponse rapide.",
 };
 
-const STEPS = [
+const STEPS_CLIENT = [
   { n: "1", t: "Le visiteur décrit son projet", d: "Il choisit son besoin (salle de bain, plomberie, élec, clim) et répond à 2-3 questions simples." },
   { n: "2", t: "Il reçoit une estimation en 30 s", d: "Le chatbot calcule une fourchette de prix indicative, 24h/24 — même le soir et le week-end." },
   { n: "3", t: "Vous recevez le contact qualifié", d: "Nom, téléphone et projet vous arrivent direct par mail/SMS. Vous rappelez un prospect déjà chaud." },
+];
+
+const STEPS_PRO = [
+  { n: "1", t: "Vous décrivez votre activité", d: "On part de vos métiers réels — uniquement l'électricité, ou aussi la plomberie, la clim… Vous n'affichez que ce que vous faites." },
+  { n: "2", t: "On cale vos prix avec vous", d: "Votre taux horaire et vos fourchettes par prestation. Les estimations s'adaptent au nombre de pièces et à l'ampleur du chantier — ce sont VOS prix, pas des moyennes." },
+  { n: "3", t: "On met l'assistant en ligne", d: "Installé sur votre site, à votre nom. Vous n'avez rien à gérer : les demandes vous arrivent, on s'occupe des réglages et du support." },
 ];
 
 const BENEFITS = [
@@ -78,8 +84,29 @@ export default function DevisArtisansPage() {
             <h2 className="text-balance text-2xl font-medium tracking-tight text-[#0a0a0a] sm:text-3xl">
               Comment ça marche
             </h2>
-            <div className="mt-10 grid gap-6 sm:grid-cols-3">
-              {STEPS.map((s) => (
+
+            {/* Côté client */}
+            <p className="mt-8 text-[13px] font-semibold uppercase tracking-[0.18em] text-accent">
+              Pour vos clients
+            </p>
+            <div className="mt-5 grid gap-6 sm:grid-cols-3">
+              {STEPS_CLIENT.map((s) => (
+                <div key={s.n} className="rounded-2xl border border-black/[0.07] bg-white p-6">
+                  <span className="grid h-9 w-9 place-items-center rounded-full bg-accent/10 text-sm font-semibold text-accent">
+                    {s.n}
+                  </span>
+                  <h3 className="mt-4 text-[17px] font-medium text-[#0a0a0a]">{s.t}</h3>
+                  <p className="mt-2 text-[15px] leading-relaxed text-[#6b6b6b]">{s.d}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Côté pro */}
+            <p className="mt-12 text-[13px] font-semibold uppercase tracking-[0.18em] text-accent">
+              Pour vous, le pro
+            </p>
+            <div className="mt-5 grid gap-6 sm:grid-cols-3">
+              {STEPS_PRO.map((s) => (
                 <div key={s.n} className="rounded-2xl border border-black/[0.07] bg-white p-6">
                   <span className="grid h-9 w-9 place-items-center rounded-full bg-accent/10 text-sm font-semibold text-accent">
                     {s.n}

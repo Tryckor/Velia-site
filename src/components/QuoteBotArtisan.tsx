@@ -1,10 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { ArtisanConfig, DEFAULT_CONFIG, Trade, TRADE_META } from "@/lib/artisanConfig";
 
 // Chatbot "devis instantané" scripté (sans IA/API = 100% fiable, instantané)
 // pour artisans BTP : plomberie / électricité / climatisation / salle de bain.
-// Démo opérationnelle, intégrable ensuite sur le site d'un artisan.
+// Entièrement PARAMÉTRABLE par artisan via `config` (métiers, taux horaire,
+// prix) — voir src/lib/artisanConfig.ts. À caler avec le patron avant mise en ligne.
 
 type Msg = { type: "bot" | "user" | "est"; html: string };
 type Opt = {
@@ -16,65 +18,63 @@ type Opt = {
   estPartial?: boolean;
 };
 
-const FLOW: Record<string, { bot: string; options: Opt[] }> = {
-  start: {
+/** Construit le scénario du chatbot à partir de la config de l'artisan. */
+function buildFlow(cfg: ArtisanConfig): Record<string, { bot: string; options: Opt[] }> {
+  const flow: Record<string, { bot: string; options: Opt[] }> = {};
+
+  // Un métier n'est proposé que s'il a vraiment des prestations configurées.
+  const hasContent = (m: Trade) => (m === "sdb" ? !!cfg.sdb?.surfaces.length : !!cfg[m]?.length);
+  const metiers = cfg.metiers.filter(hasContent);
+
+  // Accueil : un bouton par métier réellement exercé.
+  flow.start = {
     bot: "Bonjour 👋 Je suis l’assistant devis. En 30 secondes, je vous donne une estimation. C’est pour quel projet ?",
-    options: [
-      { label: "🚿 Salle de bain", next: "sdb_surface" },
-      { label: "🔧 Plomberie", next: "plomb" },
-      { label: "⚡ Électricité", next: "elec" },
-      { label: "❄️ Climatisation", next: "clim" },
-    ],
-  },
-  sdb_surface: {
-    bot: "Super 🚿 Quelle surface environ ?",
-    options: [
-      { label: "Moins de 4 m²", set: { lo: 3000, hi: 5500, lbl: "une petite salle de bain" }, next: "sdb_type" },
-      { label: "4 à 6 m²", set: { lo: 4500, hi: 8500, lbl: "une salle de bain de 4-6 m²" }, next: "sdb_type" },
-      { label: "6 à 10 m²", set: { lo: 6500, hi: 12000, lbl: "une salle de bain de 6-10 m²" }, next: "sdb_type" },
-      { label: "Plus de 10 m²", set: { lo: 9000, hi: 16000, lbl: "une grande salle de bain" }, next: "sdb_type" },
-    ],
-  },
-  sdb_type: {
-    bot: "Rénovation complète ou partielle ?",
-    options: [
-      { label: "Complète (tout refaire)", estCpl: true },
-      { label: "Partielle", estPartial: true },
-    ],
-  },
-  plomb: {
-    bot: "🔧 Quel type d’intervention ?",
-    options: [
-      { label: "Fuite / dépannage", est: { lbl: "un dépannage plomberie", lo: 90, hi: 300 } },
-      { label: "Remplacement chauffe-eau", est: { lbl: "un remplacement de chauffe-eau", lo: 600, hi: 1500 } },
-      { label: "Installation neuve", est: { lbl: "une installation plomberie neuve", lo: 1500, hi: 5000 } },
-      { label: "Autre / je ne sais pas", est: { lbl: "votre projet plomberie", lo: 150, hi: 1200 } },
-    ],
-  },
-  elec: {
-    bot: "⚡ Quel est votre besoin ?",
-    options: [
-      { label: "Mise aux normes (tableau)", est: { lbl: "une mise aux normes du tableau", lo: 1000, hi: 2500 } },
-      { label: "Rénovation élec complète", est: { lbl: "une rénovation électrique complète", lo: 3000, hi: 10000 } },
-      { label: "Borne de recharge", est: { lbl: "une borne de recharge", lo: 1200, hi: 1800 } },
-      { label: "Domotique", est: { lbl: "une installation domotique", lo: 1500, hi: 6000 } },
-      { label: "Dépannage", est: { lbl: "un dépannage électrique", lo: 90, hi: 300 } },
-    ],
-  },
-  clim: {
-    bot: "❄️ Combien de pièces à climatiser ?",
-    options: [
-      { label: "1 pièce", est: { lbl: "une clim 1 pièce (mono-split)", lo: 1500, hi: 3000 } },
-      { label: "2 à 3 pièces", est: { lbl: "une clim 2-3 pièces (multi-split)", lo: 3000, hi: 6000 } },
-      { label: "4 pièces ou plus", est: { lbl: "une clim 4 pièces et +", lo: 6000, hi: 10000 } },
-    ],
-  },
-};
+    options: metiers.map((m) => ({
+      label: `${TRADE_META[m].emoji} ${TRADE_META[m].label}`,
+      next: m === "sdb" ? "sdb_surface" : m,
+    })),
+  };
+
+  if (cfg.metiers.includes("sdb") && cfg.sdb) {
+    flow.sdb_surface = {
+      bot: "Super 🚿 Quelle surface environ ?",
+      options: cfg.sdb.surfaces.map((s) => ({
+        label: s.label,
+        set: { lo: s.lo, hi: s.hi, lbl: s.lbl },
+        next: "sdb_type",
+      })),
+    };
+    flow.sdb_type = {
+      bot: "Rénovation complète ou partielle ?",
+      options: [
+        { label: "Complète (tout refaire)", estCpl: true },
+        { label: "Partielle", estPartial: true },
+      ],
+    };
+  }
+
+  const prestaStep = (m: Exclude<Trade, "sdb">, bot: string) => {
+    const prestas = cfg[m];
+    if (cfg.metiers.includes(m) && prestas?.length) {
+      flow[m] = {
+        bot,
+        options: prestas.map((p) => ({ label: p.label, est: { lbl: p.lbl, lo: p.lo, hi: p.hi } })),
+      };
+    }
+  };
+  prestaStep("plomb", "🔧 Quel type d’intervention ?");
+  prestaStep("elec", "⚡ Quel est votre besoin ?");
+  prestaStep("clim", "❄️ Combien de pièces à climatiser ?");
+
+  return flow;
+}
 
 const r100 = (n: number) => Math.round((n / 100)) * 100;
 const fmt = (n: number) => n.toLocaleString("fr-FR");
 
-export function QuoteBotArtisan() {
+export function QuoteBotArtisan({ config = DEFAULT_CONFIG }: { config?: ArtisanConfig }) {
+  const FLOW = useMemo(() => buildFlow(config), [config]);
+  const majCpl = config.sdb?.majorationComplete ?? 1.35;
   const [msgs, setMsgs] = useState<Msg[]>([]);
   const [choices, setChoices] = useState<Opt[]>([]);
   const [mode, setMode] = useState<"choices" | "form" | "done">("choices");
@@ -83,6 +83,7 @@ export function QuoteBotArtisan() {
   const [name, setName] = useState("");
   const [tel, setTel] = useState("");
   const [telErr, setTelErr] = useState(false);
+  const [sending, setSending] = useState(false);
 
   const push = (m: Msg) => setMsgs((x) => [...x, m]);
 
@@ -103,6 +104,7 @@ export function QuoteBotArtisan() {
   }
 
   function showEstimate(lbl: string, lo: number, hi: number) {
+    ctx.current = { ...ctx.current, _lbl: lbl, _lo: lo, _hi: hi };
     push({
       type: "est",
       html: `Pour <strong>${lbl}</strong>, comptez environ<br><b>${fmt(lo)} – ${fmt(hi)} €</b><div class="mt-1.5 text-[12px] opacity-90">Estimation indicative — le devis précis et gratuit se fait sur place.</div>`,
@@ -119,7 +121,7 @@ export function QuoteBotArtisan() {
     if (opt.set) ctx.current = { ...ctx.current, ...opt.set };
     if (opt.estCpl) {
       const c = ctx.current;
-      showEstimate(`rénover ${c.lbl} (complète)`, r100(Number(c.lo) * 1.35), r100(Number(c.hi) * 1.35));
+      showEstimate(`rénover ${c.lbl} (complète)`, r100(Number(c.lo) * majCpl), r100(Number(c.hi) * majCpl));
       return;
     }
     if (opt.estPartial) {
@@ -134,13 +136,41 @@ export function QuoteBotArtisan() {
     if (opt.next) setTimeout(() => goStep(opt.next!), 250);
   }
 
-  function submit() {
+  async function submit() {
     if (!tel.trim()) {
       setTelErr(true);
       return;
     }
+    if (sending) return;
+    setSending(true);
+
+    const c = ctx.current;
+    const projet = String(c._lbl ?? "projet non précisé");
+    const fourchette =
+      c._lo != null && c._hi != null ? ` — estimation indicative ${fmt(Number(c._lo))} – ${fmt(Number(c._hi))} €` : "";
+
     push({ type: "user", html: `${name || "Client"} · ${tel}` });
     setMode("done");
+
+    // Envoi réel du lead (best-effort, ne bloque jamais l'UX).
+    try {
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name || "Client",
+          phone: tel.trim(),
+          service: projet,
+          source: "devis-bot",
+          message: `Demande via l'assistant devis : ${projet}${fourchette}. À recontacter au ${tel.trim()}.`,
+        }),
+      });
+    } catch {
+      // Le visiteur voit quand même la confirmation ; le lead est aussi loggué côté serveur.
+    } finally {
+      setSending(false);
+    }
+
     setTimeout(() => {
       push({ type: "bot", html: `Merci ${name || ""} ! 🛠️ <b>Votre artisan</b> vous recontacte très vite avec votre devis.` });
     }, 300);
@@ -151,6 +181,8 @@ export function QuoteBotArtisan() {
     setChoices([]);
     setName("");
     setTel("");
+    setTelErr(false);
+    setSending(false);
     ctx.current = {};
     setMode("choices");
     setTimeout(() => goStep("start"), 200);
@@ -164,7 +196,7 @@ export function QuoteBotArtisan() {
           V
         </span>
         <div className="flex-1">
-          <div className="text-sm font-semibold">Assistant devis</div>
+          <div className="text-sm font-semibold">{config.nom ? `Assistant devis · ${config.nom}` : "Assistant devis"}</div>
           <div className="flex items-center gap-1.5 text-[12px] text-white/70">
             <span className="h-2 w-2 rounded-full bg-[#28c840]" /> En ligne · répond en 30 s
           </div>
@@ -230,9 +262,10 @@ export function QuoteBotArtisan() {
             <button
               type="button"
               onClick={submit}
-              className="rounded-xl bg-[#15171c] py-2.5 text-[14px] font-medium text-white transition-transform hover:-translate-y-0.5"
+              disabled={sending}
+              className="rounded-xl bg-[#15171c] py-2.5 text-[14px] font-medium text-white transition-transform hover:-translate-y-0.5 disabled:opacity-60"
             >
-              Recevoir mon devis →
+              {sending ? "Envoi…" : "Recevoir mon devis →"}
             </button>
           </div>
         )}
@@ -246,7 +279,7 @@ export function QuoteBotArtisan() {
       </div>
 
       <div className="bg-white py-2 text-center text-[11px] text-[#9aa0a8]">
-        Plomberie · Électricité · Climatisation · Salle de bain
+        {config.metiers.map((m) => TRADE_META[m].label).join(" · ")}
       </div>
     </div>
   );
