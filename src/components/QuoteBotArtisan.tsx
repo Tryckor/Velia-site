@@ -62,7 +62,22 @@ function buildFlow(cfg: ArtisanConfig): Record<string, { bot: string; options: O
     if (cfg.metiers.includes(m) && prestas?.length) {
       flow[m] = {
         bot,
-        options: prestas.map((p) => ({ label: p.label, est: { lbl: p.lbl, lo: p.lo, hi: p.hi } })),
+        options: prestas.map((p, i) => {
+          // Prestation avec sous-question (ex. surface, nb d'appareils) → on génère
+          // une étape dédiée dont chaque réponse porte directement sa fourchette.
+          if (p.ask) {
+            const subKey = `${m}_sub${i}`;
+            flow[subKey] = {
+              bot: p.ask.bot,
+              options: p.ask.options.map((o) => ({
+                label: o.label,
+                est: { lbl: o.lbl ?? p.lbl, lo: o.lo, hi: o.hi },
+              })),
+            };
+            return { label: p.label, next: subKey };
+          }
+          return { label: p.label, est: { lbl: p.lbl, lo: p.lo, hi: p.hi } };
+        }),
       };
     }
   };
