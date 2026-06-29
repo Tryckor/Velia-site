@@ -25,8 +25,8 @@ export function ElevenLabsWidget() {
     document.body.appendChild(s);
   }, []);
 
-  // Pas de widget vocal dans les pages embarquées (iframe du chatbot artisan).
-  if (pathname?.startsWith("/embed")) return null;
+  // Pas de widget vocal Velia dans les pages embarquées ni sur les sites clients.
+  if (pathname?.startsWith("/embed") || pathname?.startsWith("/clients")) return null;
 
   // Only the agent-id — everything else (avatar, variant, colours, texts) is
   // controlled by the ElevenLabs dashboard so the site matches it exactly.
