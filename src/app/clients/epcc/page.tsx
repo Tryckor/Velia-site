@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { QuoteBotArtisan } from "@/components/QuoteBotArtisan";
+import { DevisBubble } from "@/components/DevisBubble";
 import { getClient } from "@/lib/artisanConfigs";
 
 /**
@@ -317,6 +318,9 @@ export default function EpccSitePage() {
           </p>
         </div>
       </footer>
+
+      {/* Bulle flottante — le chatbot tel qu'il apparaîtra sur le site d'EPCC */}
+      <DevisBubble config={cfg} />
     </div>
   );
 }
