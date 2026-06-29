@@ -172,7 +172,7 @@ export function QuoteBotArtisan({ config = DEFAULT_CONFIG }: { config?: ArtisanC
     }
 
     setTimeout(() => {
-      push({ type: "bot", html: `Merci ${name || ""} ! 🛠️ <b>Votre artisan</b> vous recontacte très vite avec votre devis.` });
+      push({ type: "bot", html: `Merci ${name || ""} ! 🛠️ <b>${config.nom || "Votre artisan"}</b> vous recontacte très vite avec votre devis.` });
     }, 300);
   }
 
@@ -193,7 +193,7 @@ export function QuoteBotArtisan({ config = DEFAULT_CONFIG }: { config?: ArtisanC
       {/* En-tête */}
       <div className="flex items-center gap-3 bg-[#15171c] px-4 py-3.5 text-white">
         <span className="grid h-9 w-9 place-items-center rounded-full text-sm font-semibold text-[#15171c]" style={{ background: "linear-gradient(135deg,#2b6bff,#7c5cff)" }}>
-          V
+          {(config.nom?.trim()?.[0] ?? "V").toUpperCase()}
         </span>
         <div className="flex-1">
           <div className="text-sm font-semibold">{config.nom ? `Assistant devis · ${config.nom}` : "Assistant devis"}</div>
