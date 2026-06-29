@@ -16,7 +16,11 @@ type Opt = {
   est?: { lbl: string; lo: number; hi: number };
   estCpl?: boolean;
   estPartial?: boolean;
+  addMore?: boolean;
+  finalize?: boolean;
 };
+
+type LineItem = { lbl: string; lo: number; hi: number };
 
 /** Construit le scénario du chatbot à partir de la config de l'artisan. */
 function buildFlow(cfg: ArtisanConfig): Record<string, { bot: string; options: Opt[] }> {
@@ -79,6 +83,7 @@ export function QuoteBotArtisan({ config = DEFAULT_CONFIG }: { config?: ArtisanC
   const [choices, setChoices] = useState<Opt[]>([]);
   const [mode, setMode] = useState<"choices" | "form" | "done">("choices");
   const ctx = useRef<Record<string, number | string>>({});
+  const items = useRef<LineItem[]>([]); // besoins accumulés (chantier multi-métiers)
   const scroller = useRef<HTMLDivElement>(null);
   const [name, setName] = useState("");
   const [tel, setTel] = useState("");
@@ -104,20 +109,54 @@ export function QuoteBotArtisan({ config = DEFAULT_CONFIG }: { config?: ArtisanC
   }
 
   function showEstimate(lbl: string, lo: number, hi: number) {
-    ctx.current = { ...ctx.current, _lbl: lbl, _lo: lo, _hi: hi };
+    items.current = [...items.current, { lbl, lo, hi }];
     push({
       type: "est",
       html: `Pour <strong>${lbl}</strong>, comptez environ<br><b>${fmt(lo)} – ${fmt(hi)} €</b><div class="mt-1.5 text-[12px] opacity-90">Estimation indicative — le devis précis et gratuit se fait sur place.</div>`,
     });
+    // Un chantier peut cumuler plusieurs métiers → on propose d'en ajouter.
+    setTimeout(() => {
+      push({ type: "bot", html: "Votre chantier comprend <b>d'autres travaux</b> ? Ajoutez-les pour une estimation complète." });
+      setTimeout(() => {
+        setChoices([
+          { label: "➕ Ajouter un autre besoin", addMore: true },
+          { label: "✅ C'est tout, être recontacté", finalize: true },
+        ]);
+        setMode("choices");
+      }, 350);
+    }, 480);
+  }
+
+  function finalize() {
+    // Si plusieurs besoins, on affiche le total cumulé.
+    if (items.current.length > 1) {
+      const lo = items.current.reduce((s, i) => s + i.lo, 0);
+      const hi = items.current.reduce((s, i) => s + i.hi, 0);
+      const detail = items.current.map((i) => `• ${i.lbl} : ${fmt(i.lo)} – ${fmt(i.hi)} €`).join("<br>");
+      push({
+        type: "est",
+        html: `<b>Total estimé pour votre chantier</b><br>${detail}<br><br><b>≈ ${fmt(lo)} – ${fmt(hi)} €</b><div class="mt-1.5 text-[12px] opacity-90">Estimation indicative — le devis précis et gratuit se fait sur place.</div>`,
+      });
+    }
     setTimeout(() => {
       push({ type: "bot", html: "Souhaitez-vous être <b>recontacté gratuitement</b> pour un devis précis ? Laissez vos coordonnées 👇" });
       setTimeout(() => setMode("form"), 350);
-    }, 480);
+    }, items.current.length > 1 ? 500 : 200);
   }
 
   function pick(opt: Opt) {
     push({ type: "user", html: opt.label });
     setChoices([]);
+    if (opt.addMore) {
+      ctx.current = {}; // on repart à zéro pour ce nouveau besoin, mais on garde items
+      push({ type: "bot", html: "Très bien 👍 Quel autre type de travaux ?" });
+      setTimeout(() => setChoices(FLOW.start.options), 380);
+      return;
+    }
+    if (opt.finalize) {
+      finalize();
+      return;
+    }
     if (opt.set) ctx.current = { ...ctx.current, ...opt.set };
     if (opt.estCpl) {
       const c = ctx.current;
@@ -144,10 +183,12 @@ export function QuoteBotArtisan({ config = DEFAULT_CONFIG }: { config?: ArtisanC
     if (sending) return;
     setSending(true);
 
-    const c = ctx.current;
-    const projet = String(c._lbl ?? "projet non précisé");
-    const fourchette =
-      c._lo != null && c._hi != null ? ` — estimation indicative ${fmt(Number(c._lo))} – ${fmt(Number(c._hi))} €` : "";
+    const list = items.current;
+    const projet = list.length ? list.map((i) => i.lbl).join(" + ") : "projet non précisé";
+    const totalLo = list.reduce((s, i) => s + i.lo, 0);
+    const totalHi = list.reduce((s, i) => s + i.hi, 0);
+    const detail = list.map((i) => `- ${i.lbl} : ${fmt(i.lo)} – ${fmt(i.hi)} €`).join("\n");
+    const totalLine = list.length > 1 ? `\nTotal estimé : ${fmt(totalLo)} – ${fmt(totalHi)} €` : "";
 
     push({ type: "user", html: `${name || "Client"} · ${tel}` });
     setMode("done");
@@ -162,7 +203,7 @@ export function QuoteBotArtisan({ config = DEFAULT_CONFIG }: { config?: ArtisanC
           phone: tel.trim(),
           service: projet,
           source: "devis-bot",
-          message: `Demande via l'assistant devis : ${projet}${fourchette}. À recontacter au ${tel.trim()}.`,
+          message: `Demande via l'assistant devis :\n${detail}${totalLine}\nÀ recontacter au ${tel.trim()}.`,
         }),
       });
     } catch {
@@ -184,6 +225,7 @@ export function QuoteBotArtisan({ config = DEFAULT_CONFIG }: { config?: ArtisanC
     setTelErr(false);
     setSending(false);
     ctx.current = {};
+    items.current = [];
     setMode("choices");
     setTimeout(() => goStep("start"), 200);
   }
