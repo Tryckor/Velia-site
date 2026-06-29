@@ -9,9 +9,9 @@ import { getClient } from "@/lib/artisanConfigs";
  * publiée sur epcc64.fr sans accord de Thomas. Contenu repris de epcc64.fr.
  */
 export const metadata: Metadata = {
-  title: "EPCC — Électricité, plomberie, salle de bain & climatisation à Lons (64)",
+  title: "EPCC — Électricité, plomberie & climatisation à Lons (64)",
   description:
-    "EPCC, l'artisan qui vous simplifie la vie : électricité, plomberie, salle de bain et climatisation à Lons, Pau et 50 km autour. Devis gratuit en 30 s.",
+    "EPCC, l'artisan qui vous simplifie la vie : électricité, plomberie et climatisation à Lons, Pau et 50 km autour. Devis gratuit en 30 s.",
   robots: { index: false },
 };
 
@@ -29,11 +29,6 @@ const SERVICES = [
     icon: "🔧",
     t: "Plomberie",
     d: "Fuites, canalisations, chauffe-eau, sanitaires, rénovation complète. Dépannage rapide.",
-  },
-  {
-    icon: "🚿",
-    t: "Salle de bain",
-    d: "Conception et réalisation clé en main : carrelage, plomberie et électricité. Un seul chantier, un seul contact.",
   },
   {
     icon: "❄️",
@@ -85,7 +80,7 @@ export default function EpccSitePage() {
           <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 pb-20 pt-20 lg:grid-cols-2 lg:gap-16 lg:pb-28 lg:pt-28">
             <div>
               <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-[#1d4ed8]">
-                Électricité · Plomberie · Salle de bain · Climatisation
+                Électricité · Plomberie · Climatisation
               </p>
               <h1 className="mt-5 text-balance text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
                 L'artisan qui vous{" "}
@@ -134,7 +129,7 @@ export default function EpccSitePage() {
           <div className="mx-auto grid max-w-6xl grid-cols-2 gap-px px-6 py-10 sm:grid-cols-4">
             {[
               ["+20 ans", "d'expérience cumulée"],
-              ["4 métiers", "1 seul interlocuteur"],
+              ["3 métiers", "1 seul interlocuteur"],
               ["Gratuit", "devis sans engagement"],
               ["7j/7", "interventions d'urgence"],
             ].map(([big, small]) => (
@@ -152,7 +147,7 @@ export default function EpccSitePage() {
           <p className="mt-3 max-w-2xl text-[#475569]">
             Du dépannage rapide à la rénovation complète, EPCC prend en charge l'ensemble de votre projet.
           </p>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {SERVICES.map((s) => (
               <div
                 key={s.t}
@@ -309,7 +304,7 @@ export default function EpccSitePage() {
               <span className="text-[#60a5fa]">EP</span>CC
             </div>
             <p className="mt-1 text-white/60">
-              Électricité · Plomberie · Salle de bain · Climatisation — Lons (64) · SIRET 948 493 549
+              Électricité · Plomberie · Climatisation — Lons (64) · SIRET 948 493 549
             </p>
           </div>
           <p className="text-white/50">

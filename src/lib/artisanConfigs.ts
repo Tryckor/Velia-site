@@ -28,10 +28,10 @@ export const CLIENTS: Record<string, ClientEntry> = {
     config: {
       nom: "EPCC",
       tauxHoraire: 55,
-      metiers: ["sdb", "plomb", "elec", "clim"],
-      sdb: DEFAULT_CONFIG.sdb,
-      plomb: DEFAULT_CONFIG.plomb,
+      // EPCC fait électricité, plomberie, climatisation (PAS de salle de bain).
+      metiers: ["elec", "plomb", "clim"],
       elec: DEFAULT_CONFIG.elec,
+      plomb: DEFAULT_CONFIG.plomb,
       clim: DEFAULT_CONFIG.clim,
     },
   },
