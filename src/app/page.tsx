@@ -238,7 +238,7 @@ function Services() {
                   {s.desc}
                 </p>
                 <ul className="mt-4 flex-1 space-y-2">
-                  {s.points.map((p) => (
+                  {s.points.slice(0, 3).map((p) => (
                     <li key={p} className="flex items-start gap-2 text-sm text-foreground/80">
                       <svg viewBox="0 0 24 24" className="mt-0.5 h-4 w-4 shrink-0 text-accent" fill="none" stroke="currentColor" strokeWidth="2.6">
                         <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />

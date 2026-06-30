@@ -1,13 +1,24 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { LogoMark } from "./Logo";
 
+// Sous-menu Services → pages détaillées (conversion : accès direct + maillage SEO).
+const SERVICE_MENU = [
+  { href: "/services/sites-web", label: "Sites web" },
+  { href: "/devis-artisans", label: "Chatbot & devis 24/7" },
+  { href: "/services/visibilite-google", label: "Visibilité locale Google" },
+  { href: "/services/automatisations", label: "Automatisations" },
+  { href: "/services/reception-ia", label: "Agent IA & Réceptionniste" },
+  { href: "/services/email-pro", label: "Hébergement mail" },
+];
+
+// Ancres absolues (/#…) pour fonctionner depuis n'importe quelle page.
 const LINKS = [
-  { href: "#services", label: "Services" },
-  { href: "#devis", label: "Devis IA" },
-  { href: "#roi", label: "Calculateur" },
-  { href: "#faq", label: "FAQ" },
+  { href: "/#devis", label: "Devis IA" },
+  { href: "/#roi", label: "Calculateur" },
+  { href: "/#faq", label: "FAQ" },
 ];
 
 export function Nav({ light = false }: { light?: boolean }) {
@@ -58,6 +69,35 @@ export function Nav({ light = false }: { light?: boolean }) {
 
         {/* Center — navigation links */}
         <div className="hidden items-center gap-9 justify-self-center md:flex">
+          {/* Services — déroulant vers les pages détaillées */}
+          <div className="group relative">
+            <a
+              href="/#services"
+              className={`inline-flex items-center gap-1 border-b border-current pb-1 text-sm transition-colors ${
+                onDark ? "text-white/80 hover:text-white" : "text-muted hover:text-foreground"
+              }`}
+            >
+              Services
+              <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" strokeWidth="2.4">
+                <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </a>
+            {/* Panneau (le pt-3 fait le pont de survol) */}
+            <div className="invisible absolute left-1/2 top-full z-50 w-72 -translate-x-1/2 pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+              <div className="rounded-2xl border border-line bg-white p-2 shadow-[0_24px_60px_-20px_rgba(20,20,60,0.35)]">
+                {SERVICE_MENU.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="block rounded-xl px-3.5 py-2.5 text-sm text-foreground/85 transition-colors hover:bg-accent/10 hover:text-foreground"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+
           {LINKS.map((l) => (
             <a
               key={l.href}
@@ -116,10 +156,31 @@ export function Nav({ light = false }: { light?: boolean }) {
       {/* Mobile drawer */}
       <div
         className={`md:hidden overflow-hidden bg-white transition-[max-height] duration-400 ease-out ${
-          open ? "max-h-96 border-b border-line" : "max-h-0"
+          open ? "max-h-[40rem] border-b border-line" : "max-h-0"
         }`}
       >
         <div className="flex flex-col gap-1 px-6 py-4">
+          {/* Services + sous-liens */}
+          <a
+            href="/#services"
+            onClick={() => setOpen(false)}
+            className="pt-3 pb-1 text-base font-medium text-foreground"
+          >
+            Services
+          </a>
+          <div className="mb-1 flex flex-col border-l border-line pl-3">
+            {SERVICE_MENU.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className="py-2 text-[15px] text-foreground/75"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+
           {LINKS.map((l) => (
             <a
               key={l.href}
@@ -131,7 +192,7 @@ export function Nav({ light = false }: { light?: boolean }) {
             </a>
           ))}
           <a
-            href="#contact"
+            href="/#contact"
             onClick={() => setOpen(false)}
             className="btn-gradient mt-2 rounded-full px-5 py-3 text-center text-base font-medium"
           >
