@@ -1,4 +1,4 @@
-import Home from "@/app/page";
+import { Home } from "@/app/page";
 import { HeroCinematic } from "@/components/HeroCinematic";
 import { ClockSection } from "@/components/ClockSection";
 

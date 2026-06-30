@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { Reveal } from "@/components/Reveal";
+import { HeroCinematic } from "@/components/HeroCinematic";
+import { ClockSection } from "@/components/ClockSection";
 import { ContactForm } from "@/components/ContactForm";
 import { LogoMark } from "@/components/Logo";
 import { VideoHero } from "@/components/VideoHero";
@@ -158,7 +160,21 @@ const FAQ = [
   },
 ];
 
-export default function Home({
+/**
+ * Page d'accueil = version "cinématique" (hero blanc vidéo tunnel + horloge en
+ * 2ᵉ section). Les routes prototypes importent { Home } et passent leur propre hero.
+ */
+export default function HomePage() {
+  return (
+    <Home
+      hero={<HeroCinematic />}
+      navLight={false}
+      midSection={<ClockSection />}
+    />
+  );
+}
+
+export function Home({
   hero,
   navLight = true,
   midSection,

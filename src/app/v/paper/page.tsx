@@ -1,4 +1,4 @@
-import Home from "@/app/page";
+import { Home } from "@/app/page";
 
 // Design version — warm "paper" canvas (cream background, warm accent) instead
 // of stark white, for a softer editorial feel.

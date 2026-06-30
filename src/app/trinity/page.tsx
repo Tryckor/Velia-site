@@ -1,4 +1,4 @@
-import Home from "@/app/page";
+import { Home } from "@/app/page";
 import { HeroTrinity } from "@/components/HeroTrinity";
 
 // Prototype "Trinité" — hero-carrousel 3 panneaux qui slide toutes les 10 s

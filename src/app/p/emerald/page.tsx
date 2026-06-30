@@ -1,4 +1,4 @@
-import Home from "@/app/page";
+import { Home } from "@/app/page";
 
 // Colour prototype — emerald accent.
 export default function EmeraldPrototype() {

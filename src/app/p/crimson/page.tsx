@@ -1,4 +1,4 @@
-import Home from "@/app/page";
+import { Home } from "@/app/page";
 
 // Colour prototype — crimson/rose accent.
 export default function CrimsonPrototype() {

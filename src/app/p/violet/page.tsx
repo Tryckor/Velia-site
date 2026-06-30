@@ -1,4 +1,4 @@
-import Home from "@/app/page";
+import { Home } from "@/app/page";
 
 // Colour prototype — violet accent.
 export default function VioletPrototype() {

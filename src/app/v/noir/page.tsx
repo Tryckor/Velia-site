@@ -1,4 +1,4 @@
-import Home from "@/app/page";
+import { Home } from "@/app/page";
 
 // Design version — "Noir & Champagne": warm champagne base, soft gold accent,
 // near-black dramatic bands. Same content, themed wrapper.
