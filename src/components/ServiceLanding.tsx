@@ -154,6 +154,17 @@ export function ServiceLanding({ data }: { data: Data }) {
             >
               Réserver mon audit gratuit →
             </Link>
+            {/* Réduction du risque — levier de conversion majeur quand on débute */}
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted">
+              {["Audit offert", "Sans engagement", "Annulable à tout moment"].map((t) => (
+                <span key={t} className="inline-flex items-center gap-1.5">
+                  <svg viewBox="0 0 24 24" className="h-4 w-4 text-accent" fill="none" stroke="currentColor" strokeWidth="2.6">
+                    <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  {t}
+                </span>
+              ))}
+            </div>
           </Reveal>
         </section>
       </main>
