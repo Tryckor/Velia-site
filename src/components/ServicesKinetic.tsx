@@ -7,7 +7,7 @@ const WORDS = [
   "site web",
   "automatisation",
   "agent IA",
-  "stratégie SEO",
+  "visibilité Google",
   "chatbot",
   "boîte mail pro",
 ];
@@ -41,8 +41,9 @@ export function ServicesKinetic() {
 
         {reduced ? (
           <h2 className="mt-5 text-balance text-3xl font-medium leading-tight tracking-tight sm:text-4xl">
-            Votre site web, automatisation, agent IA, SEO, chatbot ou boîte
-            mail pro — <span className="gradient-text">clé en main</span>.
+            Votre site web, automatisation, agent IA, visibilité Google,
+            chatbot ou boîte mail pro —{" "}
+            <span className="gradient-text">clé en main</span>.
           </h2>
         ) : (
           <h2 className="mt-5 text-3xl font-medium leading-tight tracking-tight sm:text-5xl">

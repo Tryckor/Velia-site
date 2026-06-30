@@ -63,7 +63,7 @@ export function VideoHero() {
       {/* Kicker pinned just under the navbar for maximum visibility */}
       <p className="float-in absolute left-1/2 top-[104px] z-10 w-full -translate-x-1/2 px-6 text-center text-[11px] font-semibold uppercase tracking-[0.18em] sm:text-[13px] sm:tracking-[0.2em]">
         <span className="gradient-text">
-          Sites web · Automatisations · Agents IA · SEO · Chatbots
+          Sites web · Automatisations · Agents IA · Visibilité Google · Chatbots
         </span>
       </p>
 

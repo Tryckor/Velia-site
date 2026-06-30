@@ -16,33 +16,69 @@ import { OpenQuoteBotButton } from "@/components/OpenQuoteBotButton";
 const SERVICES = [
   {
     title: "Sites web",
-    desc: "Des sites rapides, élégants et pensés pour convertir. Vitrine, prise de rendez-vous ou e-commerce — sur mesure, jamais un template.",
+    desc: "Un site rapide, élégant et pensé pour transformer vos visiteurs en clients — jamais un template.",
     icon: IconBrowser,
+    points: [
+      "Vitrine, prise de rendez-vous ou e-commerce",
+      "Optimisé mobile et rapide à charger",
+      "Bonnes bases SEO incluses (titres, indexation Google)",
+      "Hébergement, sécurité et mises à jour",
+    ],
+  },
+  {
+    title: "Chatbot & devis 24/7",
+    desc: "Un assistant sur votre site qui chiffre une estimation en 30 secondes et capte vos prospects, jour et nuit.",
+    icon: IconChat,
+    points: [
+      "Estimation instantanée, même le soir et le week-end",
+      "Paramétré avec vos prestations et vos prix",
+      "Contacts qualifiés envoyés direct par mail / SMS",
+      "Vous répondez avant vos concurrents",
+    ],
+  },
+  {
+    title: "Visibilité locale Google",
+    desc: "Soyez trouvé sur Google et Maps quand un client cherche près de chez vous — le levier n°1 d'un artisan.",
+    icon: IconSearch,
+    points: [
+      "Création et optimisation de votre fiche Google Business",
+      "Photos, services, zones et horaires soignés",
+      "Collecte d'avis clients (campagne conforme RGPD)",
+      "Suivi de votre présence locale",
+    ],
   },
   {
     title: "Automatisations",
-    desc: "On supprime les tâches répétitives : devis, relances, saisie, synchronisation d'outils. Vos équipes se concentrent sur l'essentiel.",
+    desc: "On supprime les tâches répétitives : relances, devis, saisie, synchronisation de vos outils.",
     icon: IconFlow,
+    points: [
+      "Relances et rappels automatiques",
+      "Devis et documents pré-remplis",
+      "Vos outils connectés entre eux",
+      "Des heures gagnées chaque semaine",
+    ],
   },
   {
-    title: "SEO",
-    desc: "Soyez trouvé sur Google. Audit technique, contenu et mots-clés pour faire venir des clients qui vous cherchent déjà.",
-    icon: IconSearch,
-  },
-  {
-    title: "Agents IA & Réceptionniste",
-    desc: "Un assistant qui répond aux appels et aux demandes 24/7, qualifie vos prospects et ne rate plus jamais une opportunité.",
+    title: "Agent IA & Réceptionniste",
+    desc: "Un assistant qui répond aux demandes 24/7, qualifie vos prospects et ne rate plus jamais une opportunité.",
     icon: IconAgent,
-  },
-  {
-    title: "Chatbots",
-    desc: "Un conseiller intelligent sur votre site qui répond à vos clients instantanément et transforme les visiteurs en rendez-vous.",
-    icon: IconChat,
+    points: [
+      "Répond aux messages instantanément",
+      "Qualifie et oriente chaque demande",
+      "Vous transfère les contacts chauds",
+      "Disponible jour et nuit",
+    ],
   },
   {
     title: "Hébergement mail",
-    desc: "Une adresse pro (vous@votre-entreprise.fr), sécurisée et fiable. Image sérieuse, boîte mail qui ne tombe jamais.",
+    desc: "Une adresse pro (vous@votre-entreprise.fr), fiable et sécurisée, pour une image sérieuse.",
     icon: IconMail,
+    points: [
+      "Adresse à votre nom de domaine",
+      "Boîte sécurisée et fiable, anti-spam inclus",
+      "Configurée sur tous vos appareils",
+      "Support en cas de souci",
+    ],
   },
 ];
 
@@ -76,7 +112,7 @@ const VALUES = [
   },
   {
     title: "Tout au même endroit",
-    desc: "Site, automatisations, SEO, IA, mail : un seul partenaire pour tout votre digital. Plus simple, plus cohérent.",
+    desc: "Site, automatisations, visibilité Google, IA, mail : un seul partenaire pour tout votre digital. Plus simple, plus cohérent.",
   },
   {
     title: "Orienté résultats",
@@ -191,13 +227,19 @@ function Services() {
                   <Icon className="h-6 w-6" />
                 </span>
                 <h3 className="mt-5 text-lg font-medium">{s.title}</h3>
-                <p className="mt-2.5 flex-1 text-sm leading-relaxed text-muted">
+                <p className="mt-2.5 text-sm leading-relaxed text-muted">
                   {s.desc}
                 </p>
-                <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-foreground/0 transition-colors duration-300 group-hover:text-accent">
-                  Estimer mon gain
-                  <span aria-hidden>→</span>
-                </span>
+                <ul className="mt-4 flex-1 space-y-2">
+                  {s.points.map((p) => (
+                    <li key={p} className="flex items-start gap-2 text-sm text-foreground/80">
+                      <svg viewBox="0 0 24 24" className="mt-0.5 h-4 w-4 shrink-0 text-accent" fill="none" stroke="currentColor" strokeWidth="2.6">
+                        <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      <span>{p}</span>
+                    </li>
+                  ))}
+                </ul>
               </Reveal>
             );
           })}
@@ -672,7 +714,7 @@ function Footer() {
             <span className="wordmark text-sm pl-[0.1em]">VELIA</span>
           </span>
           <p className="text-sm text-muted">
-            Sites web · Automatisations · SEO · IA
+            Sites web · Automatisations · Visibilité Google · IA
           </p>
         </div>
         <nav className="flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-sm text-muted">

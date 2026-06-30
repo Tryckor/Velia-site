@@ -37,7 +37,7 @@ export function Hero() {
           </h1>
 
           <p className="float-in-3 mx-auto mt-7 max-w-xl text-pretty text-lg text-muted lg:mx-0">
-            Sites web, automatisations, SEO et agents IA sur mesure. Un seul
+            Sites web, automatisations, visibilité Google et agents IA sur mesure. Un seul
             partenaire pour gagner du temps, des clients — et une longueur
             d&apos;avance.
           </p>

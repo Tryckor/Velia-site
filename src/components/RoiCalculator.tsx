@@ -170,7 +170,7 @@ const SERVICES: Service[] = [
   },
   {
     id: "seo",
-    tab: "SEO",
+    tab: "Visibilité Google",
     title: "Les clients qui vous cherchent sur Google",
     sliders: [
       {

@@ -4,10 +4,10 @@ import { useState } from "react";
 
 const SERVICES = [
   "Site web",
+  "Chatbot & devis 24/7",
+  "Visibilité locale Google",
   "Automatisation",
-  "SEO",
   "Agent IA / Réceptionniste",
-  "Chatbot",
   "Hébergement mail",
   "Autre / je ne sais pas encore",
 ];
