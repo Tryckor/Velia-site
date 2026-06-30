@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { Reveal } from "@/components/Reveal";
 import { ContactForm } from "@/components/ContactForm";
@@ -18,6 +19,7 @@ const SERVICES = [
     title: "Sites web",
     desc: "Un site rapide, élégant et pensé pour transformer vos visiteurs en clients — jamais un template.",
     icon: IconBrowser,
+    href: "/services/sites-web",
     points: [
       "Vitrine, prise de rendez-vous ou e-commerce",
       "Optimisé mobile et rapide à charger",
@@ -29,6 +31,7 @@ const SERVICES = [
     title: "Chatbot & devis 24/7",
     desc: "Un assistant sur votre site qui chiffre une estimation en 30 secondes et capte vos prospects, jour et nuit.",
     icon: IconChat,
+    href: "/devis-artisans",
     points: [
       "Estimation instantanée, même le soir et le week-end",
       "Paramétré avec vos prestations et vos prix",
@@ -40,6 +43,7 @@ const SERVICES = [
     title: "Visibilité locale Google",
     desc: "Soyez trouvé sur Google et Maps quand un client cherche près de chez vous — le levier n°1 d'un artisan.",
     icon: IconSearch,
+    href: "/services/visibilite-google",
     points: [
       "Création et optimisation de votre fiche Google Business",
       "Photos, services, zones et horaires soignés",
@@ -51,6 +55,7 @@ const SERVICES = [
     title: "Automatisations",
     desc: "On supprime les tâches répétitives : relances, devis, saisie, synchronisation de vos outils.",
     icon: IconFlow,
+    href: "/services/automatisations",
     points: [
       "Relances et rappels automatiques",
       "Devis et documents pré-remplis",
@@ -62,6 +67,7 @@ const SERVICES = [
     title: "Agent IA & Réceptionniste",
     desc: "Un assistant qui répond aux demandes 24/7, qualifie vos prospects et ne rate plus jamais une opportunité.",
     icon: IconAgent,
+    href: "/services/reception-ia",
     points: [
       "Répond aux messages instantanément",
       "Qualifie et oriente chaque demande",
@@ -73,6 +79,7 @@ const SERVICES = [
     title: "Hébergement mail",
     desc: "Une adresse pro (vous@votre-entreprise.fr), fiable et sécurisée, pour une image sérieuse.",
     icon: IconMail,
+    href: "/services/email-pro",
     points: [
       "Adresse à votre nom de domaine",
       "Boîte sécurisée et fiable, anti-spam inclus",
@@ -240,6 +247,16 @@ function Services() {
                     </li>
                   ))}
                 </ul>
+                <span className="relative z-10 mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-accent">
+                  En savoir plus
+                  <span aria-hidden className="transition-transform group-hover:translate-x-0.5">→</span>
+                </span>
+                {/* Lien étiré : toute la carte est cliquable */}
+                <Link
+                  href={s.href}
+                  aria-label={`En savoir plus : ${s.title}`}
+                  className="absolute inset-0 z-20"
+                />
               </Reveal>
             );
           })}
