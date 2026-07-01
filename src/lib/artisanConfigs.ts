@@ -65,6 +65,62 @@ export const CLIENTS: Record<string, ClientEntry> = {
     },
   },
 
+  // Lalanne Benoît — PAC / clim (RGE) — Lons (64). /devis/lalanne
+  lalanne: {
+    enseigne: "Lalanne Benoît",
+    zone: "Lons (64)",
+    config: { nom: "Lalanne Benoît", tauxHoraire: 55, metiers: ["clim"], clim: DEFAULT_CONFIG.clim },
+  },
+
+  // A-Fairelec (William Da Silva) — élec / clim / domotique — Lons (64). /devis/afairelec
+  afairelec: {
+    enseigne: "A-Fairelec",
+    zone: "Lons (64)",
+    config: { nom: "A-Fairelec", tauxHoraire: 55, metiers: ["elec", "clim"], elec: DEFAULT_CONFIG.elec, clim: DEFAULT_CONFIG.clim },
+  },
+
+  // Navarr'Elec (Lucas Navarro) — électricien — Pau (64). /devis/navarrelec
+  navarrelec: {
+    enseigne: "Navarr'Elec",
+    zone: "Pau (64)",
+    config: { nom: "Navarr'Elec", tauxHoraire: 55, metiers: ["elec"], elec: DEFAULT_CONFIG.elec },
+  },
+
+  // Steeve'Elec (Steeve Sarremia) — électricité générale — Pau (64). /devis/steeveelec
+  steeveelec: {
+    enseigne: "Steeve'Elec",
+    zone: "Pau (64)",
+    config: { nom: "Steeve'Elec", tauxHoraire: 55, metiers: ["elec"], elec: DEFAULT_CONFIG.elec },
+  },
+
+  // Pinto-Delriu 64 — plomberie / chauffage / clim (RGE) — Bougarber / Lons. /devis/pinto
+  pinto: {
+    enseigne: "Pinto-Delriu 64",
+    zone: "Bougarber / Lons (64)",
+    config: { nom: "Pinto-Delriu 64", tauxHoraire: 55, metiers: ["plomb", "clim"], plomb: DEFAULT_CONFIG.plomb, clim: DEFAULT_CONFIG.clim },
+  },
+
+  // Plomberie Berges (Romuald Messiaen) — plomberie / chauffage — Coarraze. /devis/berges
+  berges: {
+    enseigne: "Plomberie Berges",
+    zone: "Coarraze (64)",
+    config: { nom: "Plomberie Berges", tauxHoraire: 55, metiers: ["plomb", "clim"], plomb: DEFAULT_CONFIG.plomb, clim: DEFAULT_CONFIG.clim },
+  },
+
+  // Hélios Béarn (Thierry Pommies) — PAC / clim / solaire — Artiguelouve / Lescar. /devis/helios
+  helios: {
+    enseigne: "Hélios Béarn",
+    zone: "Artiguelouve / Lescar (64)",
+    config: { nom: "Hélios Béarn", tauxHoraire: 55, metiers: ["clim"], clim: DEFAULT_CONFIG.clim },
+  },
+
+  // LAP Plombier — plomberie / chauffage — Gan (64). /devis/lapgan
+  lapgan: {
+    enseigne: "LAP Plombier",
+    zone: "Gan (64)",
+    config: { nom: "LAP Plombier", tauxHoraire: 55, metiers: ["plomb", "clim"], plomb: DEFAULT_CONFIG.plomb, clim: DEFAULT_CONFIG.clim },
+  },
+
   // Démo générique (sert de vitrine / exemple) — mêmes fourchettes par défaut.
   demo: {
     enseigne: "Votre entreprise",
