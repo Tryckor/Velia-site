@@ -783,8 +783,8 @@ function Footer() {
         </nav>
       </div>
       <p className="mx-auto mt-5 max-w-6xl text-center text-[11px] leading-relaxed text-muted/70 sm:text-left">
-        Velia — Balzola Tao, entrepreneur individuel · SIREN 106 956 097 · APE
-        6201Z · 23 rue Barada, 64360 Monein · veliadigital.fr@gmail.com
+        Velia · Entreprise individuelle · SIREN 106 956 097 ·
+        veliadigital.fr@gmail.com
       </p>
     </footer>
   );
