@@ -44,6 +44,9 @@ export function LegalPage({
             <Link href="/mentions-legales" className="hover:text-foreground">
               Mentions légales
             </Link>
+            <Link href="/cgv" className="hover:text-foreground">
+              CGV
+            </Link>
             <Link href="/confidentialite" className="hover:text-foreground">
               Confidentialité
             </Link>

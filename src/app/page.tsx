@@ -777,6 +777,9 @@ function Footer() {
           <a href="/mentions-legales" className="hover:text-foreground">
             Mentions légales
           </a>
+          <a href="/cgv" className="hover:text-foreground">
+            CGV
+          </a>
           <a href="/confidentialite" className="hover:text-foreground">
             Confidentialité
           </a>

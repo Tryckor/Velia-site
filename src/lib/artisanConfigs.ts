@@ -36,6 +36,35 @@ export const CLIENTS: Record<string, ClientEntry> = {
     },
   },
 
+  // ── Démos PROSPECTS (à montrer pendant l'appel) — prix = fourchettes marché,
+  //    à caler avec le patron s'il signe. Slug court = son URL de démo.
+
+  // Pielet Fils (Richard Pielet) — plomberie / chauffage — Lons (64). /devis/pielet
+  pielet: {
+    enseigne: "Pielet Fils",
+    zone: "Lons (64)",
+    config: {
+      nom: "Pielet Fils",
+      tauxHoraire: 55,
+      metiers: ["plomb", "clim"],
+      plomb: DEFAULT_CONFIG.plomb,
+      clim: DEFAULT_CONFIG.clim,
+    },
+  },
+
+  // Alain Galos — plombier-chauffagiste RGE — Gan (64). /devis/galos
+  galos: {
+    enseigne: "Alain Galos",
+    zone: "Gan (64)",
+    config: {
+      nom: "Alain Galos",
+      tauxHoraire: 55,
+      metiers: ["plomb", "clim"],
+      plomb: DEFAULT_CONFIG.plomb,
+      clim: DEFAULT_CONFIG.clim,
+    },
+  },
+
   // Démo générique (sert de vitrine / exemple) — mêmes fourchettes par défaut.
   demo: {
     enseigne: "Votre entreprise",
