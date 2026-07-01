@@ -10,7 +10,8 @@ const geist = Geist({
 });
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://velia-digital.com";
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
+  "https://velia-digitalcom.vercel.app";
 
 const jsonLd = {
   "@context": "https://schema.org",
