@@ -19,35 +19,31 @@ export default function MentionsLegales() {
       <h2>Éditeur du site</h2>
       <ul>
         <li>
-          Dénomination : <strong>Velia</strong>{" "}
-          <span className="todo">[à compléter : nom légal / micro-entreprise]</span>
+          Éditeur : <strong>Balzola Tao</strong>, entrepreneur individuel
+          (exploitant la marque « Velia »)
+        </li>
+        <li>Statut juridique : entrepreneur individuel (EI)</li>
+        <li>SIREN : 106 956 097</li>
+        <li>Code APE : 6201Z — Programmation informatique</li>
+        <li>
+          Adresse : 23 rue Barada, 64360 Monein, France
         </li>
         <li>
-          Statut juridique :{" "}
-          <span className="todo">[à compléter : ex. micro-entreprise / EI]</span>
-        </li>
-        <li>
-          SIRET : <span className="todo">[à compléter une fois immatriculé]</span>
-        </li>
-        <li>
-          Adresse :{" "}
-          <span className="todo">[à compléter : adresse de l&apos;entreprise]</span>
+          TVA intracommunautaire : non applicable, article 293 B du Code général
+          des impôts (franchise en base de TVA)
         </li>
         <li>
           Email : <a href="mailto:veliadigital.fr@gmail.com">veliadigital.fr@gmail.com</a>
         </li>
-        <li>
-          Directeur de la publication :{" "}
-          <span className="todo">[à compléter : nom du responsable]</span>
-        </li>
+        <li>Directeur de la publication : Tao Balzola</li>
       </ul>
 
       <h2>Hébergement</h2>
       <p>
-        Le site est hébergé par <strong>Netlify, Inc.</strong>, 512 2nd Street,
-        Suite 200, San Francisco, CA 94107, États-Unis —{" "}
-        <a href="https://www.netlify.com" rel="noopener noreferrer" target="_blank">
-          netlify.com
+        Le site est hébergé par <strong>Vercel Inc.</strong>, 440 N Barranca Ave
+        #4133, Covina, CA 91723, États-Unis —{" "}
+        <a href="https://vercel.com" rel="noopener noreferrer" target="_blank">
+          vercel.com
         </a>
         .
       </p>

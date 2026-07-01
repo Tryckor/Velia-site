@@ -21,6 +21,15 @@ const jsonLd = {
   url: siteUrl,
   email: "veliadigital.fr@gmail.com",
   image: `${siteUrl}/velia-logo.png`,
+  legalName: "Balzola Tao",
+  taxID: "106956097",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "23 rue Barada",
+    postalCode: "64360",
+    addressLocality: "Monein",
+    addressCountry: "FR",
+  },
   areaServed: "FR",
   knowsAbout: [
     "Création de sites web",

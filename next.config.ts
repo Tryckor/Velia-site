@@ -12,6 +12,17 @@ const securityHeaders = [
     key: "Strict-Transport-Security",
     value: "max-age=63072000; includeSubDomains; preload",
   },
+  { key: "X-Permitted-Cross-Domain-Policies", value: "none" },
+  {
+    // CSP volontairement minimale : on ne fixe PAS de default-src / script-src
+    // (le widget IA ElevenLabs et ses scripts tiers doivent charger) ni de
+    // frame-ancestors (la bulle /embed doit s'afficher sur les sites clients).
+    // On bloque juste les vecteurs sûrs : plugins <object>, détournement de
+    // <base>, et l'envoi de formulaires vers un domaine externe.
+    key: "Content-Security-Policy",
+    value:
+      "object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests",
+  },
 ];
 
 const nextConfig: NextConfig = {
