@@ -783,8 +783,7 @@ function Footer() {
         </nav>
       </div>
       <p className="mx-auto mt-5 max-w-6xl text-center text-[11px] leading-relaxed text-muted/70 sm:text-left">
-        Velia · Entreprise individuelle · SIREN 106 956 097 ·
-        veliadigital.fr@gmail.com
+        Velia · SIREN 106 956 097 · veliadigital.fr@gmail.com
       </p>
     </footer>
   );
