@@ -19,7 +19,7 @@ const jsonLd = {
   description:
     "Agence digitale & IA : sites web, automatisations, SEO, agents IA et chatbots sur mesure.",
   url: siteUrl,
-  email: "contact@velia-digital.com",
+  email: "veliadigital.fr@gmail.com",
   image: `${siteUrl}/velia-logo.png`,
   areaServed: "FR",
   knowsAbout: [

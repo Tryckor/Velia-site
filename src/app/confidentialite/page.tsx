@@ -20,7 +20,7 @@ export default function Confidentialite() {
       <h2>Responsable du traitement</h2>
       <p>
         Velia —{" "}
-        <a href="mailto:contact@velia-digital.com">contact@velia-digital.com</a>. Pour toute
+        <a href="mailto:veliadigital.fr@gmail.com">veliadigital.fr@gmail.com</a>. Pour toute
         question relative à vos données, c&apos;est cette adresse à contacter.
       </p>
 
@@ -75,7 +75,7 @@ export default function Confidentialite() {
         Vous disposez d&apos;un droit d&apos;accès, de rectification,
         d&apos;effacement, de limitation et d&apos;opposition au traitement de
         vos données. Pour les exercer, écrivez à{" "}
-        <a href="mailto:contact@velia-digital.com">contact@velia-digital.com</a>. Vous pouvez
+        <a href="mailto:veliadigital.fr@gmail.com">veliadigital.fr@gmail.com</a>. Vous pouvez
         également introduire une réclamation auprès de la CNIL (
         <a href="https://www.cnil.fr" rel="noopener noreferrer" target="_blank">
           cnil.fr

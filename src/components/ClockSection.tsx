@@ -113,9 +113,16 @@ export function ClockSection() {
               <span className="font-medium text-white">
                 7× plus de chances de qualifier le prospect
               </span>{" "}
-              <span className="text-white/55">(Harvard Business Review)</span> — et la
-              moyenne réelle est de <span className="font-medium text-white">42 heures</span>.
+              — et la moyenne réelle est de{" "}
+              <span className="font-medium text-white">42 heures</span>.
               Velia répond à votre place, en quelques secondes, 24/7.
+            </p>
+
+            <p
+              className="mx-auto mt-3 text-xs text-white/40"
+              style={up(0.46)}
+            >
+              Source : Harvard Business Review
             </p>
 
             <div

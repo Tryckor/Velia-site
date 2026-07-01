@@ -54,7 +54,7 @@ export function ContactForm() {
         </div>
         <h3 className="text-xl font-medium">Message bien reçu.</h3>
         <p className="mt-2 max-w-sm text-muted">
-          Merci pour votre confiance. Je reviens vers vous sous 24&nbsp;h ouvrées
+          Merci pour votre confiance. Nous reviendrons vers vous sous 24&nbsp;h ouvrées
           pour échanger sur votre projet.
         </p>
         <button

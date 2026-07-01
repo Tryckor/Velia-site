@@ -674,14 +674,14 @@ function Contact() {
             align="left"
             eyebrow="Contact"
             title="Discutons de votre projet"
-            subtitle="Décrivez votre besoin en quelques mots. Je reviens vers vous sous 24 h ouvrées pour un premier échange — gratuit et sans engagement."
+            subtitle="Décrivez votre besoin en quelques mots. Nous reviendrons vers vous sous 24 h ouvrées pour un premier échange — gratuit et sans engagement."
           />
           <div className="mt-10 space-y-5">
             <ContactInfo
               icon={IconMail}
               label="Email"
-              value="contact@velia-digital.com"
-              href="mailto:contact@velia-digital.com"
+              value="veliadigital.fr@gmail.com"
+              href="mailto:veliadigital.fr@gmail.com"
             />
             <ContactInfo
               icon={IconClock}

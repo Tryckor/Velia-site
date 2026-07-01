@@ -34,7 +34,7 @@ export default function MentionsLegales() {
           <span className="todo">[à compléter : adresse de l&apos;entreprise]</span>
         </li>
         <li>
-          Email : <a href="mailto:contact@velia-digital.com">contact@velia-digital.com</a>
+          Email : <a href="mailto:veliadigital.fr@gmail.com">veliadigital.fr@gmail.com</a>
         </li>
         <li>
           Directeur de la publication :{" "}
@@ -67,7 +67,7 @@ export default function MentionsLegales() {
         <a href="/confidentialite">politique de confidentialité</a>. Vous
         disposez d&apos;un droit d&apos;accès, de rectification et de
         suppression de vos données en écrivant à{" "}
-        <a href="mailto:contact@velia-digital.com">contact@velia-digital.com</a>.
+        <a href="mailto:veliadigital.fr@gmail.com">veliadigital.fr@gmail.com</a>.
       </p>
 
       <h2>Responsabilité</h2>
